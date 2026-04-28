@@ -64,7 +64,6 @@ Our solution is built around the following rules:
 ---
 
 ## 3. High-Level Workflow
-
 ```mermaid
 flowchart TD
     A[Input: id, question] --> B[Question Normalization]
