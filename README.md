@@ -1,7 +1,4 @@
-# AI_kickoff
-Dưới đây là một bản **README.md mẫu** em có thể paste thẳng vào project nhóm. Anh viết theo đúng tinh thần cuộc thi: **2 luồng độc lập `call_document` và `call_api`, selector ra quyết định trực tiếp, không fallback**, và tối ưu cho **độ chính xác + tốc độ trên Google Colab**. PDF mẫu của BTC cho thấy tài liệu có cấu trúc mục/tiểu mục, hình minh họa và nội dung kỹ thuật, nên nhánh document được thiết kế theo hướng parse có cấu trúc + retrieval theo chunk thay vì chỉ OCR/text thuần. 
 
-````markdown
 # Viettel AI Race - Smart Chatbot for RAG & API Integration
 
 ## 1. Project Overview
@@ -89,7 +86,6 @@ flowchart TD
     D4 --> F[Build final output]
     E5 --> F[Build final output]
     F --> G[Output: id, function_code, function_answer, time_response]
-````
 
 ---
 
