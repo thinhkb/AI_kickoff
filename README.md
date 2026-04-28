@@ -76,7 +76,7 @@ flowchart TD
     D --> D1[Retrieve relevant PDF chunks]
     D1 --> D2[Read note and parse A/B/C/D]
     D2 --> D3[Score options against retrieved evidence]
-    D3 --> D4[Return selected answer(s)]
+    D3 --> D4["Return selected answer(s)"]
 
     E --> E1[Retrieve top API candidates]
     E1 --> E2[Extract slots from question]
@@ -87,7 +87,7 @@ flowchart TD
     D4 --> F[Build final output]
     E5 --> F[Build final output]
     F --> G[Output: id, function_code, function_answer, time_response]
-````
+```
 
 ---
 
