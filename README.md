@@ -1,3 +1,4 @@
+# AI_kickoff
 
 # Viettel AI Race - Smart Chatbot for RAG & API Integration
 
@@ -86,6 +87,7 @@ flowchart TD
     D4 --> F[Build final output]
     E5 --> F[Build final output]
     F --> G[Output: id, function_code, function_answer, time_response]
+````
 
 ---
 
