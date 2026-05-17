@@ -1,767 +1,600 @@
-# AI_kickoff
+# 🤖 Viettel AI Race – Smart Chatbot for RAG & API Integration
 
-# Viettel AI Race - Smart Chatbot for RAG & API Integration
+## Mục lục
 
-## 1. Project Overview
-
-This project implements a **two-branch intelligent chatbot** for the Viettel AI Race challenge.
-
-The system solves two tasks:
-
-- **Document Extraction (`call_document`)**  
-  Answer multiple-choice questions from a knowledge base of PDF documents containing text, images, formulas, and tables.
-
-- **API Configuration Generation (`call_api`)**  
-  Select the correct API and fill the configuration JSON from a natural-language question using API specification files and backend-standardized parameter aliases.
-
-The input only uses:
-
-- `id`
-- `question`
-
-The `note` field is **not used during function routing**. It is only accessed **after** the system has already selected `function_code = "call_document"` in order to parse answer options A/B/C/D.
-
-The output format is:
-
-- `id`
-- `function_code`
-- `function_answer`
-- `time_response`
+- [1. Tổng quan](#1-tổng-quan)
+- [2. Yêu cầu hệ thống](#2-yêu-cầu-hệ-thống)
+- [3. Cài đặt](#3-cài-đặt)
+- [4. Cấu trúc dữ liệu](#4-cấu-trúc-dữ-liệu)
+- [5. Hướng dẫn chạy project](#5-hướng-dẫn-chạy-project)
+- [6. Kiến trúc hệ thống](#6-kiến-trúc-hệ-thống)
+- [7. Cấu trúc project](#7-cấu-trúc-project)
+- [8. Chi tiết từng module](#8-chi-tiết-từng-module)
+- [9. Cấu hình](#9-cấu-hình)
+- [10. Kết quả đạt được](#10-kết-quả-đạt-được)
+- [11. Nâng cấp nâng cao](#11-nâng-cấp-nâng-cao)
+- [12. Xử lý lỗi thường gặp](#12-xử-lý-lỗi-thường-gặp)
 
 ---
 
-## 2. Core Design Principles
+## 1. Tổng quan
 
-Our solution is built around the following rules:
+Hệ thống chatbot thông minh **hai nhánh** cho cuộc thi Viettel AI Race:
 
-1. **No fallback routing**  
-   The system does not default to `call_document` and then switch to another branch if retrieval fails.  
-   It also does not default to `call_api` and retry elsewhere.
+| Nhánh | Chức năng | Input | Output |
+|-------|-----------|-------|--------|
+| `call_document` | Trả lời câu hỏi trắc nghiệm từ tài liệu PDF | `question` + `note` (A/B/C/D) | `{"numbers": 1, "result": "A"}` |
+| `call_api` | Chọn API đúng và điền JSON config | `question` | `{"path": "/api/...", "body": {...}}` |
 
-2. **No shortcut routing by answer format**  
-   The system does not use the presence of options A/B/C/D as a hard rule to choose `call_document`.
-
-3. **Direct function selection from the question**  
-   A dedicated selector predicts either:
-   - `call_document`
-   - `call_api`
-
-4. **Data-driven API handling**  
-   We do **not** manually re-code each API as a separate business function.  
-   Instead, we build an **API registry** from the provided API configuration file, then:
-   - retrieve the correct API
-   - extract parameters from the question
-   - normalize aliases / abbreviations / typos
-   - generate the final JSON output
-
-5. **Fast inference-first engineering**  
-   Since runtime is graded, the system minimizes unnecessary LLM generation and uses:
-   - retrieval
-   - reranking
-   - structured parsing
-   - deterministic template filling
+**Nguyên tắc thiết kế:**
+- Chỉ dùng `question` để phân loại nhánh (không dùng `note`)
+- Không fallback giữa hai nhánh
+- Ưu tiên tốc độ: retrieval + scoring + template filling (hạn chế LLM)
 
 ---
 
-## 3. High-Level Workflow
-```mermaid
-flowchart TD
-    A[Input: id, question] --> B[Question Normalization]
-    B --> C[Function Selector]
+## 2. Yêu cầu hệ thống
 
-    C -->|call_document| D[Document Pipeline]
-    C -->|call_api| E[API Pipeline]
+| Thành phần | Yêu cầu tối thiểu |
+|------------|-------------------|
+| **Python** | >= 3.10 |
+| **RAM** | >= 8 GB |
+| **Disk** | >= 2 GB (cho data + models) |
+| **GPU** | Không bắt buộc (chỉ cần cho embedding/reranker nâng cao) |
+| **OS** | Windows / Linux / macOS |
 
-    D --> D1[Retrieve relevant PDF chunks]
-    D1 --> D2[Read note and parse A/B/C/D]
-    D2 --> D3[Score options against retrieved evidence]
-    D3 --> D4["Return selected answer(s)"]
+---
 
-    E --> E1[Retrieve top API candidates]
-    E1 --> E2[Extract slots from question]
-    E2 --> E3[Normalize aliases, abbreviations, typos]
-    E3 --> E4[Fill API JSON template]
-    E4 --> E5[Validate output schema]
+## 3. Cài đặt
 
-    D4 --> F[Build final output]
-    E5 --> F[Build final output]
-    F --> G[Output: id, function_code, function_answer, time_response]
+### 3.1. Clone project
+
+```bash
+git clone <repo-url>
+cd AI_kickoff
+```
+
+### 3.2. Tạo môi trường ảo (khuyến nghị)
+
+```bash
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# Linux / macOS
+source .venv/bin/activate
+```
+
+### 3.3. Cài đặt dependencies
+
+**Cài đặt cơ bản** (đủ để chạy pipeline):
+
+```bash
+pip install openpyxl scikit-learn numpy scipy rapidfuzz rank-bm25 tqdm PyMuPDF joblib
+```
+
+**Cài đặt đầy đủ** (bao gồm embedding + reranker):
+
+```bash
+pip install -r requirements.txt
+```
+
+> **Lưu ý:** `sentence-transformers` và `faiss-cpu` là optional. Pipeline mặc định chạy với BM25 (không cần GPU). Chỉ cần cài khi muốn dùng dense embedding hoặc cross-encoder reranker.
+
+---
+
+## 4. Cấu trúc dữ liệu
+
+Dữ liệu đã có sẵn trong folder `data/`:
+
+```
+data/
+├── API_config_data/
+│   └── Tài liệu config API.xlsx     # 131 APIs + 23 bảng alias
+├── Document_config_data/
+│   ├── Public_001.pdf                # 398 file PDF tài liệu
+│   ├── Public_002.pdf
+│   └── ...
+├── example_data/
+│   └── example_data.xlsx             # 100 câu hỏi mẫu + đáp án
+└── test_data/
+    └── Test_data.xlsx                # 617 câu hỏi test
+```
+
+**Không cần tải thêm dữ liệu.** Tất cả đã có sẵn.
+
+---
+
+## 5. Hướng dẫn chạy project
+
+### ⚡ Chạy nhanh (3 bước)
+
+```bash
+# Bước 1: Build dữ liệu offline
+python scripts/build_api_registry.py
+python scripts/build_document_kb.py
+
+# Bước 2: Train selector
+python scripts/train_selector.py
+
+# Bước 3: Chạy submission
+python run_submission.py
+```
+
+Kết quả sẽ xuất ra tại:
+- `outputs/predictions.jsonl` – Dự đoán dạng JSONL
+- `outputs/submission.csv` – File nộp bài
+
+---
+
+### 📋 Hướng dẫn chi tiết từng bước
+
+#### Bước 1: Build API Registry & Alias Dictionary
+
+```bash
+python scripts/build_api_registry.py
+```
+
+Script này sẽ:
+- Đọc file `Tài liệu config API.xlsx`
+- Trích xuất 131 API definitions → `data/processed/api_registry.jsonl`
+- Trích xuất 23 bảng alias (organization, projectType, ...) → `data/processed/alias_dictionary.json`
+
+**Output mong đợi:**
+```
+Loaded 131 APIs
+Wrote API registry to data/processed/api_registry.jsonl
+Wrote alias dictionary with 23 categories
+  organization: 7 entries
+  projectType: 4 entries
+  project_info: 300 entries
+  ...
+```
+
+#### Bước 2: Build Document Knowledge Base
+
+```bash
+python scripts/build_document_kb.py
+```
+
+Script này sẽ:
+- Parse 398 file PDF bằng PyMuPDF (text-layer extraction)
+- Chia thành chunks ngữ nghĩa (512 tokens, overlap 64)
+- Xuất ra `data/processed/document_chunks.jsonl`
+
+**Output mong đợi:**
+```
+Found 398 PDF files
+Total chunks: 15539
+Wrote document chunks to data/processed/document_chunks.jsonl
+  Documents: 398
+  Avg chunks/doc: 39.0
+```
+
+> ⏱️ Thời gian chạy: ~22 giây
+
+#### Bước 3: Train Selector Model
+
+```bash
+python scripts/train_selector.py
+```
+
+Script này sẽ:
+- Đọc 100 câu hỏi mẫu từ `example_data.xlsx`
+- Train TF-IDF + LogisticRegression classifier
+- Cross-validation 5-fold
+- Lưu model → `data/cache/selector_model/`
+
+**Output mong đợi:**
+```
+Training data: 100 samples
+  call_api: 50
+  call_document: 50
+Cross-validation accuracy: 0.9800 (+/- 0.0245)
+Training accuracy: 1.0000
+Selector model saved
+```
+
+#### Bước 4: Đánh giá local (optional)
+
+```bash
+python scripts/evaluate_local.py
+```
+
+Chạy pipeline trên 100 câu hỏi mẫu và so sánh với đáp án:
+
+**Output mong đợi:**
+```
+Routing accuracy: 100/100 = 1.0000
+API path accuracy: 47/50 = 0.9400
+Average time_response: 0.024s
+```
+
+#### Bước 5: Chạy submission trên test data
+
+```bash
+python run_submission.py
+```
+
+Chạy pipeline trên toàn bộ 617 câu hỏi test:
+
+**Output mong đợi:**
+```
+=== Submission Summary ===
+Total predictions: 617
+  call_api: 348
+  call_document: 269
+  avg time_response: 0.023s
+```
+
+Kết quả được lưu tại:
+- `outputs/predictions.jsonl`
+- `outputs/submission.csv`
+
+#### Bước 6: Test câu hỏi đơn lẻ (optional)
+
+```bash
+python src/main.py "Trong Quý 3/2025 thì TTPMTCS có bao nhiêu dự án"
 ```
 
 ---
 
-## 4. End-to-End Pipeline
+## 6. Kiến trúc hệ thống
 
-### 4.1 Offline Preparation
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    INPUT: id, question                       │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                    ┌──────▼──────┐
+                    │  Normalize  │  Unicode, whitespace, time
+                    │  Question   │  expressions
+                    └──────┬──────┘
+                           │
+                    ┌──────▼──────┐
+                    │  Selector   │  TF-IDF + LogisticRegression
+                    │  (98% CV)   │  question → call_api / call_document
+                    └──────┬──────┘
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+       ┌──────▼──────┐          ┌──────▼──────┐
+       │ call_document│          │  call_api   │
+       └──────┬──────┘          └──────┬──────┘
+              │                         │
+    ┌─────────▼─────────┐     ┌────────▼────────┐
+    │ BM25 Retrieval    │     │ BM25 Retrieval  │
+    │ (15,539 chunks)   │     │ (131 APIs)      │
+    └─────────┬─────────┘     └────────┬────────┘
+              │                         │
+    ┌─────────▼─────────┐     ┌────────▼────────┐
+    │ Parse A/B/C/D     │     │ Heuristic       │
+    │ from note         │     │ Reranking       │
+    └─────────┬─────────┘     └────────┬────────┘
+              │                         │
+    ┌─────────▼─────────┐     ┌────────▼────────┐
+    │ Option Scoring    │     │ Slot Extraction │
+    │ (keyword overlap) │     │ (date, org, ...) │
+    └─────────┬─────────┘     └────────┬────────┘
+              │                         │
+              │                ┌────────▼────────┐
+              │                │ Alias Normalize │
+              │                │ (3-layer fuzzy) │
+              │                └────────┬────────┘
+              │                         │
+              │                ┌────────▼────────┐
+              │                │ Template Fill   │
+              │                │ + Validate JSON │
+              │                └────────┬────────┘
+              │                         │
+              └────────────┬────────────┘
+                           │
+                    ┌──────▼──────┐
+                    │   OUTPUT    │
+                    │ id, func,   │
+                    │ answer, time│
+                    └─────────────┘
+```
 
-Offline steps are executed before inference and are **not counted** in `time_response`.
+### Luồng xử lý chính
 
-#### A. Document Knowledge Base
-
-We preprocess all PDF files into a searchable document index:
-
-* extract text blocks
-* preserve page number and section metadata
-* separate tables when possible
-* optionally OCR pages with poor text extraction
-* chunk the content into semantically meaningful segments
-
-#### B. API Knowledge Base
-
-We convert the API configuration Excel into a structured API registry:
-
-* `func_code`
-* API name
-* description
-* example question
-* request path / method
-* required parameters
-* optional parameters
-* expected JSON schema
-
-#### C. Alias Dictionary
-
-We build a normalization dictionary from backend-standardized aliases:
-
-* abbreviations
-* typo-tolerant variants
-* accent-insensitive matching
-* fuzzy string matching support
-
-#### D. Selector Training / Calibration
-
-Using the provided example data, we train or calibrate a lightweight classifier that predicts:
-
-* `call_document`
-* `call_api`
-
-The selector only uses the `question`.
-
----
-
-### 4.2 Online Inference
-
-#### Step 1. Question Normalization
-
-Input question is normalized with:
-
-* unicode normalization
-* whitespace cleanup
-* lowercase copy
-* time phrase normalization
-* typo-tolerant preprocessing
-
-#### Step 2. Function Selection
-
-A dedicated selector predicts the execution branch directly:
-
-* `call_document`
-* `call_api`
-
-This decision is based on semantic relevance and learned routing signals, not on fallback logic.
-
-#### Step 3A. Document Branch (`call_document`)
-
-The document branch performs:
-
-1. retrieve relevant chunks from PDF knowledge base
-2. read `note` only after routing is done
-3. parse options A/B/C/D
-4. score each option against retrieved evidence
-5. return the best option or multiple options if needed
-
-#### Step 3B. API Branch (`call_api`)
-
-The API branch performs:
-
-1. retrieve top API candidates from API registry
-2. rerank the best candidates
-3. extract entities / slots from the question
-4. normalize aliases, abbreviations, and misspellings
-5. fill the correct JSON template
-6. validate output format
-
-#### Step 4. Output Formatting
-
-The final output always follows the challenge schema:
-
-* `id`
-* `function_code`
-* `function_answer`
-* `time_response`
+1. **Question Normalization** – Unicode NFKC, whitespace, time phrase chuẩn hóa
+2. **Function Selection** – TF-IDF (word + char n-grams) + LogisticRegression
+3. **call_document** – BM25 retrieval → parse options A/B/C/D → keyword overlap scoring → chọn đáp án
+4. **call_api** – BM25 retrieval → heuristic rerank → slot extraction (date, org, type) → 3-layer alias normalization (exact → accent-insensitive → fuzzy) → template fill → JSON validation
 
 ---
 
-## 5. Branch-Specific Strategy
+## 7. Cấu trúc project
 
-## 5.1 `call_document`: Retrieval + Option Scoring
-
-Instead of generating a long free-form answer, the document branch is optimized for multiple-choice QA:
-
-* retrieve evidence from PDFs
-* compare each candidate option with the evidence
-* select the most supported answer
-
-This approach is:
-
-* faster
-* more stable
-* less hallucination-prone
-* better aligned with objective evaluation
-
-This is especially important because the sample public PDF contains technical content with hierarchical sections, code-like snippets, and images, so preserving document structure improves retrieval quality. 
-
----
-
-## 5.2 `call_api`: API Retrieval + Slot Filling
-
-The API branch is **not** implemented as hundreds of handwritten functions.
-
-Instead, each API is treated as a structured template:
-
-* choose the correct `func_code`
-* identify needed parameters
-* normalize slot values
-* render the final JSON
-
-This branch is designed as:
-
-* API retrieval
-* slot extraction
-* alias normalization
-* template filling
-* schema validation
-
-This makes the system:
-
-* scalable
-* easier to maintain
-* faster to iterate
-* robust to abbreviations and noisy queries
-
----
-
-## 6. Handling Abbreviations, Typos, and Aliases
-
-One key difficulty of `call_api` is that questions may contain:
-
-* abbreviations
-* backend aliases
-* misspellings
-* inconsistent naming
-
-We handle them through a three-layer normalization strategy:
-
-### Layer 1. Exact normalization
-
-* lowercase normalization
-* trim spaces
-* accent-insensitive comparison
-* direct alias dictionary lookup
-
-### Layer 2. Fuzzy normalization
-
-* edit distance / fuzzy matching
-* typo correction
-* approximate alias resolution
-
-### Layer 3. Semantic normalization
-
-* embedding-based similarity for unresolved terms
-* canonical value selection among valid backend values
-
-This normalization is separated from API selection to keep the pipeline modular and easier to debug.
-
----
-
-## 7. Why This Architecture Fits the Challenge
-
-This architecture is chosen because it matches the official constraints:
-
-* It uses only `question` for branch selection.
-* It does not use `note` before selecting `call_document`.
-* It does not rely on fallback design.
-* It does not hard-code multiple-choice logic for routing.
-* It explicitly addresses API abbreviations and misspellings.
-* It prioritizes runtime speed by limiting unnecessary generation.
-
----
-
-## 8. Project Structure
-
-```text
-viettel-ai-race-chatbot/
+```
+AI_kickoff/
 │
-├── README.md
-├── requirements.txt
-├── colab_demo.ipynb
-├── run_submission.py
+├── README.md                   # ← File này
+├── plan.md                     # Tài liệu thiết kế chi tiết
+├── requirements.txt            # Dependencies
+├── run_submission.py           # Entry point: chạy submission
 │
 ├── configs/
-│   ├── constants.py
-│   ├── paths.py
-│   └── model_config.py
-│
-├── data/
-│   ├── raw/
-│   │   ├── pdfs/
-│   │   ├── example_data.xlsx
-│   │   ├── test_data.xlsx
-│   │   └── api_config.xlsx
-│   │
-│   ├── processed/
-│   │   ├── document_chunks.jsonl
-│   │   ├── api_registry.jsonl
-│   │   ├── alias_dictionary.json
-│   │   └── selector_train.jsonl
-│   │
-│   └── cache/
-│       ├── doc_index/
-│       ├── api_index/
-│       └── embeddings/
+│   ├── constants.py            # Hằng số: function codes, thresholds
+│   ├── paths.py                # Đường dẫn tập trung
+│   └── model_config.py         # Cấu hình model: embedding, reranker, LLM
 │
 ├── src/
-│   ├── main.py
-│   ├── pipeline.py
-│   ├── schemas.py
+│   ├── main.py                 # Test câu hỏi đơn lẻ
+│   ├── pipeline.py             # Pipeline inference chính
+│   ├── schemas.py              # Data classes: InputSample, PredictionResult, APIEntry
 │   │
 │   ├── preprocess/
-│   │   ├── question_normalizer.py
-│   │   ├── text_cleaner.py
-│   │   └── time_normalizer.py
+│   │   ├── question_normalizer.py  # Chuẩn hóa câu hỏi
+│   │   ├── text_cleaner.py         # Làm sạch text
+│   │   └── time_normalizer.py      # Parse biểu thức thời gian (T1/2025, Quý 3/2025)
 │   │
 │   ├── selector/
-│   │   ├── feature_builder.py
-│   │   ├── selector_model.py
-│   │   └── predictor.py
+│   │   ├── feature_builder.py      # TF-IDF feature builder
+│   │   ├── selector_model.py       # LogisticRegression classifier
+│   │   └── predictor.py            # High-level selector predictor
 │   │
 │   ├── document/
-│   │   ├── pdf_parser.py
-│   │   ├── ocr_parser.py
-│   │   ├── table_parser.py
-│   │   ├── chunker.py
-│   │   ├── retriever.py
-│   │   ├── option_parser.py
-│   │   ├── option_scorer.py
-│   │   └── document_solver.py
+│   │   ├── pdf_parser.py           # Parse PDF bằng PyMuPDF
+│   │   ├── chunker.py              # Chia text thành chunks
+│   │   ├── retriever.py            # Hybrid BM25 + dense retrieval
+│   │   ├── option_parser.py        # Parse đáp án A/B/C/D từ note
+│   │   ├── option_scorer.py        # Scoring options vs evidence
+│   │   └── document_solver.py      # End-to-end document solver
 │   │
 │   ├── api/
-│   │   ├── api_catalog_loader.py
-│   │   ├── api_retriever.py
-│   │   ├── api_reranker.py
-│   │   ├── slot_extractor.py
-│   │   ├── slot_normalizer.py
-│   │   ├── template_filler.py
-│   │   ├── validator.py
-│   │   └── api_solver.py
+│   │   ├── api_catalog_loader.py   # Load API từ Excel
+│   │   ├── api_retriever.py        # BM25 retrieval cho API
+│   │   ├── api_reranker.py         # Rerank API candidates
+│   │   ├── slot_extractor.py       # Trích xuất slot (date, org, type)
+│   │   ├── slot_normalizer.py      # 3-layer alias normalization
+│   │   ├── template_filler.py      # Điền JSON template
+│   │   ├── validator.py            # Validate output JSON
+│   │   └── api_solver.py           # End-to-end API solver
 │   │
 │   ├── models/
-│   │   ├── embedding_model.py
-│   │   ├── reranker_model.py
-│   │   └── llm_wrapper.py
+│   │   ├── embedding_model.py      # Wrapper: sentence-transformers
+│   │   ├── reranker_model.py       # Wrapper: cross-encoder
+│   │   └── llm_wrapper.py          # Wrapper: LLM (vLLM/SGLang)
 │   │
-│   ├── utils/
-│   │   ├── io_utils.py
-│   │   ├── json_utils.py
-│   │   ├── timer.py
-│   │   ├── logging_utils.py
-│   │   └── fuzzy_match.py
+│   ├── output/
+│   │   ├── formatter.py            # Format output theo schema cuộc thi
+│   │   └── writer.py               # Ghi JSONL / CSV
 │   │
-│   └── output/
-│       ├── formatter.py
-│       └── writer.py
+│   └── utils/
+│       ├── io_utils.py             # Đọc/ghi file (JSONL, JSON, Excel, CSV)
+│       ├── json_utils.py           # Parse JSON robust
+│       ├── timer.py                # Đo thời gian inference
+│       ├── logging_utils.py        # Logging
+│       └── fuzzy_match.py          # Fuzzy matching cho alias
 │
 ├── scripts/
-│   ├── build_document_kb.py
-│   ├── build_api_registry.py
-│   ├── build_alias_dict.py
-│   ├── train_selector.py
-│   └── evaluate_local.py
+│   ├── build_api_registry.py       # Build API registry + alias dict
+│   ├── build_document_kb.py        # Build document knowledge base
+│   ├── build_alias_dict.py         # Build alias dictionary (standalone)
+│   ├── train_selector.py           # Train branch selector
+│   └── evaluate_local.py           # Đánh giá trên example data
 │
 ├── evaluation/
-│   ├── eval_selector.py
-│   ├── eval_document.py
-│   ├── eval_api.py
-│   ├── metrics.py
-│   └── error_analysis.py
+│   ├── metrics.py                  # Metrics: routing, API path, doc answer accuracy
+│   └── __init__.py
 │
-└── outputs/
+├── data/
+│   ├── API_config_data/            # File Excel cấu hình API
+│   ├── Document_config_data/       # 398 file PDF
+│   ├── example_data/               # Câu hỏi mẫu + đáp án
+│   ├── test_data/                  # Câu hỏi test
+│   ├── processed/                  # [Generated] Dữ liệu đã xử lý
+│   │   ├── api_registry.jsonl
+│   │   ├── alias_dictionary.json
+│   │   └── document_chunks.jsonl
+│   └── cache/                      # [Generated] Model + index cache
+│       └── selector_model/
+│
+└── outputs/                        # [Generated] Kết quả
     ├── predictions.jsonl
     └── submission.csv
 ```
 
 ---
 
-## 9. File-by-File Responsibilities
+## 8. Chi tiết từng module
 
-### Root Files
+### 8.1. Selector (`src/selector/`)
 
-#### `README.md`
+- **Thuật toán:** TF-IDF (word 1-3 gram + char 2-5 gram) → LogisticRegression
+- **Input:** `question` (đã normalize)
+- **Output:** `call_document` hoặc `call_api`
+- **Hiệu suất:** 98% cross-validation, 100% training accuracy
+- **Thời gian:** < 1ms
 
-Project documentation, architecture overview, and usage instructions.
+### 8.2. Document Pipeline (`src/document/`)
 
-#### `requirements.txt`
+| Bước | Module | Mô tả |
+|------|--------|-------|
+| 1 | `pdf_parser.py` | Extract text từ PDF (PyMuPDF text-layer) |
+| 2 | `chunker.py` | Chia thành chunks 512 tokens, overlap 64 |
+| 3 | `retriever.py` | BM25 retrieval, hỗ trợ filter theo doc_id (Public_XXX) |
+| 4 | `option_parser.py` | Parse A/B/C/D từ trường `note` |
+| 5 | `option_scorer.py` | Keyword overlap scoring (fallback) hoặc cross-encoder |
+| 6 | `document_solver.py` | Orchestrator: retrieve → parse → score → chọn đáp án |
 
-List of all Python dependencies required to run the project.
+### 8.3. API Pipeline (`src/api/`)
 
-#### `colab_demo.ipynb`
+| Bước | Module | Mô tả |
+|------|--------|-------|
+| 1 | `api_catalog_loader.py` | Load 131 API + 23 bảng alias từ Excel |
+| 2 | `api_retriever.py` | BM25 retrieval trên API registry |
+| 3 | `api_reranker.py` | Heuristic rerank (description + example overlap) |
+| 4 | `slot_extractor.py` | Extract: fromDate, toDate, organization, projectType, ... |
+| 5 | `slot_normalizer.py` | 3-layer: exact → accent-insensitive → fuzzy (rapidfuzz) |
+| 6 | `template_filler.py` | Điền slot vào JSON template |
+| 7 | `validator.py` | Validate path, body params, enum values |
+| 8 | `api_solver.py` | Orchestrator: retrieve → rerank → extract → normalize → fill |
 
-Google Colab notebook for end-to-end execution:
+### 8.4. Time Normalizer (`src/preprocess/time_normalizer.py`)
 
-* install dependencies
-* load data
-* build indexes
-* run inference
-* export submission
+Hỗ trợ parse các dạng biểu thức thời gian tiếng Việt:
 
-#### `run_submission.py`
-
-Batch prediction entry point for test-time inference and submission generation.
-
----
-
-### `configs/`
-
-#### `configs/constants.py`
-
-Stores shared constants:
-
-* function codes
-* schema keys
-* threshold values
-* default retrieval settings
-
-#### `configs/paths.py`
-
-Centralizes all file and folder paths.
-
-#### `configs/model_config.py`
-
-Contains model names, checkpoint paths, token limits, and inference configuration.
+| Pattern | Ví dụ | fromDate | toDate |
+|---------|-------|----------|--------|
+| Tháng | T11/2025, tháng 8/2025 | 2025-11-01 | 2025-11-30 |
+| Quý | Quý 3/2025, Q3/2025 | 2025-07-01 | 2025-09-30 |
+| Năm | năm 2025 | 2025-01-01 | 2025-12-31 |
+| Khoảng | T1/2025 - T12/2025 | 2025-01-01 | 2025-12-31 |
 
 ---
 
-### `src/preprocess/`
+## 9. Cấu hình
 
-#### `question_normalizer.py`
-
-Normalizes the input question before routing:
-
-* casing
-* punctuation
-* spacing
-* standard patterns
-
-#### `text_cleaner.py`
-
-Utility functions for text cleanup and canonicalization.
-
-#### `time_normalizer.py`
-
-Parses and standardizes time expressions such as:
-
-* month / quarter / year
-* relative date ranges
-* compact date notations
-
----
-
-### `src/selector/`
-
-#### `feature_builder.py`
-
-Builds selector features from the question and retrieval signals.
-
-#### `selector_model.py`
-
-Implements or loads the classifier that predicts:
-
-* `call_document`
-* `call_api`
-
-#### `predictor.py`
-
-High-level function for selector inference.
-
----
-
-### `src/document/`
-
-#### `pdf_parser.py`
-
-Extracts text blocks and page metadata from PDF documents.
-
-#### `ocr_parser.py`
-
-Handles OCR for low-text or image-heavy pages when needed.
-
-#### `table_parser.py`
-
-Extracts or linearizes tables into retrieval-friendly text.
-
-#### `chunker.py`
-
-Splits parsed PDF content into semantic chunks with metadata.
-
-#### `retriever.py`
-
-Searches relevant document chunks for a given question.
-
-#### `option_parser.py`
-
-Parses A/B/C/D answer options from the `note` field.
-
-#### `option_scorer.py`
-
-Scores candidate options against retrieved document evidence.
-
-#### `document_solver.py`
-
-End-to-end solver for the `call_document` branch.
-
----
-
-### `src/api/`
-
-#### `api_catalog_loader.py`
-
-Loads API definitions from Excel and converts them into a structured registry.
-
-#### `api_retriever.py`
-
-Retrieves top API candidates from the API registry.
-
-#### `api_reranker.py`
-
-Reranks top candidate APIs for more accurate selection.
-
-#### `slot_extractor.py`
-
-Extracts required entities and parameter values from the question.
-
-#### `slot_normalizer.py`
-
-Normalizes:
-
-* aliases
-* abbreviations
-* misspellings
-* backend-specific values
-
-#### `template_filler.py`
-
-Fills the selected API JSON template with normalized slot values.
-
-#### `validator.py`
-
-Validates the generated API output:
-
-* field names
-* required keys
-* enum compatibility
-* JSON schema consistency
-
-#### `api_solver.py`
-
-End-to-end solver for the `call_api` branch.
-
----
-
-### `src/models/`
-
-#### `embedding_model.py`
-
-Wrapper for embedding model used in retrieval.
-
-#### `reranker_model.py`
-
-Wrapper for reranking model used in API and document candidate scoring.
-
-#### `llm_wrapper.py`
-
-Lightweight wrapper around the local model when generation or semantic scoring is needed.
-
----
-
-### `src/utils/`
-
-#### `io_utils.py`
-
-File reading / writing helpers.
-
-#### `json_utils.py`
-
-JSON serialization, parsing, and formatting helpers.
-
-#### `timer.py`
-
-Measures inference time for `time_response`.
-
-#### `logging_utils.py`
-
-Logging utilities for debugging and tracing pipeline decisions.
-
-#### `fuzzy_match.py`
-
-Reusable fuzzy matching utilities for alias normalization.
-
----
-
-### `src/output/`
-
-#### `formatter.py`
-
-Formats the final output into challenge-compliant schema.
-
-#### `writer.py`
-
-Writes batch predictions to JSONL / CSV submission file.
-
----
-
-### `scripts/`
-
-#### `build_document_kb.py`
-
-Builds the document knowledge base and retrieval index.
-
-#### `build_api_registry.py`
-
-Builds the API registry from the API configuration file.
-
-#### `build_alias_dict.py`
-
-Builds alias dictionary and normalization resources.
-
-#### `train_selector.py`
-
-Trains or calibrates the branch selector using example data.
-
-#### `evaluate_local.py`
-
-Runs local evaluation before submission.
-
----
-
-### `evaluation/`
-
-#### `eval_selector.py`
-
-Evaluates routing accuracy.
-
-#### `eval_document.py`
-
-Evaluates multiple-choice performance on the document branch.
-
-#### `eval_api.py`
-
-Evaluates API selection and JSON correctness.
-
-#### `metrics.py`
-
-Defines project-wide evaluation metrics.
-
-#### `error_analysis.py`
-
-Analyzes failure cases for debugging and iteration.
-
----
-
-## 10. Main Inference Logic
-
-The system can be summarized by the following pseudocode:
+### 9.1. Thay đổi model (`configs/model_config.py`)
 
 ```python
-def predict_one(sample):
-    start_time = now()
+# Embedding model
+EMBEDDING_MODEL_NAME = "BAAI/bge-m3"          # Mặc định
+# EMBEDDING_MODEL_NAME = "Qwen/Qwen3-Embedding-8B"  # Accuracy-first
 
-    q = normalize_question(sample["question"])
+# Reranker model
+RERANKER_MODEL_NAME = "BAAI/bge-reranker-v2-m3"     # Mặc định
+# RERANKER_MODEL_NAME = "Qwen/Qwen3-Reranker-8B"    # Accuracy-first
 
-    function_code = selector.predict(q)
-
-    if function_code == "call_document":
-        result = document_solver.solve(
-            question=q,
-            note=sample.get("note", "")
-        )
-    elif function_code == "call_api":
-        result = api_solver.solve(question=q)
-    else:
-        raise ValueError("Invalid function_code")
-
-    elapsed = now() - start_time
-
-    return {
-        "id": sample["id"],
-        "function_code": function_code,
-        "function_answer": result,
-        "time_response": elapsed
-    }
+# LLM (optional fallback)
+LLM_MODEL_NAME = "Qwen/Qwen3-32B"
+LLM_API_BASE = "http://localhost:8000/v1"  # vLLM endpoint
 ```
 
----
+### 9.2. Thay đổi thresholds (`configs/constants.py`)
 
-## 11. Why Our Team Chose This Solution
+```python
+DOC_RETRIEVAL_TOP_K = 50      # Số chunks retrieve cho document
+API_RETRIEVAL_TOP_K = 30      # Số API candidates
+API_RERANK_TOP_K = 5          # Số API sau rerank
+CHUNK_SIZE = 512              # Kích thước chunk
+CHUNK_OVERLAP = 64            # Overlap giữa chunks
+```
 
-Our team selected this architecture for three reasons:
+### 9.3. Thay đổi đường dẫn data (`configs/paths.py`)
 
-### A. Compliance with challenge constraints
-
-The pipeline strictly respects:
-
-* input field rules
-* routing rules
-* note usage rules
-* no-fallback requirement
-
-### B. Speed
-
-We minimize heavy free-form generation and use structured retrieval + scoring + template filling.
-
-### C. Robustness
-
-The system is modular, debuggable, and specifically designed to handle:
-
-* PDF knowledge extraction
-* API alias normalization
-* noisy real-world questions
+Tất cả đường dẫn được quản lý tập trung. Chỉ cần sửa nếu đổi vị trí data.
 
 ---
 
-## 12. Future Improvements
+## 10. Kết quả đạt được
 
-Potential future upgrades include:
+### Evaluation trên example data (100 câu)
 
-* better OCR fallback for formula-heavy PDFs
-* stronger reranker for difficult API selection cases
-* improved time parser for ambiguous date expressions
-* richer table understanding for document QA
-* confidence calibration for selector and option scoring
+| Metric | Giá trị |
+|--------|---------|
+| Routing accuracy | **100%** (100/100) |
+| API path accuracy | **94%** (47/50) |
+| Avg response time | **0.024s** |
+| Cross-validation accuracy | **98% ± 2.5%** |
+
+### Submission trên test data (617 câu)
+
+| Metric | Giá trị |
+|--------|---------|
+| Total predictions | 617 |
+| call_api | 348 (56.4%) |
+| call_document | 269 (43.6%) |
+| Avg response time | **0.023s** |
 
 ---
 
-## 13. Summary
+## 11. Nâng cấp nâng cao
 
-This project is a **modular dual-branch chatbot system** for:
+### 11.1. Bật Dense Embedding (nâng cao retrieval)
 
-* document-based multiple-choice QA
-* API configuration generation
+```bash
+pip install sentence-transformers
+```
 
-The system is designed to be:
+Model sẽ tự động sử dụng `BAAI/bge-m3` cho hybrid BM25 + dense retrieval.
 
-* competition-compliant
-* fast
-* accurate
-* scalable
-* easy to debug and extend
+### 11.2. Bật Cross-Encoder Reranker (nâng cao scoring)
 
-Instead of relying on a single large prompt, we combine:
+Cross-encoder đã được tích hợp sẵn trong `sentence-transformers`. Cần khởi tạo `OptionScorer` và `APIReranker` với reranker model.
 
-* branch selection
-* structured retrieval
-* option scoring
-* alias normalization
-* deterministic template filling
+### 11.3. Bật LLM Fallback (xử lý trường hợp mơ hồ)
 
-This gives us a strong balance between **accuracy** and **response speed**, which are both central to the competition scoring.
+```bash
+# Cài vLLM
+pip install vllm
 
+# Khởi động server
+vllm serve Qwen/Qwen3-32B --port 8000
+
+# Pipeline sẽ tự dùng LLM cho slot extraction mơ hồ
+```
+
+### 11.4. OCR cho PDF chất lượng thấp
+
+```bash
+pip install paddleocr paddlepaddle
+```
+
+Kích hoạt OCR fallback cho các trang PDF có `text_coverage < 0.1`.
+
+---
+
+## 12. Xử lý lỗi thường gặp
+
+### Lỗi UnicodeEncodeError khi log tiếng Việt
+
+```
+UnicodeEncodeError: 'charmap' codec can't encode character
+```
+
+**Giải pháp:** Chạy với flag UTF-8:
+```bash
+python -X utf8 run_submission.py
+```
+
+Hoặc set biến môi trường:
+```bash
+set PYTHONIOENCODING=utf-8    # Windows
+export PYTHONIOENCODING=utf-8  # Linux/macOS
+```
+
+> **Lưu ý:** Lỗi này chỉ ảnh hưởng log hiển thị, **không ảnh hưởng kết quả**. Pipeline vẫn chạy đúng.
+
+### Lỗi ModuleNotFoundError
+
+```bash
+# Cài package bị thiếu
+pip install <package-name>
+
+# Hoặc cài toàn bộ
+pip install -r requirements.txt
+```
+
+### Lỗi "Selector model not found"
+
+Chạy train selector trước:
+```bash
+python scripts/train_selector.py
+```
+
+### Lỗi "Document index not found"
+
+Chạy build document KB trước:
+```bash
+python scripts/build_document_kb.py
+```
+
+### Pipeline chạy chậm
+
+- Đảm bảo dữ liệu processed đã được build (không cần build lại mỗi lần chạy)
+- Giảm `DOC_RETRIEVAL_TOP_K` trong `configs/constants.py` nếu cần nhanh hơn
+
+---
+
+## Tác giả
+
+Đội thi Viettel AI Race
+
+## License
+
+MIT
