@@ -21,9 +21,17 @@ def write_predictions(preds: List[PredictionResult], path: str | Path = None):
 def write_submission(preds: List[PredictionResult], path: str | Path = None):
     """Write predictions to CSV submission file."""
     path = Path(path or SUBMISSION_FILE)
-    formatted = format_batch(preds)
+    formatted = [
+        {
+            "id": pred.id,
+            "func_code": pred.function_code,
+            "func_param": pred.function_answer,
+            "time": round(pred.time_response, 4),
+        }
+        for pred in preds
+    ]
     write_csv(
         formatted, path,
-        fieldnames=["id", "function_code", "function_answer", "time_response"],
+        fieldnames=["id", "func_code", "func_param", "time"],
     )
     logger.info(f"Wrote submission to {path}")

@@ -5,6 +5,7 @@ Usage: python run_submission.py
 """
 import sys
 import argparse
+import os
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -18,6 +19,37 @@ from src.pipeline import Pipeline
 from src.output.writer import write_predictions, write_submission
 from src.utils.io_utils import read_excel_sheet
 from src.utils.logging_utils import logger
+from configs import model_config as mc
+from configs import constants as c
+
+
+def _runtime_config_lines() -> list[str]:
+    """Build important runtime config lines for the final submission summary."""
+    use_reranker = os.getenv("VIETTEL_USE_RERANKER", "0")
+    reranker_model = os.getenv("VIETTEL_RERANKER_MODEL") or mc.RERANKER_MODEL_NAME
+    reranker_device = os.getenv("VIETTEL_RERANKER_DEVICE") or "auto"
+
+    return [
+        "  RUNTIME CONFIG",
+        "  --------------",
+        f"  embedding_model     : {mc.EMBEDDING_MODEL_NAME}",
+        f"  embedding_batch     : {mc.EMBEDDING_BATCH_SIZE}",
+        f"  embedding_normalize : {mc.EMBEDDING_NORMALIZE}",
+        f"  use_reranker        : {use_reranker}",
+        f"  reranker_model      : {reranker_model}",
+        f"  reranker_device     : {reranker_device}",
+        f"  reranker_batch      : {mc.RERANKER_BATCH_SIZE}",
+        f"  llm_model           : {mc.LLM_MODEL_NAME}",
+        f"  llm_api_base        : {mc.LLM_API_BASE}",
+        f"  ocr_model           : {mc.OCR_MODEL}",
+        f"  layout_model        : {mc.LAYOUT_MODEL}",
+        f"  ocr_lang            : {mc.OCR_LANG}",
+        f"  doc_top_k           : {c.DOC_RETRIEVAL_TOP_K}",
+        f"  api_top_k           : {c.API_RETRIEVAL_TOP_K}",
+        f"  chunk_size          : {c.CHUNK_SIZE}",
+        f"  chunk_overlap       : {c.CHUNK_OVERLAP}",
+        f"  selector_type       : {mc.SELECTOR_TYPE}",
+    ]
 
 
 def main():
@@ -74,6 +106,9 @@ def main():
     logger.info(f"  avg time_response : {avg_time:.3f}s")
     logger.info(f"  predictions file  : {pred_path.name}")
     logger.info(f"  submission file   : {sub_path.name}")
+    logger.info("")
+    for line in _runtime_config_lines():
+        logger.info(line)
     logger.info(f"{'=' * 50}")
 
 

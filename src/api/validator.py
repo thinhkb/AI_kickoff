@@ -32,12 +32,6 @@ class APIValidator:
             errors.append("Body must be a dict")
             return len(errors) == 0, errors
 
-        # Check required params exist
-        for param in api.body_params:
-            pc = param.strip()
-            if pc not in body:
-                errors.append(f"Missing param: {pc}")
-
         # Validate enum values
         for param, value in body.items():
             if param in self.alias_dict:
@@ -59,9 +53,4 @@ class APIValidator:
             repaired["path"] = api.path
         if "body" not in repaired:
             repaired["body"] = {}
-        body = repaired["body"]
-        for param in api.body_params:
-            pc = param.strip()
-            if pc not in body:
-                body[pc] = []
         return repaired

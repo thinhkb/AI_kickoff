@@ -20,9 +20,10 @@ def parse_options(note: str) -> Dict[str, str]:
 
     options = {}
 
-    # Pattern: letter followed by comma/dot/colon/paren then text
+    # Prefer line-start option markers. The previous pattern also matched
+    # normal Vietnamese words ending in c./d. inside option text.
     pattern = re.compile(
-        r"([A-Da-d])\s*[,.\):]\s*(.+?)(?=\s*[A-Da-d]\s*[,.\):]|\s*$)",
+        r"(?:^|\n)\s*([A-Da-d])\s*[,.\):]\s*(.+?)(?=(?:\n\s*[A-Da-d]\s*[,.\):])|\s*$)",
         re.DOTALL,
     )
 

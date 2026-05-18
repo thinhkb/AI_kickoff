@@ -1,0 +1,10 @@
+{
+  "total": 100,
+  "routing_accuracy": 1.0,
+  "document_answer_accuracy": 0.7,
+  "api_path_accuracy": 1.0,
+  "api_body_exact_accuracy": 1.0,
+  "end_to_end_exact_accuracy": 0.85,
+  "average_time_response": 0.1337,
+  "mismatch_count": 15
+}

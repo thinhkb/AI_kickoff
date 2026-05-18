@@ -148,12 +148,9 @@ class DocumentRetriever:
         If a doc_id is mentioned in the query (e.g., Public_441),
         filter chunks to that document first.
         """
-        import re
         # Try to detect doc_id from query
         if doc_id is None:
-            match = re.search(r"Public_(\d+)", query, re.IGNORECASE)
-            if match:
-                doc_id = f"Public_{match.group(1)}"
+            doc_id = self._detect_doc_id(query)
 
         if doc_id:
             # Filter chunks to specific document
@@ -163,10 +160,33 @@ class DocumentRetriever:
                 local_bm25 = BM25Okapi(tokenized)
                 scores = local_bm25.get_scores(self._tokenize(query))
                 top_indices = np.argsort(scores)[::-1][:top_k]
-                return [(filtered[i], float(scores[i])) for i in top_indices if scores[i] > 0]
+                results = [(filtered[i], float(scores[i])) for i in top_indices if scores[i] > 0]
+                if results:
+                    return results
+                # Broad doc-summary questions often mention only the document id
+                # plus generic words. Returning leading chunks is better than an
+                # empty result because option scoring can still match content.
+                return [
+                    (chunk, 1.0 / (idx + 1))
+                    for idx, chunk in enumerate(filtered[:top_k])
+                ]
 
         # Fall back to full retrieval
         return self.retrieve_bm25(query, top_k)
+
+    def _detect_doc_id(self, query: str) -> Optional[str]:
+        """Detect Public_123, Public 123, or TD123 references."""
+        import re
+
+        public_match = re.search(r"\bPublic[\s_-]*(\d{1,4})\b", query, re.IGNORECASE)
+        if public_match:
+            return f"Public_{int(public_match.group(1)):03d}"
+
+        td_match = re.search(r"\bTD\s*(\d{1,4})\b", query, re.IGNORECASE)
+        if td_match:
+            return f"Public_{int(td_match.group(1)):03d}"
+
+        return None
 
     def save_index(self, path: str | Path):
         """Save chunks and metadata to disk."""

@@ -30,15 +30,27 @@ YEAR_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-# Date range: T1/2025 - T12/2025
+# Date range: T1/2025 - T12/2025, T1/2025 -> T12/2025
+RANGE_SEPARATOR = r"\s*(?:->|[-–—]|đến|den|tới|toi|to)\s*"
 RANGE_PATTERN = re.compile(
-    r"(?:tháng|thang|T)\s*(\d{1,2})\s*/\s*(\d{4})\s*[-–]\s*(?:tháng|thang|T)\s*(\d{1,2})\s*/\s*(\d{4})",
+    r"(?:tháng|thang|T)\s*(\d{1,2})\s*/\s*(\d{4})"
+    + RANGE_SEPARATOR +
+    r"(?:tháng|thang|T)?\s*(\d{1,2})\s*/\s*(\d{4})",
     re.IGNORECASE,
 )
 
 # Compact: khoảng từ tháng X/Y - tháng A/B
 RANGE_FULL_PATTERN = re.compile(
-    r"(?:từ\s+)?(?:tháng|thang|T)\s*(\d{1,2})\s*/\s*(\d{4})\s*[-–]\s*(?:tháng|thang|T)\s*(\d{1,2})\s*/\s*(\d{4})",
+    r"(?:từ\s+|khoảng\s+từ\s+)?(?:tháng|thang|T)\s*(\d{1,2})\s*/\s*(\d{4})"
+    + RANGE_SEPARATOR +
+    r"(?:tháng|thang|T)?\s*(\d{1,2})\s*/\s*(\d{4})",
+    re.IGNORECASE,
+)
+
+QUARTER_RANGE_PATTERN = re.compile(
+    r"(?:từ\s+|khoảng\s+từ\s+)?(?:quý|quy|Q)\s*(\d)\s*/\s*(\d{4})"
+    + RANGE_SEPARATOR +
+    r"(?:quý|quy|Q)?\s*(\d)\s*/\s*(\d{4})",
     re.IGNORECASE,
 )
 
@@ -91,6 +103,17 @@ def extract_date_range(text: str) -> Optional[Tuple[str, str]]:
         last_day = calendar.monthrange(y2, m2)[1]
         to_date = f"{y2}-{m2:02d}-{last_day:02d}"
         return from_date, to_date
+
+    # Try quarter range (Q1/2025 -> Q3/2025)
+    m = QUARTER_RANGE_PATTERN.search(text)
+    if m:
+        q1, y1, q2, y2 = int(m.group(1)), int(m.group(2)), int(m.group(3)), int(m.group(4))
+        start_month = (q1 - 1) * 3 + 1
+        end_month = q2 * 3
+        from_date = f"{y1}-{start_month:02d}-01"
+        import calendar
+        last_day = calendar.monthrange(y2, end_month)[1]
+        return from_date, f"{y2}-{end_month:02d}-{last_day:02d}"
 
     # Try quarter
     m = QUARTER_PATTERN.search(text)

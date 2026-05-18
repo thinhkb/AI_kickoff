@@ -2,6 +2,7 @@
 Main inference pipeline: orchestrates selector, document solver, and API solver.
 """
 import json
+import os
 from typing import Optional, Dict, Any
 from src.schemas import InputSample, PredictionResult
 from src.preprocess.question_normalizer import normalize_question
@@ -9,10 +10,12 @@ from src.selector.selector_model import SelectorModel
 from src.document.document_solver import DocumentSolver
 from src.document.retriever import DocumentRetriever
 from src.document.option_scorer import OptionScorer
+from src.document.option_parser import parse_options
 from src.api.api_solver import APISolver
 from src.api.api_retriever import APIRetriever
 from src.api.api_reranker import APIReranker
 from src.api.api_catalog_loader import load_api_catalog, load_alias_dictionary
+from src.models.reranker_model import RerankerModel
 from src.utils.timer import Timer
 from src.utils.logging_utils import logger
 from configs.paths import (
@@ -34,6 +37,7 @@ class Pipeline:
     def load(self):
         """Load all models and indexes."""
         logger.info("Loading pipeline...")
+        reranker_model = self._load_optional_reranker()
 
         # 1. Load selector
         self.selector = SelectorModel()
@@ -51,7 +55,7 @@ class Pipeline:
 
         self.document_solver = DocumentSolver(
             retriever=doc_retriever,
-            option_scorer=OptionScorer(),
+            option_scorer=OptionScorer(reranker=reranker_model),
         )
 
         # 3. Load API components
@@ -64,7 +68,7 @@ class Pipeline:
 
             self.api_solver = APISolver(
                 retriever=api_retriever,
-                reranker=APIReranker(),
+                reranker=APIReranker(reranker_model=reranker_model),
                 alias_dict=alias_dict,
             )
         except Exception as e:
@@ -72,6 +76,20 @@ class Pipeline:
 
         self._loaded = True
         logger.info("Pipeline loaded successfully")
+
+    def _load_optional_reranker(self):
+        """Load a heavy cross-encoder only when explicitly requested."""
+        if os.getenv("VIETTEL_USE_RERANKER", "0").lower() not in {"1", "true", "yes"}:
+            return None
+        try:
+            device = os.getenv("VIETTEL_RERANKER_DEVICE") or None
+            model_name = os.getenv("VIETTEL_RERANKER_MODEL") or None
+            reranker = RerankerModel(model_name=model_name, device=device)
+            reranker.load()
+            return reranker
+        except Exception as e:
+            logger.warning(f"Optional reranker unavailable, using lexical scoring: {e}")
+            return None
 
     def predict_one(self, sample: InputSample) -> PredictionResult:
         """Predict for a single sample."""
@@ -98,6 +116,16 @@ class Pipeline:
                 f"(note is empty, id={sample.id})"
             )
             func_code = FUNC_CALL_API
+
+        # In the contest files, real call_document rows carry answer choices in
+        # note. This catches selector false positives on document/table-price
+        # questions such as TD640/TD643 that look numeric and API-like.
+        if func_code == FUNC_CALL_API and sample.note and len(parse_options(sample.note)) >= 2:
+            logger.info(
+                f"  Routing override: call_api -> call_document "
+                f"(multiple-choice note, id={sample.id})"
+            )
+            func_code = FUNC_CALL_DOCUMENT
 
         # Solve
         if func_code == FUNC_CALL_DOCUMENT:
