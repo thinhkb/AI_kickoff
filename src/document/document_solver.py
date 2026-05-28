@@ -60,6 +60,11 @@ class DocumentSolver:
         if direct_answer:
             return json.dumps({"numbers": 1, "result": direct_answer}, ensure_ascii=False)
 
+        # Detect negation questions
+        is_negation = OptionScorer.is_negation_question(question)
+        if is_negation:
+            logger.info("  Detected NEGATION question")
+
         # Step 3: Score each option against evidence
         scores = self.option_scorer.score_options(
             question=question,
@@ -71,7 +76,7 @@ class DocumentSolver:
         logger.info(f"  Option scores: {scores}")
 
         # Step 4: Select best answer
-        best = self.option_scorer.select_best(scores)
+        best = self.option_scorer.select_best(scores, is_negation=is_negation)
         num_answers = len(best.split(","))
 
         result = {
@@ -100,6 +105,27 @@ class DocumentSolver:
             offset_match = re.search(r"ít nhất\s+(\d+(?:[,.]\d+)?)", q_lower)
             if base_value is not None and offset_match:
                 target = base_value + self._to_float(offset_match.group(1))
+
+        # PCA variance retention calculation
+        if target is None and "trị riêng" in q_lower and ("phương sai" in q_lower or "thành phần" in q_lower or "pca" in q_lower):
+            parts = re.split(r"nếu|chọn", q_lower)
+            if len(parts) > 1:
+                first_part = parts[0]
+                second_part = " ".join(parts[1:])
+                k_match = re.search(r"\bk\s*=\s*(\d+)", second_part)
+                if k_match:
+                    K = int(k_match.group(1))
+                    val_matches = re.findall(r"=\s*(\d+(?:[.,]\d+)?)", first_part)
+                    eigenvalues = [self._to_float(v) for v in val_matches]
+                    # De-duplicate preserving order
+                    seen = set()
+                    unique_eigenvalues = []
+                    for v in eigenvalues:
+                        if v not in seen:
+                            seen.add(v)
+                            unique_eigenvalues.append(v)
+                    if unique_eigenvalues and len(unique_eigenvalues) >= K:
+                        target = sum(unique_eigenvalues[:K]) / sum(unique_eigenvalues)
 
         # Ohm's law: I = U / R.
         if target is None and "điện áp" in q_lower and "điện trở" in q_lower:

@@ -1,0 +1,404 @@
+DEBUG SCORING RESULTS
+
+================================================================================
+ID: 701 | Q: Cho ma trận hiệp phương sai S của dữ liệu đã chuẩn hoá có các trị riêng λ1=5,λ2=2,λ3=1,λ4=0.5\lambda
+  Retrieved 50 chunks
+  Top-1 (score=82.3762): doc=Public_118 page=2
+    text=Race
+Race
+VIETTEL AI RACE 
+Public 118 
+DIMENSIONALITY REDUCTION & 
+PCA 
+Lần ban hành: 1 2 Hàm mất mát: J = Σ_{i=K+1}^D u_i^T S u_i 
+Tối ưu tương đương...
+  Top-2 (score=75.7099): doc=Public_118 page=1
+    text=Dữ liệu chuẩn hoá:  Ẋ = X − x̄ 1^T 
+Ma trận hiệp phương sai:  S = (1/N)ẊẊ^T...
+  Top-3 (score=71.3848): doc=Public_118 page=1
+    text=2.3 Trace 
+Một số tính chất: 
+- trace(A) = trace(A^T) 
+- trace(kA) = k trace(A) 
+- trace(AB) = trace(BA) 
+- ||A||_F^2 = trace(A^T A) 
+- trace(A) = tổn...
+  Scores: {'A': 0.0, 'B': 0.2, 'C': 0.4327557134976493, 'D': 0.0967449087956078}
+  Options:
+    A: 0.824
+    B: 0.588
+    C: 1.167
+    D: 0.235
+
+================================================================================
+ID: 707 | Q: SASRec và BERT4Rec khác nhau chủ yếu ở những điểm nào?
+  Retrieved 50 chunks
+  Top-1 (score=26.6248): doc=Public_110 page=4
+    text=VIETTEL AI RACE 
+Public 110 
+ATTENTION-BASED RECSYS MODELS 
+Lần 
+ban 
+hành: 1 - Segment Embedding (loại bỏ trong BERT4Rec): Khác với BERT trong NLP, 
+...
+  Top-2 (score=22.2728): doc=Public_110 page=3
+    text=Khác với 
+các mô hình gợi ý tuần tự truyền thống như RNN-based methods và SASRec, 
+BERT4Rec không giới hạn trong việc học thông tin từ quá khứ mà có t...
+  Top-3 (score=19.3158): doc=Public_109 page=1
+    text=- SASRec: Loại bỏ hạn chế của RNN bằng cách sử dụng self-attention để 
+nắm bắt các mối quan hệ giữa các sự kiện mà không bị giới hạn bởi khoảng cách. ...
+  Scores: {'A': 0.3425, 'B': 0.4869583700383096, 'C': 0.4970194250955436, 'D': 0.8316310776133432}
+  Options:
+    A: Cả hai đều là mô hình unidirectional và dùng next-item prediction
+    B: SASRec unidirectional – Next-item prediction, BERT4Rec bidirectional – Cloze objective
+    C: SASRec dùng CNN, BERT4Rec dùng RNN
+    D: SASRec không dùng embedding, BERT4Rec dùng embedding
+
+================================================================================
+ID: 708 | Q: Trong giải thuật DES, kích thước hiệu dụng của khóa là bao nhiêu bit?
+  Retrieved 50 chunks
+  Top-1 (score=44.9038): doc=Public_158 page=5
+    text=1.1.2 
+3-DES 
+3-DES hay Triple DES có tên đầy đủ là Triple Data Encryption Algorithm 
+(TDEA) được phát triển từ giải thuật DES bằng cách áp dụng DES 3...
+  Top-2 (score=43.5938): doc=Public_158 page=2
+    text=DES được sử dụng rộng rãi trong những năm 1970 và 1980. DES là dạng 
+mã hóa khối với khối dữ liệu vào kích thước 64 bit và khóa 64 bit, trong đó thực ...
+  Top-3 (score=43.1339): doc=Public_158 page=5
+    text=3-DES cho phép lựa 
+chọn các bộ khóa: 
+- Lựa chọn 1: cả 3 khóa độc lập, với tổng kích thước bộ khóa là 168 bit; 
+- Lựa chọn 2: K1 và K2 độc lập, K3 = ...
+  Scores: {'A': 0.06291894089960252, 'B': 0.3133682912312709, 'C': 0.5114799599101275, 'D': 0.21837686320329838}
+  Options:
+    A: 48 bit
+    B: 56 bit
+    C: 64 bit
+    D: 128 bit
+
+================================================================================
+ID: 709 | Q: Nội dung chính của phần 1 tài liệu Public_107 về Gradient Descent là gì?
+  Retrieved 44 chunks
+  Top-1 (score=9.2556): doc=Public_107 page=1
+    text=Gradient Descent (viết gọn là GD) và các biến thể 
+của nó là một trong những phương pháp được dùng nhiều nhất. Vì kiến thức về GD khá rộng nên tôi xin...
+  Top-2 (score=8.7469): doc=Public_107 page=18
+    text=VIETTEL AI RACE 
+Public 107 
+GIỚI THIỆU GRADIENT DESCENT  
+Lần ban hành: 1 6. Tài liệu tham khảo 
+1. An overview of gradient descent optimization algo...
+  Top-3 (score=7.6766): doc=Public_107 page=8
+    text=VIETTEL AI RACE 
+Public 107 
+GIỚI THIỆU GRADIENT DESCENT  
+Lần ban hành: 1 Chú ý: hàm này có khác một chút so với hàm tôi nêu trong bài Linear Regress...
+  Scores: {'A': 0.8654792164114551, 'B': 0.0014470672827893412, 'C': 0.4372614562761668, 'D': 0.6398571659520244}
+  Options:
+    A: Giới thiệu công thức tổng quát của tất cả biến thể GD
+    B: Chỉ tập trung vào ứng dụng GD trong mạng nơ-ron sâu
+    C: Phân tích chi tiết các thuật toán tối ưu bậc hai
+    D: Trình bày ý tưởng, nguyên lý cơ bản và ví dụ minh họa của Gradient Descent
+
+================================================================================
+ID: 715 | Q: Đâu không phải khẳng định đúng về các đặc tính của thuật toán được đề cập trong tài liệu Public_049?
+  Retrieved 35 chunks
+  Top-1 (score=15.6646): doc=Public_049 page=6
+    text=} return(a);//kết quả thực thi thuật toán  
+}  
+Những đặc trưng cơ bản của thuật toán:   
+• 
+Tính đơn định. Ở mỗi bước của thuật toán, các thao tác sơ...
+  Top-2 (score=13.2557): doc=Public_049 page=6
+    text=• 
+Tính đúng. Sau khi thực hiện tất cả các bước của thuật toán theo đúng quy 
+trình đã định, ta phải nhận được kết quả mong muốn với mọi bộ dữ liệu đầ...
+  Top-3 (score=11.2406): doc=Public_049 page=8
+    text=• Đối với những thuật toán phức tạp nặng nề về tính toán, các công thức cần được 
+mô tả một cách tường minh, có ghi chú rõ ràng. • Đối với các thuật t...
+  Scores: {'A': 0.9865866608856763, 'B': 0.11249999999999993, 'C': 0.14213630336184446, 'D': 0.8945586958644762}
+  Options:
+    A: Thuật toán phải rõ ràng, không nhập nhằng
+    B: Thuật toán không được chạy vô hạn
+    C: Thuật toán phải được thiết kế đặc thù, chuyên sâu thay vì tổng quát
+    D: Thuật toán nên dễ hiểu, dễ cài đặt
+
+================================================================================
+ID: 716 | Q: Theo tài liệu Public_163, phiên bản TLS nào được sử dụng rộng rãi nhất?
+  Retrieved 33 chunks
+  Top-1 (score=13.7269): doc=Public_163 page=1
+    text=TLS (Transport Layer Security) được phát triển vào năm 1999 dựa trên SSL 3.0 
+do tổ chức IETF phê chuẩn. Các phiên bản của TLS gồm: phiên bản 1.0 phát...
+  Top-2 (score=11.7633): doc=Public_163 page=7
+    text=PGP được sử dụng rộng rãi và đã được thừa nhận thành chuẩn thực tế 
+(RFC 3156). PGP hỗ trợ 
+mã hoá dữ liệu sử dụng mã hoá khoá bí mật và mã hóa khoá c...
+  Top-3 (score=6.3678): doc=Public_163 page=4
+    text=Server gửi thông điệp kết thúc khởi tạo phiên “Finished”. Sau khi quá trình khởi tạo thành công, hai bên SSL Client và SSL Server xác thực 
+được các t...
+  Scores: {'A': 0.55, 'B': 0.0, 'C': 0.1657953457428673, 'D': 0.12118136264571591}
+  Options:
+    A: 1.0
+    B: 1.1
+    C: 1.2
+    D: 1.3
+
+================================================================================
+ID: 719 | Q: Trong Phụ lục II, tiêu chí nào xác định tính toàn vẹn của thông điệp dữ liệu đã ký số?
+  Retrieved 50 chunks
+  Top-1 (score=41.7001): doc=Public_257 page=5
+    text=+ Cho phép xác thực chữ ký số trên thông điệp dữ liệu theo nguyên tắc chữ 
+ký số được tạo ra đúng với khóa bí mật tương ứng với khóa công khai trên ch...
+  Top-2 (score=40.9934): doc=Public_257 page=5
+    text=+ Đảm bảo tính hợp lệ của chữ ký số trên thông điệp dữ liệu đã ký theo các 
+tiêu chí tại Phụ lục II ban hành kèm theo Thông tư này; 
++ Hỗ trợ cài đặt,...
+  Top-3 (score=40.0007): doc=Public_283 page=5
+    text=5 hiện tạo mã băm cho thông điệp dữ liệu nhận được; so sánh sự trùng khớp của hai mã băm để kiểm tra tính toàn vẹn của thông điệp dữ liệu 
+ký số;  
+đ)...
+  Scores: {'A': 0.6208711089608518, 'B': 1.0, 'C': 0.45, 'D': 0.19144295401619765}
+  Options:
+    A: Chứng thư chữ ký số còn hiệu lực tại thời điểm ký
+    B: Mã băm của thông điệp dữ liệu trùng khớp với mã băm giải mã chữ ký
+    C: Xác thực thông tin chủ thể ký
+    D: Kiểm tra chứng thư số còn hoạt động tại thời điểm ký
+
+================================================================================
+ID: 725 | Q: Theo tài liệu Public_069, những đặc điểm quan trọng nào của dữ liệu chuỗi thời gian cần được xem xét
+  Retrieved 11 chunks
+  Top-1 (score=10.8257): doc=Public_069 page=2
+    text=o Dùng giao thức truyền tin gọn nhẹ như MQTT để giảm độ trễ. • 
+Đảm bảo tính toàn vẹn 
+o Thêm checksum hoặc chữ ký số trong gói dữ liệu. o Cơ chế retr...
+  Top-2 (score=7.1490): doc=Public_069 page=1
+    text=VIETTEL AI RACE 
+TD069 
+Thu Thập và Quản Lý Dữ Liệu Chuỗi Thời 
+Gian 
+Lần ban hành: 1 1 Dữ liệu chuỗi thời gian (time series) xuất hiện trong hầu hết ...
+  Top-3 (score=6.3513): doc=Public_069 page=1
+    text=• 
+Yêu cầu quan trọng: 
+o Độ chính xác của thời gian ghi nhận (timestamp) phải thống nhất 
+múi giờ và đồng bộ với đồng hồ chuẩn (NTP). o Đảm bảo tần s...
+  Scores: {'A': 0.45, 'B': 0.9240204094608037, 'C': 0.55, 'D': 0.2463663214812334}
+  Options:
+    A: Có nhiều biến phân loại
+    B: Được thu thập từ nhiều nguồn không đồng bộ
+    C: Tính phụ thuộc thời gian — giá trị hiện tại phụ thuộc vào giá trị trước đó
+    D: Được lưu trữ ở định dạng cột
+
+================================================================================
+ID: 726 | Q: Nếu dữ liệu chuỗi thời gian từ nhiều cảm biến tương quan với nhau được nhóm lại và nén (multi-series
+  Retrieved 50 chunks
+  Top-1 (score=38.5349): doc=Public_069 page=1
+    text=VIETTEL AI RACE 
+TD069 
+Thu Thập và Quản Lý Dữ Liệu Chuỗi Thời 
+Gian 
+Lần ban hành: 1 1 Dữ liệu chuỗi thời gian (time series) xuất hiện trong hầu hết ...
+  Top-2 (score=33.2978): doc=Public_174 page=2
+    text=Các nhóm tiếp thị có thể tích hợp dữ liệu từ CRM 
+với phản hồi từ khách hàng trên mạng xã hội để nghiên cứu hành vi của người tiêu 
+dùng. 3. ETL mang ...
+  Top-3 (score=31.8426): doc=Public_181 page=7
+    text=5.2 Nhược điểm 
+Mặc dù Apache Kafka mang lại nhiều lợi ích cho việc xử lý dữ liệu phân tán và 
+thời gian thực, nhưng nền tảng này cũng có những nhược...
+  Scores: {'A': 0.730143282399007, 'B': 0.29655608946651246, 'C': 0.7889201278967497, 'D': 0.41883100964895675}
+  Options:
+    A: Giảm dung lượng lưu trữ, tăng tốc truy vấn
+    B: Tăng chi phí tính toán
+    C: Giảm độ chính xác vì mất thông tin chi tiết
+    D: Không ảnh hưởng vì các chuỗi không liên quan
+
+================================================================================
+ID: 728 | Q: Theo tài liệu Public_002, học phần Bảo mật Web trang bị kiến thức về bộ rủi ro phổ biến nào?
+  Retrieved 42 chunks
+  Top-1 (score=12.9567): doc=Public_002 page=7
+    text=1.2.9 
+Thiết kế mạng 
+Cấu trúc học phần: 3(2:1:6) 
+Mô tả học phần: 
+Môn học này cung cấp kiến thức về những đặc điểm cơ bản khi thiết kế một hệ thống ...
+  Top-2 (score=11.6008): doc=Public_002 page=3
+    text=1.1.7 
+Bảo mật cơ sở dữ liệu 
+Cấu trúc học phần: 3(2:1:6) 
+Mô tả học phần: 
+Học phần này trang bị cho người học những kiến thức nền tảng về cả lý thuy...
+  Top-3 (score=11.4034): doc=Public_002 page=6
+    text=1.2.4 
+Mạng máy tính căn bản 
+Cấu trúc học phần: 3(2:1:6) 
+Mô tả học phần: 
+Môn học này cung các các khái niệm cơ bản trong mạng máy tính, đặc điểm cơ...
+  Scores: {'A': 0.9910925454368575, 'B': 1.0, 'C': 0.0, 'D': 0.0}
+  Options:
+    A: OWASP Top 10
+    B: IEEE 802.11
+    C: ISO/IEC 27001
+    D: NIST Cybersecurity Framework
+
+================================================================================
+ID: 730 | Q: Đâu là cấu trúc heap ta nên dùng nếu muốn sắp xếp mảng giảm dần?
+  Retrieved 50 chunks
+  Top-1 (score=63.1325): doc=Public_054 page=10
+    text=Thuật toán Heap Sort 
+Thuật toán Heap-Sort được thực hiện dựa trên cấu trúc dữ liệu Heap. Nếu ta muốn 
+sắp xếp theo thứ tự tăng dần ta sử dụng cấu trú...
+  Top-2 (score=33.8993): doc=Public_053 page=1
+    text=Ví dụ bố 
+trí theo thứ tự tăng dần hoặc giảm dần đối với dãy số, bố trị theo thứ tự từ điển đối với 
+các xâu ký tự. Mục tiêu của sắp xếp là để lưu trữ...
+  Top-3 (score=25.8877): doc=Public_053 page=1
+    text=Mỗi đối tượng ri được 
+tương ứng với một khóa ki (1≤i ≤n). Nhiệm vụ của sắp xếp là xây dựng thuật toán bố trí 
+các đối tượng theo một trật tự nào đó c...
+  Scores: {'A': 0.6570556839339043, 'B': 0.85, 'C': 0.0, 'D': 0.002100419995681591}
+  Options:
+    A: Min-heap
+    B: Max-heap
+    C: Avg-heap
+    D: Mean-heap
+
+================================================================================
+ID: 731 | Q: Cảm biến nào cung cấp bản đồ 3D chính xác cho xe tự hành?
+  Retrieved 50 chunks
+  Top-1 (score=26.8106): doc=Public_084 page=1
+    text=Thế hệ tiếp theo của xe tự hành yêu cầu hệ thống thị giác máy tính vượt xa các 
+mô hình hiện tại, hỗ trợ nhận diện thời gian thực, dự đoán hành vi, và...
+  Top-2 (score=21.1430): doc=Public_100 page=3
+    text=5. Thành phần cốt lõi 
+• 
+Thực tế ảo (VR): Tạo thế giới số hoàn toàn, người dùng nhập vai qua kính 
+VR. • 
+Thực tế tăng cường (AR): Chồng hình ảnh số ...
+  Top-3 (score=20.2524): doc=Public_084 page=1
+    text=VIETTEL AI RACE 
+TD084 
+Hệ Thống Thị Giác Máy Tính Cho Xe Tự 
+Hành Thế Hệ Tiếp Theo Lần ban hành: 1 1 1. Giới thiệu 
+Xe tự hành đang trở thành tâm điể...
+  Scores: {'A': 0.9240807342466812, 'B': 0.7823991886658767, 'C': 0.7720832634246599, 'D': 0.0}
+  Options:
+    A: Camera RGB
+    B: LiDAR
+    C: Siêu âm
+    D: IMU
+
+================================================================================
+ID: 733 | Q: Quy chuẩn trong tài liệu Public_284 không áp dụng cho loại hàng hóa nào sau đây?
+  Retrieved 29 chunks
+  Top-1 (score=10.4479): doc=Public_284 page=1
+    text=1.2 Đối tượng áp dụng 
+1.2.1. Các tổ chức, cá nhân sản xuất, nhập khẩu, kinh doanh, sử dụng sản phẩm, hàng hóa vật liệu xây dựng. 1.2.2. Các tổ chức t...
+  Top-2 (score=8.7345): doc=Public_284 page=1
+    text=1.1.2 
+Đối tượng hàng hóa không thuộc phạm vi áp dụng của Quy chuẩn 
+Quy chuẫn này không áp dụng cho sản phẳm, hàng hoá vật liệu xây dựng nhập khẫu dư...
+  Top-3 (score=8.0430): doc=Public_284 page=3
+    text=1.4.4. Dấu hợp quy được sử dụng trực tiếp trên sản phẩm, hàng hóa hoặc trên bao gói hoặc trên nhãn gắn trên sản phẩm, hàng hóa hoặc 
+trong chứng chỉ c...
+  Scores: {'A': 0.0, 'B': 0.48370771807541124, 'C': 0.55, 'D': 0.2934692285052014}
+  Options:
+    A: Hàng hóa vật liệu xây dựng sản xuất trong nước.
+    B: Hàng hóa vật liệu xây dựng nhập khẩu để nghiên cứu, thử nghiệm.
+    C: Hàng hóa vật liệu xây dựng nhập khẩu để kinh doanh tại Việt Nam.
+    D: Hàng hóa vật liệu xây dựng sử dụng trong các công trình xây dựng.
+
+================================================================================
+ID: 736 | Q: Theo tài liệu Public_035, điều gì xảy ra nếu learning rate quá nhỏ?
+  Retrieved 17 chunks
+  Top-1 (score=5.8209): doc=Public_035 page=4
+    text=Giờ cần một thuật toán để tìm giá trị nhỏ nhất của hàm J(w0, w1). Đó chính là thuật toán 
+gradient descent. 3. Thuật toán gradient descent 
+3.1 Đạo hà...
+  Top-2 (score=4.9362): doc=Public_035 page=2
+    text=Để tiện cho việc thiết lập công thức, ta sẽ đặt ký hiệu cho dữ liệu ở bảng dữ liệu: (x1,y1) 
+= (30, 448.524), (x2,y2) = (32.4138, 509.248),.. Tức là n...
+  Top-3 (score=4.6842): doc=Public_035 page=8
+    text=VIETTEL AI RACE 
+TD035 
+HỒI QUY TUYẾN TÍNH 
+Lần ban hành: 1 ● 
+Nếu learning_rate nhỏ: mỗi lần hàm số giảm rất ít nên cần rất nhiều lần thực 
+hiện bước...
+  Scores: {'A': 1.0, 'B': 0.0, 'C': 0.24515385621899266, 'D': 0.24515385621899266}
+  Options:
+    A: Thuật toán hoạt động bình thường
+    B: Hàm số không hội tụ
+    C: Hàm số hội tụ rất chậm
+    D: Hàm số hội tụ rất nhanh
+
+================================================================================
+ID: 739 | Q: Làm thế nào để áp dụng thuật toán quay lui để duyệt hoặc sinh ra một số tập con K phần tử cụ thể, th
+  Retrieved 50 chunks
+  Top-1 (score=75.4077): doc=Public_052 page=3
+    text=VIETTEL AI RACE 
+TD052 
+THUẬT TOÁN QUAY LUI 
+Lần ban hành: 1 if(i==n) //nếu i là thành phần cuối cùng 
+Result(); // ta đưa ra kết quả 
+else //trong tr...
+  Top-2 (score=69.4114): doc=Public_052 page=3
+    text=Mỗi xi∈X có N-K+i lựa chọn. Các giá trị này đều được chấp thuận mà 
+không cần có thêm bất kỳ điều kiện gì. Thuật toán được mô tả như sau: 
+void Try ( ...
+  Top-3 (score=64.1075): doc=Public_051 page=5
+    text=void Result(void){ //đưa ra tập con hiện tại  cout<<"\n 
+Kết quả "<<++dem<<":"; for(int i=1; i<=k; i++) //đưa ra X[] =( x1, x2, .., xk) cout<<X[i]<<se...
+  Scores: {'A': 0.8199364689814626, 'B': 0.6536054804289151, 'C': 0.2, 'D': 0.17822142946010322}
+  Options:
+    A: Không
+    B: Có
+    C: Tùy tình huống
+    D: nan
+
+================================================================================
+ID: 741 | Q: Theo tài liệu Public_010, nếu một phòng xét nghiệm thiết lập cấu trúc quản lý 5 mục tiêu và mỗi mục 
+  Retrieved 42 chunks
+  Top-1 (score=29.4980): doc=Public_010 page=1
+    text=Tối thiểu, hệ thống quản lý của phòng xét nghiệm phải bao gồm những nội dung sau đây: 
+• Trách nhiệm  
+• Mục tiêu và chính sách  
+• Thông tin tài liệu...
+  Top-2 (score=20.5328): doc=Public_010 page=5
+    text=1.2.5.14. Xác định rủi ro và cơ hội cải tiến 
+Phòng xét nghiệm phải xác định các rủi ro và cơ hội cải tiến liên quan đến các hoạt động 
+của phòng xét ...
+  Top-3 (score=18.5144): doc=Public_010 page=7
+    text=1.2.8.22. Chỉ tiêu chất lượng Quá trình giám sát các chỉ số chất lượng [xem 5.5 d)] phải được lập kế hoạch, bao gồm 
+thiết lập các mục tiêu, phương ph...
+  Scores: {'A': 0.7749999999999999, 'B': 0.6400573328612298, 'C': 0.007365483868032563, 'D': 0.45865794338950155}
+  Options:
+    A: 5
+    B: 10
+    C: 15
+    D: 20
+
+================================================================================
+ID: 743 | Q: Ưu điểm và nhược điểm chính của RNN là gì?
+  Retrieved 50 chunks
+  Top-1 (score=38.8458): doc=Public_113 page=2
+    text=VIETTEL AI RACE 
+TD113 
+ATTENTION VÀ SỰ HÌNH THÀNH 
+CỦA MÔ HÌNH TRANSFORMER 
+Lần ban hành: 1 2 Hình 2. Công thức tính đầu ra 𝑦𝑡 Hình 3. Cấu trúc một b...
+  Top-2 (score=30.9854): doc=Public_176 page=6
+    text=Việc hiểu rõ về cách hoạt động của GraphQL là 
+gì, ưu điểm và nhược điểm của nó sẽ giúp nhà phát triển tận dụng toàn bộ tiềm 
+năng của ngôn ngữ này để...
+  Top-3 (score=29.0863): doc=Public_578 page=16
+    text=Tuy nhiên, nhược điểm chính của mô nình này là Hiệu suất thấp 
+và khó khăn trong quản lý. Bảng 2.13: Ưu điểm, nhược điểm phát triển sản xuất năng lượn...
+  Scores: {'A': 0.699961244168444, 'B': 0.8083622232604588, 'C': 0.04285714285714282, 'D': 0.6250076194972625}
+  Options:
+    A: Ưu: Xử lý song song, Nhược: Mất thông tin ngắn hạn
+    B: Ưu: Mô hình nhỏ gọn, Nhược: Tốn bộ nhớ
+    C: Ưu: Ghi nhớ dài hạn, Nhược: Quá nhiều tham số
+    D: Ưu: Xử lý chuỗi dài khác nhau, Nhược: Vanishing gradient, chậm, khó song song hóa

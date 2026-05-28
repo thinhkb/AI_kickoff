@@ -1,0 +1,4185 @@
+﻿id,func_code,func_param,time
+262,call_document,"{""numbers"": 1, ""result"": ""B""}",0.3749
+1188,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-026"",
+  ""body"": {
+    ""fromDate"": ""2025-08-01"",
+    ""toDate"": ""2025-08-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0258
+1263,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-023"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [
+      ""1""
+    ],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""isProbation"": false
+  }
+}",0.0051
+1265,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-026"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [
+      ""2""
+    ],
+    ""lcntType"": [
+      ""1"",
+      ""3""
+    ],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""isProbation"": false
+  }
+}",0.0033
+1014,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-028"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""organization"": []
+  }
+}",0.0026
+1311,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-064"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0031
+116,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2529
+1253,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-006"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": ""Dịch vụ CNTT""
+  }
+}",0.0033
+1331,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=KD-004"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30""
+  }
+}",0.0032
+1260,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-015"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": ""Công cụ dụng cụ""
+  }
+}",0.0029
+263,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0292
+1206,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-116"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0027
+1041,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/cum"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0026
+95,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1795
+1095,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-039"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      11903
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0033
+1370,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-059?summaryDate=2025-05-26&targetCode=DT&cycleType=month=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""cycleType"": """"
+  }
+}",0.0021
+1323,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/progress-individual"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectId"": """",
+    ""status"": [],
+    ""assigneeList"": [],
+    ""priorityList"": [],
+    ""progressList"": []
+  }
+}",0.0023
+80,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0079
+107,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2306
+97,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2709
+1143,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-time"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""isCompany"": true,
+    ""type"": 2,
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31""
+  }
+}",0.0031
+1304,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0029
+1158,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-025"",
+  ""body"": {
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""fromDate"": ""2025-09-01""
+  }
+}",0.0027
+218,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1905
+184,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0075
+1283,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=4"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""organization"": [],
+    ""type"": 5
+  }
+}",0.0046
+1107,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/dilution-ranking/chart"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""isCompany"": true,
+    ""organization"": [
+      ""TTPMCNM""
+    ],
+    ""projectType"": [],
+    ""type"": 3,
+    ""sort"": 2
+  }
+}",0.0032
+1010,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-028"",
+  ""body"": {
+    ""fromDate"": ""2025-08-01"",
+    ""toDate"": ""2025-10-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0038
+226,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2387
+76,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2923
+1382,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-036?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=LNG"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": []
+  }
+}",0.0033
+8,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0123
+145,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0461
+1250,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-003"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""assetGroup"": ""Dịch vụ CNTT""
+  }
+}",0.003
+1346,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=TC-018"",
+  ""body"": {
+    ""fromDate"": ""2024-12-01"",
+    ""toDate"": ""2024-12-31"",
+    ""type"": 0
+  }
+}",0.0024
+1164,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-012"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0024
+1079,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-030"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMCDS""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0021
+172,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0388
+239,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2644
+228,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0446
+1319,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-067"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""projectList"": [
+      12372
+    ],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0033
+1310,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-064"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0036
+1282,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=4"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""type"": 5
+  }
+}",0.0022
+221,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2638
+1325,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/progress-individual"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectId"": """",
+    ""status"": [],
+    ""assigneeList"": [],
+    ""priorityList"": [],
+    ""progressList"": []
+  }
+}",0.0025
+42,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0427
+155,call_document,"{""numbers"": 1, ""result"": ""A""}",0.01
+59,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2887
+113,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0497
+1352,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-060-1"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0029
+211,call_document,"{""numbers"": 1, ""result"": ""A""}",0.251
+1279,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=1"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [],
+    ""type"": 3
+  }
+}",0.0024
+179,call_document,"{""numbers"": 1, ""result"": ""B""}",0.3423
+1166,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-013"",
+  ""body"": {
+    ""toDate"": ""2025-02-28"",
+    ""organization"": [],
+    ""fromDate"": ""2025-02-01""
+  }
+}",0.0029
+1047,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/norm"",
+  ""body"": {
+    ""toDate"": ""2025-06-30"",
+    ""fromDate"": ""2025-06-01"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0021
+212,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0321
+1019,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-031"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectList"": [
+      12002
+    ],
+    ""projectType"": [],
+    ""organization"": []
+  }
+}",0.0032
+1269,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-033"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [
+      ""1""
+    ],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""dtmsType"": [],
+    ""dtmsClass"": [],
+    ""isProbation"": false
+  }
+}",0.0028
+1328,call_api,"{
+  ""path"": ""/api/v1/dashboard/value-project-type/KD-056"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""orgAlias"": []
+  }
+}",0.0025
+1259,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-015"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": ""Dịch vụ CNTT""
+  }
+}",0.0021
+1285,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=7"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0028
+1362,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-007?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0019
+24,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0207
+277,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0297
+1235,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-103"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0037
+1074,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-028"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0022
+1219,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-047"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0029
+1169,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-016"",
+  ""body"": {
+    ""fromDate"": ""2024-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": []
+  }
+}",0.0027
+125,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0087
+1156,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-025"",
+  ""body"": {
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""fromDate"": ""2025-12-01""
+  }
+}",0.0027
+1292,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-059"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0031
+1115,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/total-ra"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0023
+232,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0077
+14,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0071
+1254,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-006"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": ""Công cụ dụng cụ""
+  }
+}",0.0031
+138,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1795
+1266,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-026"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [
+      ""1"",
+      ""2""
+    ],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""isProbation"": false
+  }
+}",0.0029
+1215,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-119"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""organization"": []
+  }
+}",0.0025
+1168,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-015"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0036
+23,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0107
+73,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0219
+1203,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-111"",
+  ""body"": {
+    ""fromDate"": ""2025-08-01"",
+    ""toDate"": ""2025-10-31"",
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0034
+1242,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-107"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""trainGroup"": []
+  }
+}",0.0026
+129,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2775
+1273,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-041"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""status"": """",
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""isProbation"": false
+  }
+}",0.0023
+1355,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-001?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0022
+164,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0436
+1092,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-039"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      12323
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0031
+106,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1268
+1089,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-037"",
+  ""body"": {
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""projectStatus"": [],
+    ""isAllProject"": true,
+    ""projectList"": [],
+    ""projectType"": [],
+    ""isAllCustomer"": true,
+    ""customerList"": [],
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0027
+1318,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-067"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""open""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0022
+65,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2523
+252,call_document,"{""numbers"": 1, ""result"": ""A""}",0.3146
+253,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1465
+1226,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-064-2"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": []
+  }
+}",0.003
+1197,call_api,"{
+  ""path"": ""/api/v1/dashboard/resignation/NS-048"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-09-30"",
+    ""type"": 0,
+    ""getIsProbation"": false,
+    ""organization"": [
+      ""TTPMTCS"",
+      ""TTPMVT""
+    ]
+  }
+}",0.0026
+31,call_document,"{""numbers"": 1, ""result"": ""D""}",0.2733
+199,call_document,"{""numbers"": 1, ""result"": ""B""}",0.4424
+1335,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-015"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0
+  }
+}",0.0026
+1080,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-030"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.002
+126,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0083
+1034,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-058"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [],
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.003
+217,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2002
+11,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1202
+1137,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-sum-free-effort"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-07-31"",
+    ""type"": 2,
+    ""organization"": [],
+    ""level"": [],
+    ""position"": [
+      ""BA""
+    ],
+    ""sort"": 2
+  }
+}",0.0033
+1281,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=1"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""type"": 3
+  }
+}",0.0028
+1233,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-101"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""trainGroup"": [],
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0032
+1185,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-025"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0039
+1270,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-033"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""dtmsType"": [],
+    ""dtmsClass"": [],
+    ""isProbation"": false
+  }
+}",0.0023
+1008,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0036
+63,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0455
+75,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0291
+279,call_document,"{""numbers"": 1, ""result"": ""A""}",0.357
+96,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1776
+1236,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-103"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0034
+1064,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/all-cum"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      12335,
+      12334
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.003
+163,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0323
+1287,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=7"",
+  ""body"": {
+    ""fromDate"": ""2025-08-01"",
+    ""toDate"": ""2025-08-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMCNM""
+    ]
+  }
+}",0.0026
+55,call_document,"{""numbers"": 1, ""result"": ""C""}",0.287
+1293,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-059"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""projectList"": [
+      12369
+    ],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0029
+200,call_document,"{""numbers"": 1, ""result"": ""D""}",0.2086
+1214,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-119"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": []
+  }
+}",0.0038
+1201,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-111"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0024
+1050,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/norm"",
+  ""body"": {
+    ""toDate"": ""2025-07-31"",
+    ""fromDate"": ""2025-07-01"",
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0019
+66,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1623
+61,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1479
+247,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1442
+1240,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-107"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""organization"": [],
+    ""trainGroup"": []
+  }
+}",0.0033
+25,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0451
+1103,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/organization"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""type"": 5
+  }
+}",0.0029
+30,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0377
+1025,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-033"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectList"": [
+      12002
+    ],
+    ""projectType"": [],
+    ""organization"": []
+  }
+}",0.0028
+1181,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-024"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0023
+1046,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/norm"",
+  ""body"": {
+    ""toDate"": ""2025-08-31"",
+    ""fromDate"": ""2025-08-01"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0025
+1149,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-level"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""type"": 2,
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28""
+  }
+}",0.0023
+241,call_document,"{""numbers"": 1, ""result"": ""B""}",0.019
+1109,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/soc"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""isCompany"": true,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""type"": 3,
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0029
+1225,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-064-2"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0021
+1106,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/dilution-ranking/chart"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""isCompany"": true,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectType"": [],
+    ""type"": 3,
+    ""sort"": 2
+  }
+}",0.0032
+79,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0082
+282,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0236
+1354,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-060-1"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0028
+1,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1866
+1234,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-103"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0029
+1213,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-119"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.003
+1252,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-006"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": []
+  }
+}",0.0029
+1327,call_api,"{
+  ""path"": ""/api/v1/dashboard/value-project-type/KD-056"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""orgAlias"": []
+  }
+}",0.0027
+1221,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-047"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMCNM""
+    ]
+  }
+}",0.0021
+77,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2113
+1002,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/project"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectType"": [
+      ""package""
+    ]
+  }
+}",0.0024
+1113,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/total-ra"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0022
+245,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0455
+1212,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-118"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMCNM""
+    ]
+  }
+}",0.0032
+1179,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-023"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0024
+19,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2327
+141,call_document,"{""numbers"": 1, ""result"": ""D""}",0.007
+1192,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-045"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0037
+1334,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=TC-004"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0
+  }
+}",0.003
+1174,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-017"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-09-30"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0027
+1055,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/trend"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0029
+1228,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-099"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [],
+    ""trainGroup"": []
+  }
+}",0.0027
+1044,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/prev"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMCNM""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0027
+37,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2731
+265,call_document,"{""numbers"": 1, ""result"": ""C""}",0.3594
+1295,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-060"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0024
+1312,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-016"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""open""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0023
+1360,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-002?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0026
+1142,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-time"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""isCompany"": true,
+    ""type"": 2,
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31""
+  }
+}",0.0026
+2,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2186
+194,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0194
+41,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1895
+35,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0302
+219,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1998
+260,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0212
+1124,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/total-ru"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0027
+128,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0391
+46,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0287
+39,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0413
+1324,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/progress-individual"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectId"": """",
+    ""status"": [],
+    ""assigneeList"": [],
+    ""priorityList"": [],
+    ""progressList"": []
+  }
+}",0.0034
+139,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0186
+156,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0087
+83,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0086
+1121,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-compare-ru"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""sort"": 0
+  }
+}",0.0026
+49,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1724
+85,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0418
+158,call_document,"{""numbers"": 1, ""result"": ""A""}",0.169
+1375,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-017?summaryDate=2025-05-06&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.0023
+1157,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-025"",
+  ""body"": {
+    ""toDate"": ""2025-05-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""fromDate"": ""2025-05-01""
+  }
+}",0.002
+1028,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-038"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0045
+34,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0228
+193,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0088
+1317,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-066"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""open""
+    ],
+    ""projectList"": [
+      12372
+    ],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.003
+1289,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-014"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0024
+1091,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-039"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      11913
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0026
+255,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0193
+44,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0319
+185,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0299
+1098,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/gender"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""organization"": []
+  }
+}",0.0027
+1173,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-015"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0033
+1369,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-061?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0021
+1303,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0027
+1320,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/progress-project"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectId"": """",
+    ""status"": [],
+    ""assigneeList"": [],
+    ""priorityList"": [],
+    ""progressList"": []
+  }
+}",0.0022
+1088,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-037"",
+  ""body"": {
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""projectStatus"": [],
+    ""isAllProject"": true,
+    ""projectList"": [],
+    ""projectType"": [],
+    ""isAllCustomer"": true,
+    ""customerList"": [],
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0027
+92,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0142
+1377,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-017?summaryDate=2025-05-06&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.0025
+1353,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-060-1"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0026
+127,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0612
+161,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0419
+1170,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-016"",
+  ""body"": {
+    ""fromDate"": """",
+    ""toDate"": """",
+    ""organization"": []
+  }
+}",0.0038
+181,call_document,"{""numbers"": 1, ""result"": ""A""}",0.179
+69,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0431
+40,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1786
+258,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1969
+1313,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-016"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""projectList"": [
+      12372
+    ],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0034
+210,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0085
+135,call_document,"{""numbers"": 1, ""result"": ""A""}",0.3884
+154,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2909
+1268,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-032"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [
+      ""1"",
+      ""3""
+    ],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""dtmsType"": [],
+    ""dtmsClass"": [],
+    ""isProbation"": false
+  }
+}",0.0026
+1150,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-009"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""toDate"": ""2025-07-31""
+  }
+}",0.0024
+1256,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-009"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": ""Dịch vụ CNTT"",
+    ""type"": 0
+  }
+}",0.0028
+1237,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-104"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-07-31"",
+    ""organization"": [],
+    ""trainGroup"": []
+  }
+}",0.0034
+1246,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-122"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": []
+  }
+}",0.0018
+1125,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/total-ru"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""type"": 3,
+    ""organization"": []
+  }
+}",0.0028
+1372,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-059?summaryDate=2025-05-26&targetCode=DT&cycleType=month=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""cycleType"": """"
+  }
+}",0.0022
+68,call_document,"{""numbers"": 1, ""result"": ""A""}",0.014
+1231,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-101"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""trainGroup"": [],
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0031
+216,call_document,"{""numbers"": 1, ""result"": ""B""}",0.3051
+54,call_document,"{""numbers"": 1, ""result"": ""C""}",0.3598
+261,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0337
+1365,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-010?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0035
+51,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0255
+20,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0076
+1152,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-058"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [],
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0024
+249,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0121
+1357,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-001?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0027
+72,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1951
+6,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0193
+111,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0139
+189,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1456
+152,call_document,"{""numbers"": 1, ""result"": ""D""}",0.3116
+1076,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-029"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0027
+133,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2128
+1100,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/level"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""type"": 5
+  }
+}",0.0031
+70,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0432
+1040,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/cum"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0024
+1180,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-024"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMCNM""
+    ]
+  }
+}",0.0023
+58,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1714
+1351,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-018"",
+  ""body"": {
+    ""fromDate"": ""2024-01-01"",
+    ""toDate"": ""2024-03-31"",
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0033
+33,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1962
+1190,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-039"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""level"": []
+  }
+}",0.0025
+1127,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/free-ru"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""type"": 2,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""sort"": null
+  }
+}",0.0024
+1163,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-012"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0045
+1053,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/project"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectType"": [
+      ""T&M""
+    ]
+  }
+}",0.0022
+1023,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-032"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""organization"": []
+  }
+}",0.0038
+1224,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-064-1"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0022
+1140,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-time"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""isCompany"": true,
+    ""type"": 2,
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31""
+  }
+}",0.0023
+174,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0436
+275,call_document,"{""numbers"": 1, ""result"": ""C""}",0.261
+144,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0379
+1146,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-role"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""sort"": 1,
+    ""isCompany"": true,
+    ""type"": 2,
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28""
+  }
+}",0.0028
+1361,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-007?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0022
+1380,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-032?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=LNG"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.0023
+1345,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=TC-018"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0
+  }
+}",0.0023
+1264,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-026"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [
+      ""2""
+    ],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""isProbation"": false
+  }
+}",0.002
+205,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0082
+88,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0192
+1316,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-066"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""open""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0029
+1136,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-sum-free-effort"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-06-30"",
+    ""type"": 2,
+    ""organization"": [],
+    ""level"": [],
+    ""position"": [
+      ""DEV""
+    ],
+    ""sort"": 2
+  }
+}",0.0028
+276,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0434
+1255,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-009"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": [],
+    ""type"": 0
+  }
+}",0.0023
+1366,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-061?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0019
+1223,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-064-1"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.003
+214,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0332
+1373,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-017?summaryDate=2025-05-06&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.0025
+1128,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/free-ru"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-07-31"",
+    ""type"": 2,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""sort"": null
+  }
+}",0.0026
+250,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1946
+45,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1133
+1122,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-compare-ru"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMCNM""
+    ],
+    ""sort"": 0
+  }
+}",0.0031
+1301,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-015"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-07-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0026
+1379,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-032?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=LNG"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.0023
+1085,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-035"",
+  ""body"": {
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""projectStatus"": [],
+    ""isAllProject"": true,
+    ""projectList"": [],
+    ""projectType"": [],
+    ""isAllCustomer"": true,
+    ""customerList"": [],
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""standardComparison"": null
+  }
+}",0.0024
+257,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0308
+117,call_document,"{""numbers"": 1, ""result"": ""B""}",0.235
+132,call_document,"{""numbers"": 1, ""result"": ""A""}",0.046
+1183,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-025"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0033
+1112,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/total-ra"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0022
+147,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0084
+1153,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-016"",
+  ""body"": {
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0032
+208,call_document,"{""numbers"": 1, ""result"": ""B""}",0.212
+1175,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-025"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.003
+233,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0092
+27,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0068
+1267,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-032"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""dtmsType"": [],
+    ""dtmsClass"": [],
+    ""isProbation"": false
+  }
+}",0.0028
+223,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1958
+1271,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-033"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [
+      ""1"",
+      ""3""
+    ],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""dtmsType"": [],
+    ""dtmsClass"": [],
+    ""isProbation"": false
+  }
+}",0.0038
+1104,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/organization"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""type"": 5
+  }
+}",0.0026
+1299,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-061"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""projectList"": [
+      12323
+    ],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0022
+1384,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-036?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=LNG"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": []
+  }
+}",0.0022
+1332,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=TC-004"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""type"": 0
+  }
+}",0.002
+1326,call_api,"{
+  ""path"": ""/api/v1/dashboard/value-project-type/KD-056"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": []
+  }
+}",0.0023
+1086,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-035"",
+  ""body"": {
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""projectStatus"": [],
+    ""isAllProject"": true,
+    ""projectList"": [],
+    ""projectType"": [],
+    ""isAllCustomer"": true,
+    ""customerList"": [],
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""standardComparison"": null
+  }
+}",0.0026
+1359,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-002?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0021
+1220,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-047"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0022
+1245,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-120"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""organization"": []
+  }
+}",0.0024
+1199,call_api,"{
+  ""path"": ""/api/v1/dashboard/resignation/NS-050"",
+  ""body"": {
+    ""fromDate"": ""2025-08-01"",
+    ""toDate"": ""2025-08-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0022
+1358,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-002?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.002
+1298,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-061"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0021
+62,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2878
+1097,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/gender"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""organization"": []
+  }
+}",0.0034
+1305,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.003
+1208,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-117"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": []
+  }
+}",0.002
+280,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0267
+1258,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-015"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": []
+  }
+}",0.0026
+170,call_document,"{""numbers"": 1, ""result"": ""A""}",0.011
+130,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1989
+78,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2018
+1349,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-019"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 0,
+    ""organization"": [],
+    ""dtmsClass"": [],
+    ""procurementType"": [],
+    ""dtmsType"": [],
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": [],
+    ""isProbation"": false
+  }
+}",0.0031
+1160,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-011"",
+  ""body"": {
+    ""toDate"": ""2025-05-31"",
+    ""organization"": [],
+    ""fromDate"": ""2025-05-01"",
+    ""type"": 0
+  }
+}",0.0033
+1071,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-027"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0024
+108,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2637
+235,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0216
+7,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0081
+195,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0078
+82,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0373
+1189,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-039"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-07-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""level"": []
+  }
+}",0.0026
+1347,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-019"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": [],
+    ""dtmsClass"": [],
+    ""procurementType"": [],
+    ""dtmsType"": [],
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": [],
+    ""isProbation"": false
+  }
+}",0.003
+151,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1785
+264,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1155
+10,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0304
+196,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0233
+1065,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/all-cum"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      12704,
+      12359,
+      12605
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0039
+1058,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/ranking"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0028
+57,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0631
+103,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0125
+148,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0127
+167,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0187
+268,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1654
+9,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0412
+1300,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-015"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0032
+1038,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/count"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [
+      ""in-progress""
+    ]
+  }
+}",0.0026
+53,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0388
+1049,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/prev"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0033
+1134,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/count-emp-free-effort"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""type"": 3,
+    ""position"": [],
+    ""organization"": []
+  }
+}",0.0028
+38,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0293
+256,call_document,"{""numbers"": 1, ""result"": ""C""}",0.197
+84,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0289
+187,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0272
+209,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1621
+237,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0395
+1277,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-032"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""dtmsType"": [],
+    ""dtmsClass"": [],
+    ""isProbation"": false
+  }
+}",0.0034
+1052,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/cum"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0026
+271,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1578
+197,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1575
+48,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1851
+47,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1905
+1007,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0032
+1004,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/company"",
+  ""body"": {
+    ""fromDate"": ""2024-10-01"",
+    ""toDate"": ""2025-06-30"",
+    ""projectStatus"": [],
+    ""projectType"": [
+      ""T&M""
+    ]
+  }
+}",0.0027
+191,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1552
+1067,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-033"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0026
+5,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2181
+1247,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-122"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0026
+1284,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=4"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [],
+    ""type"": 5
+  }
+}",0.0021
+1381,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-032?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=LNG"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.0036
+32,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0295
+244,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0285
+1020,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-031"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [
+      ""T&M""
+    ],
+    ""organization"": []
+  }
+}",0.0036
+1184,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-025"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0028
+1290,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-014"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""projectList"": [
+      11913
+    ],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0028
+1194,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-045"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0026
+1274,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-041"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 0,
+    ""status"": """",
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [
+      ""5"",
+      ""3""
+    ],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""isProbation"": false
+  }
+}",0.0028
+1350,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-018"",
+  ""body"": {
+    ""fromDate"": ""2024-07-01"",
+    ""toDate"": ""2024-09-30"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.003
+202,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0454
+86,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2206
+160,call_document,"{""numbers"": 1, ""result"": ""A""}",0.01
+1291,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-059"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0029
+1207,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-117"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0029
+201,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0129
+1032,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-057"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [],
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0027
+178,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1681
+1376,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-063?summaryDate=2025-05-06&organizationCode=VTIT&targetCode=GTHĐKM"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.0025
+1162,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-012"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0022
+1288,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-014"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0023
+251,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2348
+1341,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-017"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0
+  }
+}",0.0031
+1073,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-028"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMCNM""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0023
+29,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0111
+89,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0253
+1294,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-060"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0022
+1342,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-017"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0
+  }
+}",0.0023
+18,call_document,"{""numbers"": 1, ""result"": ""A""}",0.4782
+1077,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-029"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0023
+1017,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-030"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""organization"": []
+  }
+}",0.0025
+1037,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/count"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [
+      ""in-progress""
+    ]
+  }
+}",0.0027
+1145,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-role"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""sort"": 1,
+    ""isCompany"": true,
+    ""type"": 2,
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31""
+  }
+}",0.0023
+1155,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-016"",
+  ""body"": {
+    ""toDate"": ""2025-03-31"",
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0032
+1035,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-058"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectList"": [
+      12002
+    ],
+    ""projectType"": [],
+    ""organization"": []
+  }
+}",0.0025
+1210,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-118"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0036
+52,call_document,"{""numbers"": 1, ""result"": ""A""}",0.044
+1193,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-045"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0033
+220,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0197
+1016,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/organization"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""organization"": []
+  }
+}",0.0032
+1308,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-063"",
+  ""body"": {
+    ""fromDate"": ""2025-08-01"",
+    ""toDate"": ""2025-08-31"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0034
+110,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1788
+22,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1584
+122,call_document,"{""numbers"": 1, ""result"": ""D""}",0.008
+1336,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-015"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-06-30"",
+    ""type"": 0
+  }
+}",0.0031
+143,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1373
+100,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2216
+101,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1153
+1172,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-016"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0036
+119,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2146
+12,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0281
+1178,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-024"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""organization"": []
+  }
+}",0.003
+105,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2353
+1296,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-060"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""projectList"": [
+      12323
+    ],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0027
+104,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0196
+215,call_document,"{""numbers"": 1, ""result"": ""D""}",0.2381
+1261,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-023"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""isProbation"": false
+  }
+}",0.0025
+1257,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-009"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""assetGroup"": ""Công cụ dụng cụ"",
+    ""type"": 0
+  }
+}",0.0021
+1329,call_api,"{
+  ""path"": ""/api/v1/dashboard/value-project-type/KD-056"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": []
+  }
+}",0.0026
+173,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2505
+153,call_document,"{""numbers"": 1, ""result"": ""A""}",0.4555
+146,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0235
+1374,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-017?summaryDate=2025-05-06&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": """"
+  }
+}",0.003
+136,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2507
+1029,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-038"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0035
+1276,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-049"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": [],
+    ""dtmsClass"": """",
+    ""procurementType"": """",
+    ""dtmsType"": """"
+  }
+}",0.003
+183,call_document,"{""numbers"": 1, ""result"": ""C""}",0.3406
+137,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0422
+142,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2428
+259,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0081
+118,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0332
+1314,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-065"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""open""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0028
+242,call_document,"{""numbers"": 1, ""result"": ""B""}",0.3732
+1133,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/count-emp-free-effort"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""type"": 3,
+    ""position"": [],
+    ""organization"": []
+  }
+}",0.0031
+1333,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=TC-004"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0
+  }
+}",0.0026
+177,call_document,"{""numbers"": 1, ""result"": ""A""}",0.029
+1249,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-003"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""assetGroup"": []
+  }
+}",0.0028
+1232,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-101"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""trainGroup"": [],
+    ""type"": 0,
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0026
+1209,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-117"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-10-31"",
+    ""organization"": []
+  }
+}",0.0024
+1083,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-033"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMCNM""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0023
+1167,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-013"",
+  ""body"": {
+    ""toDate"": ""2025-03-31"",
+    ""organization"": [],
+    ""fromDate"": ""2025-03-01""
+  }
+}",0.0028
+3,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0073
+1238,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-104"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""trainGroup"": []
+  }
+}",0.0025
+1116,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/total-ra"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMCNM""
+    ]
+  }
+}",0.0023
+94,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2498
+60,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0276
+1364,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-010?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0029
+87,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1561
+281,call_document,"{""numbers"": 1, ""result"": ""A""}",0.3319
+175,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2629
+149,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0205
+56,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1932
+1200,call_api,"{
+  ""path"": ""/api/v1/dashboard/resignation/NS-050"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0033
+1211,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-118"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0026
+1322,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.003
+1031,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-027"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [],
+    ""projectList"": [
+      12002
+    ],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0025
+1013,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-028"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectList"": [
+      12002
+    ],
+    ""projectType"": [],
+    ""organization"": []
+  }
+}",0.0024
+1243,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-120"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": []
+  }
+}",0.0024
+90,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2023
+240,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0407
+267,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1769
+43,call_document,"{""numbers"": 1, ""result"": ""B""}",0.193
+71,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0087
+1248,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-122"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0026
+1195,call_api,"{
+  ""path"": ""/api/v1/dashboard/resignation/NS-048"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""getIsProbation"": false,
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0032
+1165,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-013"",
+  ""body"": {
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [],
+    ""fromDate"": ""2025-04-01""
+  }
+}",0.0026
+229,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1893
+168,call_document,"{""numbers"": 1, ""result"": ""A""}",0.165
+192,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1229
+1186,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-026"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-07-31"",
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0027
+1005,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0022
+1061,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/all-cum"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      12370
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0043
+67,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0317
+1118,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-ra-ru-hc"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0029
+246,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1946
+224,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2283
+204,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1377
+1371,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-059?summaryDate=2025-05-26&targetCode=DT&cycleType=month=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""cycleType"": """"
+  }
+}",0.0026
+115,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1959
+1131,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-free-effort-bu"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""type"": 2,
+    ""position"": [
+      ""BA""
+    ],
+    ""organization"": []
+  }
+}",0.0025
+1043,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/prev"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0027
+1202,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-111"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0037
+99,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1198
+1151,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-009"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""toDate"": ""2025-03-31""
+  }
+}",0.0024
+1367,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-061?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0022
+230,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1745
+140,call_document,"{""numbers"": 1, ""result"": ""B""}",0.4314
+1001,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-066"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-11-30"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0027
+203,call_document,"{""numbers"": 1, ""result"": ""D""}",0.3056
+81,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2017
+227,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2478
+1321,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/progress-individual"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectId"": """",
+    ""status"": [],
+    ""assigneeList"": [],
+    ""priorityList"": [],
+    ""progressList"": []
+  }
+}",0.0022
+93,call_document,"{""numbers"": 1, ""result"": ""A""}",0.3441
+182,call_document,"{""numbers"": 1, ""result"": ""C""}",0.1894
+1307,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-063"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0036
+1187,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-026"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0029
+1275,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-041"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 0,
+    ""status"": """",
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [
+      ""1""
+    ],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""isProbation"": false
+  }
+}",0.0029
+169,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0221
+1340,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-016"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-09-30"",
+    ""type"": 0
+  }
+}",0.0025
+1383,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-036?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=LNG"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""targetCode"": """",
+    ""organizationCode"": []
+  }
+}",0.0025
+1196,call_api,"{
+  ""path"": ""/api/v1/dashboard/resignation/NS-048"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""type"": 0,
+    ""getIsProbation"": false,
+    ""organization"": [
+      ""TTPMCNM"",
+      ""TTPMVT""
+    ]
+  }
+}",0.0027
+1110,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/soc"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""isCompany"": true,
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""type"": 3,
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0023
+270,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2617
+1348,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-019"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 0,
+    ""organization"": [],
+    ""dtmsClass"": [],
+    ""procurementType"": [],
+    ""dtmsType"": [],
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": [],
+    ""isProbation"": false
+  }
+}",0.0038
+269,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0117
+180,call_document,"{""numbers"": 1, ""result"": ""A""}",0.028
+1251,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-003"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""assetGroup"": ""Công cụ dụng cụ""
+  }
+}",0.003
+1309,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-064"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""presales""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0038
+176,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0228
+198,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0314
+1241,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-107"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""trainGroup"": []
+  }
+}",0.0032
+1356,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-001?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0023
+231,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2887
+1286,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=7"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0022
+98,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1547
+26,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1894
+1082,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/project"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectType"": [
+      ""package""
+    ]
+  }
+}",0.0033
+1148,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-level"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""type"": 2,
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28""
+  }
+}",0.0024
+186,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0331
+112,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0095
+1222,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-064-1"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0037
+274,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0255
+1344,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=TC-018"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""type"": 0
+  }
+}",0.003
+243,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0467
+1302,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-062"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""package""
+    ],
+    ""projectStatus"": [
+      ""in-progress""
+    ],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0037
+1280,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/NS-001?type=1"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""type"": 3
+  }
+}",0.0023
+222,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0066
+1239,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-104"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""trainGroup"": []
+  }
+}",0.0029
+1330,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=KD-004"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-07-31""
+  }
+}",0.0025
+1059,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/ranking"",
+  ""body"": {
+    ""fromDate"": ""2025-05-01"",
+    ""toDate"": ""2025-05-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0028
+225,call_document,"{""numbers"": 1, ""result"": ""A""}",0.3097
+248,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0306
+1022,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-032"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""projectStatus"": [],
+    ""projectList"": [
+      12002
+    ],
+    ""projectType"": [],
+    ""organization"": []
+  }
+}",0.0036
+1130,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-free-effort-bu"",
+  ""body"": {
+    ""fromDate"": ""2025-10-01"",
+    ""toDate"": ""2025-10-31"",
+    ""type"": 2,
+    ""position"": [
+      ""TESTER""
+    ],
+    ""organization"": []
+  }
+}",0.0022
+134,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1617
+1218,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-046"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-06-30"",
+    ""organization"": [
+      ""TTPMCNM""
+    ]
+  }
+}",0.003
+157,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0314
+74,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2986
+171,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0299
+1154,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-016"",
+  ""body"": {
+    ""toDate"": ""2025-02-28"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0031
+207,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0305
+1094,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-039"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      11913,
+      12323
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.0041
+121,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0182
+278,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0215
+21,call_document,"{""numbers"": 1, ""result"": ""A""}",0.031
+1068,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-033"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [
+      ""closed""
+    ],
+    ""sort"": 2,
+    ""standardComparison"": null
+  }
+}",0.003
+150,call_document,"{""numbers"": 1, ""result"": ""C""}",0.27
+91,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0068
+1205,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-116"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""organization"": []
+  }
+}",0.0032
+236,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2006
+1204,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-116"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0023
+1101,call_api,"{
+  ""path"": ""/api/v1/dashboard/employee-info/level"",
+  ""body"": {
+    ""fromDate"": ""2025-07-01"",
+    ""toDate"": ""2025-09-30"",
+    ""isCompany"": false,
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""type"": 5
+  }
+}",0.0022
+1339,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-016"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""type"": 0
+  }
+}",0.0036
+1378,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-016"",
+  ""body"": {
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.002
+17,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1844
+1026,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-033"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""projectType"": [],
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0029
+15,call_document,"{""numbers"": 1, ""result"": ""A""}",0.017
+1062,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/all-cum"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [],
+    ""projectList"": [
+      12615,
+      12608
+    ],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0029
+1343,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-017"",
+  ""body"": {
+    ""fromDate"": ""2024-01-01"",
+    ""toDate"": ""2024-12-31"",
+    ""type"": 0
+  }
+}",0.0026
+1244,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-120"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": []
+  }
+}",0.0022
+1217,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-046"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""organization"": [
+      ""TTPMVT""
+    ]
+  }
+}",0.0024
+16,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0466
+114,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2193
+190,call_document,"{""numbers"": 1, ""result"": ""A""}",0.3151
+165,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1444
+1315,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-overview/PMO-065"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""orgAlias"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""projectList"": [
+      12372
+    ],
+    ""sort"": null,
+    ""type"": 0
+  }
+}",0.0028
+206,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0315
+124,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1652
+13,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0122
+213,call_document,"{""numbers"": 1, ""result"": ""C""}",0.0425
+1056,call_api,"{
+  ""path"": ""/api/v1/dashboard/defect-rate/trend"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-06-30"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0037
+1262,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-023"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-04-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [],
+    ""lcntType"": [
+      ""1"",
+      ""3""
+    ],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""isProbation"": false
+  }
+}",0.0029
+1139,call_api,"{
+  ""path"": ""/api/v1/dashboard/recruitment/new-time"",
+  ""body"": {
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""isCompany"": true,
+    ""type"": 2,
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31""
+  }
+}",0.0026
+1177,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-023"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0025
+1161,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-011"",
+  ""body"": {
+    ""toDate"": ""2025-06-30"",
+    ""organization"": [],
+    ""fromDate"": ""2025-04-01"",
+    ""type"": 0
+  }
+}",0.0026
+1306,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-rating/PMO-063"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""orgAlias"": [],
+    ""projectType"": [
+      ""odc/osdc""
+    ],
+    ""projectStatus"": [],
+    ""projectList"": [],
+    ""sort"": 2,
+    ""type"": 0
+  }
+}",0.0025
+1297,call_api,"{
+  ""path"": ""/api/v1/dashboard/charts?code=PMO-061"",
+  ""body"": {
+    ""fromDate"": ""2025-12-01"",
+    ""toDate"": ""2025-12-31"",
+    ""projectList"": [],
+    ""organization"": [],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0018
+166,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0102
+1337,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-015"",
+  ""body"": {
+    ""fromDate"": ""2024-10-01"",
+    ""toDate"": ""2024-12-31"",
+    ""type"": 0
+  }
+}",0.0024
+131,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0104
+28,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2015
+1272,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-033"",
+  ""body"": {
+    ""fromDate"": ""2025-06-01"",
+    ""toDate"": ""2025-11-30"",
+    ""type"": 0,
+    ""lcntOption"": [],
+    ""lcntOptionDoing"": [
+      ""1""
+    ],
+    ""lcntType"": [],
+    ""bidPlanType"": [],
+    ""lcntDomainType"": [],
+    ""status"": """",
+    ""dtmsType"": [],
+    ""dtmsClass"": [],
+    ""isProbation"": false
+  }
+}",0.0031
+159,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0185
+266,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2163
+120,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0426
+1229,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-099"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ],
+    ""trainGroup"": []
+  }
+}",0.0033
+234,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0425
+123,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2977
+1176,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-018"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0,
+    ""organization"": []
+  }
+}",0.0024
+272,call_document,"{""numbers"": 1, ""result"": ""B""}",0.0462
+1338,call_api,"{
+  ""path"": ""/api/v1/dashboard/profit-after-tax/TC-016"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""type"": 0
+  }
+}",0.0029
+1363,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-007?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0021
+1070,call_api,"{
+  ""path"": ""/api/v1/dashboard/leakage-rate/QA-027"",
+  ""body"": {
+    ""fromDate"": ""2025-03-01"",
+    ""toDate"": ""2025-03-31"",
+    ""fromDateProject"": null,
+    ""toDateProject"": null,
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""projectList"": [],
+    ""customerList"": [],
+    ""projectType"": [],
+    ""projectStatus"": [],
+    ""standardComparison"": null
+  }
+}",0.0022
+36,call_document,"{""numbers"": 1, ""result"": ""D""}",0.2573
+1159,call_api,"{
+  ""path"": ""/api/v1/dashboard/profitability/TC-011"",
+  ""body"": {
+    ""toDate"": ""2025-12-31"",
+    ""organization"": [],
+    ""fromDate"": ""2025-01-01"",
+    ""type"": 0
+  }
+}",0.0033
+109,call_document,"{""numbers"": 1, ""result"": ""D""}",0.008
+1011,call_api,"{
+  ""path"": ""/api/v1/dashboard/project-performance/PMO-027"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [],
+    ""projectList"": [
+      12002
+    ],
+    ""projectType"": [],
+    ""projectStatus"": []
+  }
+}",0.0028
+1171,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-016"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""organization"": [
+      ""TTPMCNM""
+    ]
+  }
+}",0.0033
+1182,call_api,"{
+  ""path"": ""/api/v1/dashboard/productivity/NS-024"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-01-31"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0027
+254,call_document,"{""numbers"": 1, ""result"": ""A""}",0.0122
+50,call_document,"{""numbers"": 1, ""result"": ""C""}",0.2797
+162,call_document,"{""numbers"": 1, ""result"": ""D""}",0.1963
+1230,call_api,"{
+  ""path"": ""/api/v1/dashboard/training/NS-099"",
+  ""body"": {
+    ""fromDate"": ""2025-09-01"",
+    ""toDate"": ""2025-09-30"",
+    ""organization"": [
+      ""TTPMTCS""
+    ],
+    ""trainGroup"": []
+  }
+}",0.0039
+4,call_document,"{""numbers"": 1, ""result"": ""A""}",0.1493
+273,call_document,"{""numbers"": 1, ""result"": ""B""}",0.2038
+102,call_document,"{""numbers"": 1, ""result"": ""A""}",0.2861
+1198,call_api,"{
+  ""path"": ""/api/v1/dashboard/resignation/NS-050"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0034
+1227,call_api,"{
+  ""path"": ""/api/v1/dashboard/certificate/NS-064-2"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-12-31"",
+    ""organization"": []
+  }
+}",0.0022
+1191,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-039"",
+  ""body"": {
+    ""fromDate"": ""2025-04-01"",
+    ""toDate"": ""2025-08-31"",
+    ""organization"": [
+      ""TTPMVT""
+    ],
+    ""level"": []
+  }
+}",0.0026
+64,call_document,"{""numbers"": 1, ""result"": ""B""}",0.1932
+1216,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/NS-046"",
+  ""body"": {
+    ""fromDate"": ""2025-11-01"",
+    ""toDate"": ""2025-11-30"",
+    ""organization"": [
+      ""TTPMQT""
+    ]
+  }
+}",0.0029
+188,call_document,"{""numbers"": 1, ""result"": ""D""}",0.0084
+238,call_document,"{""numbers"": 1, ""result"": ""C""}",0.149
+1119,call_api,"{
+  ""path"": ""/api/v1/dashboard/ra-report/get-ra-ru-hc"",
+  ""body"": {
+    ""fromDate"": ""2025-01-01"",
+    ""toDate"": ""2025-03-31"",
+    ""type"": 3,
+    ""organization"": [
+      ""TTPMTCS""
+    ]
+  }
+}",0.0024
+1368,call_api,"{
+  ""path"": ""/api/v1/dashboard/business-management/KD-061?summaryDate=2025-05-26&organizationCode=VTIT&targetCode=DT"",
+  ""body"": {
+    ""summaryDate"": """",
+    ""organizationCode"": """",
+    ""targetCode"": """"
+  }
+}",0.0029
+1278,call_api,"{
+  ""path"": ""/api/v1/dashboard/investment-asset/DTTS-049"",
+  ""body"": {
+    ""fromDate"": ""2025-02-01"",
+    ""toDate"": ""2025-02-28"",
+    ""type"": 0,
+    ""organization"": [],
+    ""dtmsClass"": """",
+    ""procurementType"": """",
+    ""dtmsType"": ""CNTT""
+  }
+}",0.0031

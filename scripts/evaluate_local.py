@@ -27,6 +27,7 @@ from evaluation.metrics import (
     normalize_answer,
     normalize_doc_result,
     routing_accuracy,
+    safe_json_loads,
 )
 from src.pipeline import Pipeline
 from src.schemas import InputSample
@@ -120,28 +121,84 @@ def main():
     preds = pipeline.predict_batch(samples)
     pred_dicts = [p.to_dict() for p in preds]
 
+    # Detailed section-by-section metrics calculation
+    selector_total = len(pred_dicts)
+    selector_correct = sum(1 for p in pred_dicts if p["function_code"] == ground_truth[p["id"]]["func_code"])
+    routing_acc = selector_correct / max(selector_total, 1)
+
+    doc_total = sum(1 for p in pred_dicts if ground_truth[p["id"]]["func_code"] == "call_document")
+    doc_correct = sum(
+        1 for p in pred_dicts 
+        if ground_truth[p["id"]]["func_code"] == "call_document" 
+        and normalize_doc_result(p["function_answer"]) == normalize_doc_result(ground_truth[p["id"]]["func_param"])
+    )
+    doc_acc = doc_correct / max(doc_total, 1)
+
+    api_total = sum(1 for p in pred_dicts if ground_truth[p["id"]]["func_code"] == "call_api")
+    api_path_correct = sum(
+        1 for p in pred_dicts 
+        if ground_truth[p["id"]]["func_code"] == "call_api" 
+        and safe_json_loads(p["function_answer"]) 
+        and safe_json_loads(ground_truth[p["id"]]["func_param"]) 
+        and safe_json_loads(p["function_answer"]).get("path") == safe_json_loads(ground_truth[p["id"]]["func_param"]).get("path")
+    )
+    api_body_correct = sum(
+        1 for p in pred_dicts 
+        if ground_truth[p["id"]]["func_code"] == "call_api" 
+        and normalize_answer(p["function_answer"]) == normalize_answer(ground_truth[p["id"]]["func_param"])
+    )
+    api_path_acc = api_path_correct / max(api_total, 1)
+    api_body_acc = api_body_correct / max(api_total, 1)
+
+    end_to_end_correct = sum(
+        1 for p in pred_dicts 
+        if (ground_truth[p["id"]]["func_code"] == "call_document" and normalize_doc_result(p["function_answer"]) == normalize_doc_result(ground_truth[p["id"]]["func_param"]))
+        or (ground_truth[p["id"]]["func_code"] == "call_api" and normalize_answer(p["function_answer"]) == normalize_answer(ground_truth[p["id"]]["func_param"]))
+    )
+    e2e_acc = end_to_end_correct / max(selector_total, 1)
+
+    avg_time = average_time(pred_dicts)
+
     metrics = {
-        "total": len(pred_dicts),
-        "routing_accuracy": routing_accuracy(pred_dicts, ground_truth),
-        "document_answer_accuracy": doc_answer_accuracy(pred_dicts, ground_truth),
-        "api_path_accuracy": api_path_accuracy(pred_dicts, ground_truth),
-        "api_body_exact_accuracy": api_body_accuracy(pred_dicts, ground_truth),
-        "end_to_end_exact_accuracy": exact_accuracy(pred_dicts, ground_truth),
-        "average_time_response": average_time(pred_dicts),
+        "total": selector_total,
+        "routing_accuracy": routing_acc,
+        "document_answer_accuracy": doc_acc,
+        "api_path_accuracy": api_path_acc,
+        "api_body_exact_accuracy": api_body_acc,
+        "end_to_end_exact_accuracy": e2e_acc,
+        "average_time_response": avg_time,
     }
 
     mismatches = build_mismatches(pred_dicts, ground_truth, question_by_id)
     metrics["mismatch_count"] = len(mismatches)
 
-    print("\n=== Local Evaluation ===")
-    for key, value in metrics.items():
-        if isinstance(value, float):
-            print(f"{key}: {value:.4f}")
-        else:
-            print(f"{key}: {value}")
+    print("\n==================================================")
+    print("        KẾT QUẢ ĐÁNH GIÁ CHI TIẾT THEO TỪNG PHẦN")
+    print("==================================================")
+    print("\n1. BỘ PHÂN LOẠI NHÁNH (SELECTOR)")
+    print(f"   - Tổng số câu hỏi   : {selector_total}")
+    print(f"   - Phân loại đúng     : {selector_correct} / {selector_total}")
+    print(f"   - Độ chính xác (Acc) : {routing_acc * 100:.2f}%")
+
+    print("\n2. NHÁNH TÀI LIỆU (CALL_DOCUMENT)")
+    print(f"   - Tổng số câu hỏi tài liệu: {doc_total}")
+    print(f"   - Điền đáp án đúng        : {doc_correct} / {doc_total}")
+    print(f"   - Độ chính xác (Acc)      : {doc_acc * 100:.2f}%")
+
+    print("\n3. NHÁNH API (CALL_API)")
+    print(f"   - Tổng số câu hỏi API     : {api_total}")
+    print(f"   - Đúng đường dẫn (Path)   : {api_path_correct} / {api_total} ({api_path_acc * 100:.2f}%)")
+    print(f"   - Đúng tham số (Params)   : {api_body_correct} / {api_total} ({api_body_acc * 100:.2f}%)")
+
+    print("\n4. KẾT QUẢ TỔNG HỢP (AGGREGATED)")
+    print(f"   - Tổng số câu hỏi (Total) : {selector_total}")
+    print(f"   - Số câu đúng hoàn hảo    : {end_to_end_correct} / {selector_total}")
+    print(f"   - Độ chính xác toàn diện  : {e2e_acc * 100:.2f}%")
+    print(f"   - Thời gian phản hồi TB   : {avg_time:.4f}s")
+    print("==================================================")
 
     if mismatches:
-        print("\nTop mismatches:")
+        print("\nCác trường hợp dự đoán lệch (Mismatches):")
         for item in mismatches[:10]:
             print(f"- id={item['id']} issue={item['issue']} q={item['question'][:100]}")
 

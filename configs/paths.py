@@ -23,6 +23,10 @@ API_REGISTRY_FILE = PROCESSED_DIR / "api_registry.jsonl"
 ALIAS_DICTIONARY_FILE = PROCESSED_DIR / "alias_dictionary.json"
 SELECTOR_TRAIN_FILE = PROCESSED_DIR / "selector_train.jsonl"
 
+# ─── MinerU paths ─────────────────────────────────────────────────
+MINERU_MD_DIR = PROCESSED_DIR / "mineru_markdown"
+MINERU_OUT_DIR = PROCESSED_DIR / "mineru_output"
+
 # ─── Cache ────────────────────────────────────────────────────────
 CACHE_DIR = DATA_DIR / "cache"
 DOC_INDEX_DIR = CACHE_DIR / "doc_index"
@@ -39,8 +43,9 @@ SUBMISSION_FILE = OUTPUTS_DIR / "submission.csv"
 def ensure_dirs():
     """Create all necessary directories if they don't exist."""
     for d in [
-        PROCESSED_DIR, CACHE_DIR, DOC_INDEX_DIR, API_INDEX_DIR,
-        EMBEDDINGS_DIR, SELECTOR_MODEL_DIR, OUTPUTS_DIR,
+        PROCESSED_DIR, MINERU_MD_DIR, MINERU_OUT_DIR, CACHE_DIR,
+        DOC_INDEX_DIR, API_INDEX_DIR, EMBEDDINGS_DIR, SELECTOR_MODEL_DIR,
+        OUTPUTS_DIR,
     ]:
         d.mkdir(parents=True, exist_ok=True)
 

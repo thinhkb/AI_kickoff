@@ -264,7 +264,7 @@ python src/main.py "Trong Quý 3/2025 thì TTPMTCS có bao nhiêu dự án"
        └──────┬──────┘          └──────┬──────┘
               │                         │
     ┌─────────▼─────────┐     ┌────────▼────────┐
-    │ BM25 Retrieval    │     │ BM25 Retrieval  │
+    │ QWEN3 Retrieval   │     │ QWEN3 Retrieval │
     │ (15,539 chunks)   │     │ (131 APIs)      │
     └─────────┬─────────┘     └────────┬────────┘
               │                         │
@@ -536,6 +536,156 @@ pip install paddleocr paddlepaddle
 ```
 
 Kích hoạt OCR fallback cho các trang PDF có `text_coverage < 0.1`.
+
+### 11.5. Trích xuất tri thức nâng cao với MinerU (Magic-PDF) [Mới]
+
+MinerU (Magic-PDF) là mô hình trích xuất tài liệu học sâu vượt trội, chuyển đổi tài liệu PDF phức tạp chứa bảng biểu, hình ảnh và công thức toán học thành định dạng Markdown (giữ nguyên bố cục) và LaTeX một cách chính xác.
+
+Hệ thống RAG đã được tích hợp bộ phân tách cấu trúc **Markdown Chunker** hỗ trợ MinerU:
+- Nhận diện và giữ nguyên cấu trúc bảng biểu (không làm nứt bảng ở giữa các chunk).
+- Theo dõi phân cấp tiêu đề (`#`, `##`, `###`) và gắn ngữ cảnh tiêu đề vào từng đoạn văn.
+- Phân loại và gắn thẻ công thức toán học LaTeX (`chunk_type="formula"`).
+
+#### Hướng dẫn cài đặt & Chạy MinerU ngoại tuyến (Khuyến nghị)
+
+Do MinerU yêu cầu tải trọng lượng mô hình (weights) lớn khoảng 5-10 GB và cần GPU để đạt tốc độ tốt nhất, bạn nên cài đặt MinerU trong một môi trường Conda độc lập và chạy trích xuất ngoại tuyến:
+
+##### Bước 1: Tạo môi trường ảo độc lập cho MinerU
+
+Bạn có thể lựa chọn 1 trong 3 công cụ sau để khởi tạo môi trường ảo (Khuyên dùng **Python 3.10** hoặc **3.11** để tương thích tốt nhất với các thư viện học sâu trên Windows):
+
+###### Cách A: Sử dụng `uv` (Khuyến nghị - Cực nhanh & nhẹ)
+`uv` là trình quản lý gói Python thế hệ mới bằng Rust, giúp tải và cài đặt các thư viện nặng của MinerU chỉ trong vài giây thay vì vài chục phút:
+```bash
+# 1. Tạo môi trường ảo bằng uv (chỉ định Python 3.10)
+uv venv --python 3.10 .mineru_venv
+
+# 2. Kích hoạt môi trường ảo
+# Trên Windows (PowerShell):
+.mineru_venv\Scripts\activate
+# Trên Windows (CMD):
+.mineru_venv\Scripts\activate.bat
+```
+
+###### Cách B: Sử dụng `python venv` tiêu chuẩn (Không cần cài thêm gì)
+```bash
+# 1. Khởi tạo môi trường ảo venv
+python -m venv .mineru_venv
+
+# 2. Kích hoạt môi trường ảo
+# Trên Windows (PowerShell):
+.mineru_venv\Scripts\activate
+# Trên Windows (CMD):
+.mineru_venv\Scripts\activate.bat
+```
+
+###### Cách C: Sử dụng `Conda`
+```bash
+# 1. Tạo môi trường ảo Conda
+conda create -n mineru python=3.10 -y
+
+# 2. Kích hoạt môi trường ảo
+conda activate mineru
+```
+
+##### Bước 2: Cài đặt Magic-PDF (Bản đầy đủ)
+Nếu bạn sử dụng `uv` (Cách A), hãy dùng lệnh sau để cài đặt siêu tốc:
+```bash
+uv pip install -U "magic-pdf[full]" --extra-index-url https://wheels.myhloli.com
+```
+Nếu bạn sử dụng `venv` hoặc `conda` (Cách B hoặc C):
+```bash
+pip install -U "magic-pdf[full]" --extra-index-url https://wheels.myhloli.com
+```
+
+##### Bước 3: Cấu hình trọng lượng mô hình (Model Weights)
+
+Vì trọng lượng mô hình (weights) rất nặng (~10 GB), đường truyền quốc tế trực tiếp tới HuggingFace hoặc máy chủ Trung Quốc của ModelScope có thể bị bóp băng thông tại Việt Nam (dẫn tới tốc độ tải chỉ còn 50-100 KB/s). 
+
+Bạn hãy sử dụng các phương pháp tối ưu hóa băng thông dưới đây để đạt tốc độ tải nhanh nhất:
+
+###### 1. Hướng dẫn tải trọng lượng mô hình
+* **Cách A: Chạy tập lệnh tải tự động qua CDN Mirror siêu tốc (KHUYÊN DÙNG - TỐC ĐỘ MAX)**:
+  Tôi đã viết sẵn cho bạn một tập lệnh cấu hình định tuyến thông minh qua hệ thống máy chủ gương **HF-Mirror** chạy trên hạ tầng mạng CDN Châu Á cực nhanh và không bị bóp băng thông:
+  ```bash
+  # Chạy script tải tự động (sẽ tự tải đầy đủ vào data/PDF-Extract-Kit)
+  python scripts/download_models.py
+  ```
+  *(Tập lệnh có hỗ trợ cơ chế tải đa luồng song song `max_workers=8` và tự động tiếp tục tải từ điểm dừng `resume_download=True` nếu bị rớt mạng).*
+
+* **Cách B: Tải thủ công đa luồng bằng Trình duyệt hoặc IDM (Internet Download Manager)**:
+  Nếu máy bạn có cài đặt IDM hoặc các công cụ tải xuống đa luồng của trình duyệt:
+  1. Truy cập trực tiếp kho file: [opendatalab/PDF-Extract-Kit Files](https://huggingface.co/opendatalab/PDF-Extract-Kit/tree/main)
+  2. Tải thủ công các tệp tin trong thư mục `models/` (đặc biệt là các file trọng lượng mô hình đuôi `.pth`, `.onnx`, `.bin`).
+  3. Sau khi tải xong, hãy đặt toàn bộ các tệp tin đó vào thư mục dự án theo đúng cấu trúc: `data/PDF-Extract-Kit/`
+
+* **Cách C: Tải qua ModelScope gốc (Dự phòng)**:
+  ```bash
+  pip install modelscope
+  python -c "from modelscope import snapshot_download; snapshot_download('OpenDataLab/PDF-Extract-Kit', local_dir='data/PDF-Extract-Kit')"
+  ```
+
+###### 2. Tạo và cấu hình tệp `magic-pdf.json`
+MinerU yêu cầu tệp cấu hình chứa đường dẫn mô hình đặt tại thư mục người dùng của hệ thống:
+1. Tạo một tệp mới có tên là `magic-pdf.json` và lưu tại thư mục cá nhân người dùng của bạn trên Windows:
+   `C:\Users\Admin\magic-pdf.json`
+2. Sao chép và dán toàn bộ nội dung cấu hình chuẩn dưới đây vào tệp đó:
+   ```json
+   {
+     "bucket_info": {
+       "bucket-name-1": ["ak", "sk", "endpoint"]
+     },
+     "models-dir": "E:\\AI_kickoff\\data\\PDF-Extract-Kit\\models",
+     "device-mode": "cpu", 
+     "layout-config": {
+       "model": "layoutlmv3"
+     },
+     "formula-config": {
+       "mfd_model": "yolo_v8_mfd",
+       "mfr_model": "unimernet_small",
+       "enable": true
+     },
+     "table-config": {
+       "model": "rapid_table",
+       "enable": true,
+       "max_time": 400
+     }
+   }
+   ```
+   > 💡 **Mẹo cấu hình**:
+   > - Nhớ sửa đường dẫn trong `"models-dir"` trỏ chính xác đến thư mục `models` bên trong bộweights bạn vừa tải (ví dụ: `E:\\AI_kickoff\\data\\PDF-Extract-Kit\\models`). **Chú ý dùng 2 dấu gạch chéo ngược `\\` trong chuỗi JSON trên Windows**.
+   > - Thay đổi `"device-mode": "cpu"` thành `"device-mode": "cuda"` nếu máy tính của bạn có card đồ họa Nvidia hỗ trợ CUDA để kích hoạt GPU tăng tốc độ xử lý nhanh hơn gấp 10 lần.
+
+##### Bước 4: Chạy trích xuất tự động hàng loạt tài liệu
+Để bạn không cần viết các câu lệnh vòng lặp CMD/PowerShell phức tạp, tôi đã xây dựng sẵn một tập lệnh tự động hóa **một cú click**:
+```bash
+# 1. Đảm bảo môi trường ảo chứa MinerU đã được kích hoạt (venv hoặc conda)
+# 2. Chạy tập lệnh trích xuất tự động
+python scripts/mineru_batch_extract.py
+```
+**Tập lệnh này sẽ tự động**:
+- Quét toàn bộ 398 tệp PDF trong thư mục tài liệu cuộc thi.
+- Kiểm tra tính hợp lệ của tệp cấu hình và môi trường.
+- Tự động chạy MinerU trích xuất cấu trúc bố cục từng tệp.
+- Tự động di chuyển các tệp Markdown `.md` và hình ảnh thu hoạch được vào thư mục chuẩn `data/processed/mineru_markdown/`.
+- Bỏ qua các file đã được trích xuất trước đó để tiết kiệm thời gian (Resume/Caching).
+
+##### Bước 5: Build Knowledge Base của RAG
+Sau khi quá trình trích xuất ở Bước 4 hoàn tất, bạn chỉ cần quay lại môi trường ảo chính của dự án và chạy:
+```bash
+python scripts/build_document_kb.py
+```
+Hệ thống RAG sẽ phát hiện các tệp Markdown cấu trúc của MinerU, tự động chia nhỏ (chunking) bảo toàn bảng biểu, công thức toán học và tiêu đề mục lục để đưa vào cơ sở dữ liệu đối sánh.
+
+#### Cách hoạt động của Pipeline
+
+Khi bạn chạy build dữ liệu tri thức bằng lệnh:
+```bash
+python scripts/build_document_kb.py
+```
+Hệ thống RAG sẽ tự động phát hiện các tệp `.md` đã được trích xuất sẵn bởi MinerU trong thư mục `mineru_markdown/`:
+- **Nếu tìm thấy tệp `.md`**: Pipeline sẽ bỏ qua việc chạy các mô hình PyMuPDF cũ và tiến hành phân tách ngữ nghĩa bằng bộ tách nâng cao **MinerUMarkdownChunker** (giữ nguyên bảng biểu, tiêu đề phân cấp và LaTeX).
+- **Nếu không tìm thấy**: Hệ thống sẽ tự động hiển thị cảnh báo và sử dụng cơ chế dự phòng **PyMuPDF Fallback** để trích xuất văn bản nhằm đảm bảo pipeline chạy ổn định không bị lỗi crash.
 
 ---
 

@@ -45,8 +45,19 @@ class DocumentRetriever:
             logger.info(f"Loaded {embeddings.shape[0]} precomputed embeddings")
 
     def _tokenize(self, text: str) -> List[str]:
-        """Simple whitespace tokenization for BM25."""
-        return text.lower().split()
+        """Proper tokenization stripping punctuation and stopwords, preserving digits."""
+        import re
+        stopwords = {
+            "và", "là", "của", "có", "trong", "theo", "được", "từ",
+            "một", "những", "các", "về", "để", "nào", "gì", "với",
+            "khi", "nếu", "thì", "cho", "trên", "dưới", "bao", "nhiêu",
+            "đâu", "hãy", "hay", "không", "phải", "chính", "chủ", "yếu",
+            "đã", "bị", "vào", "ra", "ở", "này", "đó",
+        }
+        return [
+            t for t in re.findall(r"\w+", (text or "").lower(), flags=re.UNICODE)
+            if (len(t) > 1 or t.isdigit()) and t not in stopwords
+        ]
 
     def retrieve_bm25(
         self,
@@ -200,4 +211,21 @@ class DocumentRetriever:
         self.chunks = [DocumentChunk.from_dict(d) for d in data]
         tokenized = [self._tokenize(c.text) for c in self.chunks]
         self.bm25 = BM25Okapi(tokenized)
+        
+        # Build TF-IDF vectorizer fitted on the corpus
+        try:
+            from sklearn.feature_extraction.text import TfidfVectorizer
+            texts = [c.text for c in self.chunks]
+            self.tfidf_vectorizer = TfidfVectorizer(
+                analyzer='word',
+                token_pattern=r'\w{2,}',
+                sublinear_tf=True,
+                norm=None,
+            )
+            self.tfidf_vectorizer.fit(texts)
+            logger.info("Fitted corpus-level TF-IDF vectorizer")
+        except Exception as e:
+            logger.warning(f"Could not fit corpus TF-IDF vectorizer: {e}")
+            self.tfidf_vectorizer = None
+            
         logger.info(f"Loaded {len(self.chunks)} document chunks")
