@@ -33,7 +33,9 @@ The system supports two function codes:
 
 Core design principles:
 
-- Use the question as the main routing signal.
+- Use only the question for function routing. The `note` field is read only
+  after `call_document` has already been selected, so it can provide A/B/C/D
+  answer options for document QA.
 - Keep the two branches explicit: document questions are solved by evidence
   retrieval and option scoring; API questions are solved by API retrieval,
   slot extraction, normalization, template filling, and validation.
@@ -105,7 +107,7 @@ Important generated artifacts:
 | `data/processed/api_registry.jsonl` | `scripts/build_api_registry.py` | Normalized API catalog for retrieval. |
 | `data/processed/alias_dictionary.json` | `scripts/build_api_registry.py` or `scripts/build_alias_dict.py` | Alias tables for organizations, project types, statuses, and other API slots. |
 | `data/processed/document_chunks.jsonl` | `scripts/build_document_kb.py` | Document chunks used by the document retriever. |
-| `data/cache/selector_model/` | `scripts/train_selector.py` | Trained TF-IDF + Logistic Regression branch selector. |
+| `data/cache/selector_model/` | `scripts/train_selector.py` | Trained TF-IDF + routing-feature Logistic Regression branch selector. |
 | `outputs/predictions*.jsonl` | `run_submission.py` | Full prediction records. |
 | `outputs/submission*.csv` | `run_submission.py` | Competition submission file. |
 
@@ -159,6 +161,14 @@ The selector learns whether a normalized question should go to:
 - `call_document`
 - `call_api`
 
+It uses only the question. Besides word and character TF-IDF features, the
+training script adds question-only routing features from the document index,
+API registry, and API slot extractor:
+
+- document retrieval confidence, margin, hit count, and document-id hints in
+  the question;
+- API retrieval confidence, margin, hit count, and slot/schema feasibility.
+
 The trained model is saved under `data/cache/selector_model/`.
 
 ### 4. Evaluate locally
@@ -197,7 +207,9 @@ Question normalization
         |
         v
 Branch selector
-  TF-IDF word/char n-grams + Logistic Regression
+  TF-IDF word/char n-grams
+  + document/API routing features from question only
+  + Logistic Regression
         |
         +------------------------------+
         |                              |
@@ -245,7 +257,7 @@ AI_kickoff/
     schemas.py            Dataclasses for samples, predictions, chunks, APIs.
 
     preprocess/           Question, text, and time normalization.
-    selector/             TF-IDF feature builder and branch selector.
+    selector/             TF-IDF builder, routing features, and branch selector.
     document/             PDF parsing, chunking, retrieval, option scoring.
     api/                  API catalog, retrieval, slot extraction, filling.
     models/               Qwen3 embedding, reranker, and LLM wrappers.
@@ -282,11 +294,14 @@ AI_kickoff/
 Location: `src/selector/`
 
 - Uses TF-IDF word n-grams and character n-grams.
+- Adds question-only routing features from `src/selector/routing_features.py`:
+  document retrieval confidence, API retrieval confidence, document-id hints,
+  and API slot/schema feasibility.
 - Uses Logistic Regression for fast and stable routing.
-- Has a heuristic fallback when the trained selector is missing.
-- Is protected by routing safety rules in `src/pipeline.py`, for example:
-  if a row has multiple-choice options in `note`, it is treated as a document
-  question.
+- Does not use `note` during function routing. `note` is passed to the
+  document branch only after `function_code == "call_document"`.
+- Has a last-resort fallback based on question-only retrieval evidence if the
+  trained selector is missing.
 
 ### Document Branch
 
@@ -426,11 +441,12 @@ Solution:
 
 - The selector uses both word n-grams and character n-grams, which helps with
   short Vietnamese terms and abbreviations.
-- `src/pipeline.py` adds routing safety rules:
-  - if `note` is empty and the selector chose `call_document`, route to
-    `call_api`;
-  - if `note` contains multiple-choice options and the selector chose
-    `call_api`, route back to `call_document`.
+- `src/selector/routing_features.py` adds learned, question-only signals:
+  document top score, API top score, score margins, hit counts, document-id
+  hints in the question, and API slot coverage.
+- `src/pipeline.py` no longer corrects routing with `note`. This keeps routing
+  compliant while still giving the selector stronger evidence than TF-IDF
+  alone.
 
 ### 4. Time expressions in Vietnamese questions
 
@@ -519,7 +535,7 @@ Local example-data results documented during development:
 | Routing accuracy | 100/100 |
 | API path accuracy | 47/50 |
 | Average response time | around 0.024 seconds |
-| Selector cross-validation | around 98% |
+| Selector cross-validation | 100% with question-only routing features |
 
 Submission run summary documented during development:
 
@@ -531,6 +547,22 @@ Submission run summary documented during development:
 | Average response time | around 0.023 seconds |
 
 ## Advanced Options
+
+### Selector routing feature ablation
+
+By default, `scripts/train_selector.py` trains with question-only routing
+features from the document index and API registry. Disable those features only
+for ablation or debugging:
+
+```bash
+# Windows PowerShell
+$env:VIETTEL_SELECTOR_ROUTE_FEATURES="0"
+python scripts/train_selector.py
+
+# Linux / macOS
+export VIETTEL_SELECTOR_ROUTE_FEATURES=0
+python scripts/train_selector.py
+```
 
 ### Optional Qwen3 reranker
 

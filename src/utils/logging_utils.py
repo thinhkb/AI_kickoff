@@ -25,6 +25,10 @@ def setup_logger(
     )
 
     # Console handler
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
     ch = logging.StreamHandler(sys.stdout)
     ch.setLevel(level)
     ch.setFormatter(formatter)

@@ -3,26 +3,24 @@ Main inference pipeline: orchestrates selector, document solver, and API solver.
 """
 import json
 import os
-from typing import Optional, Dict, Any
-from src.schemas import InputSample, PredictionResult
-from src.preprocess.question_normalizer import normalize_question
-from src.selector.selector_model import SelectorModel
-from src.document.document_solver import DocumentSolver
-from src.document.retriever import DocumentRetriever
-from src.document.option_scorer import OptionScorer
-from src.document.option_parser import parse_options
-from src.api.api_solver import APISolver
+from typing import Optional
+
+from configs.constants import FUNC_CALL_API, FUNC_CALL_DOCUMENT
+from configs.paths import API_CONFIG_FILE, DOCUMENT_CHUNKS_FILE, SELECTOR_MODEL_DIR
+from src.api.api_catalog_loader import load_alias_dictionary, load_api_catalog
 from src.api.api_retriever import APIRetriever
 from src.api.api_reranker import APIReranker
-from src.api.api_catalog_loader import load_api_catalog, load_alias_dictionary
+from src.api.api_solver import APISolver
+from src.document.document_solver import DocumentSolver
+from src.document.option_scorer import OptionScorer
+from src.document.retriever import DocumentRetriever
 from src.models.reranker_model import RerankerModel
-from src.utils.timer import Timer
+from src.preprocess.question_normalizer import normalize_question
+from src.schemas import InputSample, PredictionResult
+from src.selector.routing_features import RoutingFeatureExtractor
+from src.selector.selector_model import SelectorModel
 from src.utils.logging_utils import logger
-from configs.paths import (
-    SELECTOR_MODEL_DIR, DOCUMENT_CHUNKS_FILE,
-    API_CONFIG_FILE, API_REGISTRY_FILE,
-)
-from configs.constants import FUNC_CALL_DOCUMENT, FUNC_CALL_API
+from src.utils.timer import Timer
 
 
 class Pipeline:
@@ -32,6 +30,7 @@ class Pipeline:
         self.selector: Optional[SelectorModel] = None
         self.document_solver: Optional[DocumentSolver] = None
         self.api_solver: Optional[APISolver] = None
+        self.routing_feature_extractor: Optional[RoutingFeatureExtractor] = None
         self._loaded = False
 
     def load(self):
@@ -48,8 +47,10 @@ class Pipeline:
 
         # 2. Load document retriever
         doc_retriever = DocumentRetriever()
+        doc_index_loaded = False
         try:
             doc_retriever.load_index(DOCUMENT_CHUNKS_FILE)
+            doc_index_loaded = True
         except Exception as e:
             logger.warning(f"Document index not found: {e}. Run build_document_kb.py first.")
 
@@ -59,6 +60,7 @@ class Pipeline:
         )
 
         # 3. Load API components
+        api_retriever = None
         try:
             apis = load_api_catalog(API_CONFIG_FILE)
             alias_dict = load_alias_dictionary(API_CONFIG_FILE)
@@ -73,6 +75,17 @@ class Pipeline:
             )
         except Exception as e:
             logger.warning(f"API components load error: {e}")
+
+        if doc_index_loaded or api_retriever is not None:
+            self.routing_feature_extractor = RoutingFeatureExtractor(
+                document_retriever=doc_retriever if doc_index_loaded else None,
+                api_retriever=api_retriever,
+                slot_extractor=self.api_solver.slot_extractor if self.api_solver else None,
+            )
+        if self.selector:
+            self.selector.set_routing_feature_extractor(
+                self.routing_feature_extractor,
+            )
 
         self._loaded = True
         logger.info("Pipeline loaded successfully")
@@ -95,42 +108,18 @@ class Pipeline:
         """Predict for a single sample."""
         timer = Timer().start()
 
-        # Normalize question
         q = normalize_question(sample.question)
 
-        # Select function
         if self.selector and self.selector._fitted:
             func_code = self.selector.predict(q)
         else:
-            # Fallback: heuristic
-            func_code = self._heuristic_select(q, sample.note)
+            # Last-resort selector uses question-only retrieval evidence.
+            func_code = self._heuristic_select(q)
 
-        # ─── Routing safety net ───────────────────────────────────
-        # If selector says call_document but note is empty (no A/B/C/D
-        # options), the question is almost certainly call_api.
-        # All genuine call_document questions in the contest have a note
-        # with answer options.
-        if func_code == FUNC_CALL_DOCUMENT and not sample.note:
-            logger.info(
-                f"  Routing override: call_document -> call_api "
-                f"(note is empty, id={sample.id})"
-            )
-            func_code = FUNC_CALL_API
-
-        # In the contest files, real call_document rows carry answer choices in
-        # note. This catches selector false positives on document/table-price
-        # questions such as TD640/TD643 that look numeric and API-like.
-        if func_code == FUNC_CALL_API and sample.note and len(parse_options(sample.note)) >= 2:
-            logger.info(
-                f"  Routing override: call_api -> call_document "
-                f"(multiple-choice note, id={sample.id})"
-            )
-            func_code = FUNC_CALL_DOCUMENT
-
-        # Solve
         if func_code == FUNC_CALL_DOCUMENT:
             result = self.document_solver.solve(
-                question=q, note=sample.note or "",
+                question=q,
+                note=sample.note or "",
             )
         elif func_code == FUNC_CALL_API:
             result = self.api_solver.solve(question=q)
@@ -146,17 +135,28 @@ class Pipeline:
             time_response=elapsed,
         )
 
-    def _heuristic_select(self, question: str, note: str = None) -> str:
-        """Fallback heuristic when selector is not trained."""
-        q_lower = question.lower()
-        api_keywords = [
-            "bao nhiêu", "slsx", "slnt", "nhân sự", "dự án",
-            "leakage", "tháng", "quý", "năm 2025", "ttpm",
-            "công ty", "gói thầu", "đấu thầu",
-        ]
-        if any(kw in q_lower for kw in api_keywords) and note is None:
-            return FUNC_CALL_API
-        return FUNC_CALL_DOCUMENT
+    def _heuristic_select(self, question: str) -> str:
+        """Fallback selector when the trained model is unavailable."""
+        if self.routing_feature_extractor is not None:
+            features = self.routing_feature_extractor.extract_map(question)
+            api_evidence = (
+                features["api_top_score"]
+                + features["api_margin"]
+                + features["api_slot_coverage"]
+            )
+            doc_evidence = (
+                features["doc_top_score"]
+                + features["doc_margin"]
+                + features["doc_id_in_question"]
+            )
+            if api_evidence > doc_evidence:
+                return FUNC_CALL_API
+            return FUNC_CALL_DOCUMENT
+
+        raise RuntimeError(
+            "Selector model is unavailable and routing indexes were not loaded. "
+            "Run scripts/train_selector.py or build the document/API indexes first."
+        )
 
     def predict_batch(self, samples: list[InputSample]) -> list[PredictionResult]:
         """Predict for a batch of samples."""

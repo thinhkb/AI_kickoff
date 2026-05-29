@@ -21,8 +21,15 @@ class SelectorModel:
     Predicts call_document or call_api based on the question only.
     """
 
-    def __init__(self):
-        self.feature_builder = FeatureBuilder()
+    def __init__(
+        self,
+        routing_feature_extractor=None,
+        use_routing_features: bool = False,
+    ):
+        self.feature_builder = FeatureBuilder(
+            routing_feature_extractor=routing_feature_extractor,
+            use_routing_features=use_routing_features,
+        )
         self.classifier = LogisticRegression(
             C=1.0,
             max_iter=1000,
@@ -30,6 +37,10 @@ class SelectorModel:
             solver="lbfgs",
         )
         self._fitted = False
+
+    def set_routing_feature_extractor(self, extractor):
+        """Attach question-only routing feature resources after loading indexes."""
+        self.feature_builder.set_routing_feature_extractor(extractor)
 
     def train(self, questions: list[str], labels: list[str]) -> dict:
         """
@@ -49,7 +60,7 @@ class SelectorModel:
 
         # Training accuracy
         preds = self.classifier.predict(X)
-        accuracy = (preds == y).mean()
+        accuracy = float((preds == y).mean())
         logger.info(f"Selector training accuracy: {accuracy:.4f}")
 
         return {"accuracy": accuracy, "n_samples": len(questions)}

@@ -254,7 +254,7 @@ The branch selector should remain lightweight and auditable:
 * optional retrieval-confidence features from the document and API indexes
 * optional `Qwen3-Embedding-8B` features only if validation shows a clear gain
 
-Do not use the LLM as the primary selector. The selector is a two-class production classifier and must use only the `question`.
+Can use the LLM as the primary selector. The selector is a two-class production classifier and must use only the `question`.
 
 #### G. Recommended Accuracy-First Stack
 
