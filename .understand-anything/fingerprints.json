@@ -1,0 +1,4532 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "b242ee4f4c8d9a9f24fabb728fbd62b2f5685f37",
+  "generatedAt": "2026-05-29T02:50:57.127Z",
+  "files": {
+    "configs/__init__.py": {
+      "filePath": "configs/__init__.py",
+      "contentHash": "7401a6c433688b167d8a6860f9db37c2725b4d9fc5df46ac3bfb289c3ff14086",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "configs/constants.py": {
+      "filePath": "configs/constants.py",
+      "contentHash": "750d1ec3d67fbc518c44af3a68f95d34260c8d10878b0f08f4a86cc3b2f439d0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "configs/model_config.py": {
+      "filePath": "configs/model_config.py",
+      "contentHash": "0c6db255e8a5a17174001001fc7e4cf35d8dbaf236d86e67828cedaf551147ee",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 49,
+      "hasStructuralAnalysis": true
+    },
+    "configs/paths.py": {
+      "filePath": "configs/paths.py",
+      "contentHash": "4318c1320e03d39f787ea4c51dd8403e01e0960697b94c523ef2657344c0b080",
+      "functions": [
+        {
+          "name": "ensure_dirs",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "get_next_version",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "get_versioned_paths",
+          "params": [
+            "version"
+          ],
+          "returnType": "Tuple[Path, Path]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "print_current_config",
+          "params": [],
+          "exported": true,
+          "lineCount": 52
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Tuple"
+          ]
+        }
+      ],
+      "exports": [
+        "ensure_dirs",
+        "get_next_version",
+        "get_versioned_paths",
+        "print_current_config"
+      ],
+      "totalLines": 136,
+      "hasStructuralAnalysis": true
+    },
+    "data/API_config_data/Tài liệu config API.xlsx": {
+      "filePath": "data/API_config_data/Tài liệu config API.xlsx",
+      "contentHash": "aacef70a83d19b63cc6b82583ec68d2018a8a85da4ca218b09822c6881390261",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 270,
+      "hasStructuralAnalysis": false
+    },
+    "data/example_data/example_data.xlsx": {
+      "filePath": "data/example_data/example_data.xlsx",
+      "contentHash": "471c0cb5c7762501333502533bbf60b8804fe5d4448fb71da667cc3080914f9b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 95,
+      "hasStructuralAnalysis": false
+    },
+    "data/processed/alias_dictionary.json": {
+      "filePath": "data/processed/alias_dictionary.json",
+      "contentHash": "56b149355f970627e045ef34b7fb872b986a0653cc47ad7bf01db4a2cbef161a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 528,
+      "hasStructuralAnalysis": true
+    },
+    "data/processed/api_registry.jsonl": {
+      "filePath": "data/processed/api_registry.jsonl",
+      "contentHash": "0d023641bfdc4158403a0f71382ee0c659d86e88a9dcf8bc414b314db5bbad0c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 132,
+      "hasStructuralAnalysis": false
+    },
+    "data/processed/document_chunks.jsonl": {
+      "filePath": "data/processed/document_chunks.jsonl",
+      "contentHash": "1b65fa1b1cc0bd237dfabc5a036fdb7d6997ff8009771e5424cdc48c3cb7c134",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13478,
+      "hasStructuralAnalysis": false
+    },
+    "data/test_data/Test_data.xlsx": {
+      "filePath": "data/test_data/Test_data.xlsx",
+      "contentHash": "9650888091c0eae096176b2538d0cfcb92a141bdcfbddf388e19bfaf1e83f0e7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 200,
+      "hasStructuralAnalysis": false
+    },
+    "evaluation/__init__.py": {
+      "filePath": "evaluation/__init__.py",
+      "contentHash": "ae8d75d06e1854a33a308f82be93f640f3cf855003bf30b645d5df43a8d537e3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/metrics.py": {
+      "filePath": "evaluation/metrics.py",
+      "contentHash": "8c391470da6aec36414df3be54d628136743887f55ad860d321fc4d132855440",
+      "functions": [
+        {
+          "name": "safe_json_loads",
+          "params": [
+            "raw"
+          ],
+          "returnType": "Optional[Any]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "_repair_api_json",
+          "params": [
+            "text"
+          ],
+          "returnType": "Optional[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "normalize_answer",
+          "params": [
+            "raw"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "canonicalize",
+          "params": [
+            "value"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "normalize_doc_result",
+          "params": [
+            "raw"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "routing_accuracy",
+          "params": [
+            "predictions",
+            "ground_truth"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "exact_accuracy",
+          "params": [
+            "predictions",
+            "ground_truth"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "api_path_accuracy",
+          "params": [
+            "predictions",
+            "ground_truth"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "api_body_accuracy",
+          "params": [
+            "predictions",
+            "ground_truth"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "doc_answer_accuracy",
+          "params": [
+            "predictions",
+            "ground_truth"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "average_time",
+          "params": [
+            "predictions"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Dict",
+            "Any",
+            "Optional"
+          ]
+        }
+      ],
+      "exports": [
+        "safe_json_loads",
+        "_repair_api_json",
+        "normalize_answer",
+        "canonicalize",
+        "normalize_doc_result",
+        "routing_accuracy",
+        "exact_accuracy",
+        "api_path_accuracy",
+        "api_body_accuracy",
+        "doc_answer_accuracy",
+        "average_time"
+      ],
+      "totalLines": 144,
+      "hasStructuralAnalysis": true
+    },
+    "output_temp.txt": {
+      "filePath": "output_temp.txt",
+      "contentHash": "e72abe6007ec5e922b945ffc302445bd3de7d837c27cbcdd02037ac1e4f3b673",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": false
+    },
+    "plan.md": {
+      "filePath": "plan.md",
+      "contentHash": "30f314cfc44d37a93260029720a71a361e5d4e427970abd0535c55393d096661",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 907,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "c0be730bf40397530cc3c189d12c01546520e110070dc2f42c66066f4c1cae5c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 751,
+      "hasStructuralAnalysis": true
+    },
+    "requirements.txt": {
+      "filePath": "requirements.txt",
+      "contentHash": "b14d7a4989ee57217f13dfdf3fe90417509382e0dde0139b5a3de119141eeb08",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 35,
+      "hasStructuralAnalysis": false
+    },
+    "run_submission.py": {
+      "filePath": "run_submission.py",
+      "contentHash": "97eced1933537f972efd0118e2d5802888143588803f666ba2c2a7a5509cb7d9",
+      "functions": [
+        {
+          "name": "_runtime_config_lines",
+          "params": [],
+          "returnType": "list[str]",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 58
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "argparse",
+          "specifiers": [
+            "argparse"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "TEST_DATA_FILE",
+            "ensure_dirs",
+            "get_versioned_paths",
+            "print_current_config"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "InputSample"
+          ]
+        },
+        {
+          "source": "src.pipeline",
+          "specifiers": [
+            "Pipeline"
+          ]
+        },
+        {
+          "source": "src.output.writer",
+          "specifiers": [
+            "write_predictions",
+            "write_submission"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "read_excel_sheet"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs",
+          "specifiers": [
+            "mc"
+          ]
+        },
+        {
+          "source": "configs",
+          "specifiers": [
+            "c"
+          ]
+        }
+      ],
+      "exports": [
+        "_runtime_config_lines",
+        "main"
+      ],
+      "totalLines": 118,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/build_alias_dict.py": {
+      "filePath": "scripts/build_alias_dict.py",
+      "contentHash": "a981359b604051978c0ea660ba9931c1b408bf77b3fe201f474cf0391c5a724f",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "API_CONFIG_FILE",
+            "ALIAS_DICTIONARY_FILE",
+            "ensure_dirs"
+          ]
+        },
+        {
+          "source": "src.api.api_catalog_loader",
+          "specifiers": [
+            "load_alias_dictionary"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "write_json"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "main"
+      ],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/build_api_registry.py": {
+      "filePath": "scripts/build_api_registry.py",
+      "contentHash": "f285ffd91198a8d8a32b190bcf9f5596f1706d0a5abb8db48eebc50859a7aa54",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 30
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "API_CONFIG_FILE",
+            "API_REGISTRY_FILE",
+            "ALIAS_DICTIONARY_FILE",
+            "ensure_dirs"
+          ]
+        },
+        {
+          "source": "src.api.api_catalog_loader",
+          "specifiers": [
+            "load_api_catalog",
+            "load_alias_dictionary"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "write_jsonl",
+            "write_json"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "main"
+      ],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/build_document_kb.py": {
+      "filePath": "scripts/build_document_kb.py",
+      "contentHash": "3ca5972c82eb5ff9f60ba43a6cf4218d02da9c4c334404bbc60b18475ac5d86c",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 34
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "tqdm",
+          "specifiers": [
+            "tqdm"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "PDF_DIR",
+            "DOCUMENT_CHUNKS_FILE",
+            "ensure_dirs"
+          ]
+        },
+        {
+          "source": "src.document.mineru_parser",
+          "specifiers": [
+            "MinerUParser"
+          ]
+        },
+        {
+          "source": "src.document.mineru_chunker",
+          "specifiers": [
+            "MinerUMarkdownChunker"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "write_jsonl"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "main"
+      ],
+      "totalLines": 57,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_707.py": {
+      "filePath": "scripts/debug_707.py",
+      "contentHash": "f0a37d227acaaac9a42981be86b3a16463c5df4cde0c909eda8e72022c196a72",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_708.py": {
+      "filePath": "scripts/debug_708.py",
+      "contentHash": "696bc3e817521ec32b8230fac774b7abc90b6edec4cfe5e4f68fa10aa5d18f78",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_713.py": {
+      "filePath": "scripts/debug_713.py",
+      "contentHash": "bd991a78161717417640c916f8b0dfdff2815d73a2d9de3ed9c2b29c9c6a004d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 62,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_chunks.py": {
+      "filePath": "scripts/debug_chunks.py",
+      "contentHash": "2a62764078ee7f45ee95a0300795495c5f9ebddfeb287d21905346bb3846f865",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "rank_bm25",
+          "specifiers": [
+            "BM25Okapi"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_docid.py": {
+      "filePath": "scripts/debug_docid.py",
+      "contentHash": "1962e1962b08fb60502063fb1db4ee08b8054beea2d36ead08cf76478522fdbe",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_evidence.py": {
+      "filePath": "scripts/debug_evidence.py",
+      "contentHash": "11d47bd944091c8ab03b19466a99fd228aa4cbbccf41b730a4147033ef0da914",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 107,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_fusion_hybrid.py": {
+      "filePath": "scripts/debug_fusion_hybrid.py",
+      "contentHash": "11d57e09ce7c28f565467f8a67219a029203ab4da151bd68702fad7dfed3db87",
+      "functions": [
+        {
+          "name": "custom_tokenize",
+          "params": [
+            "text"
+          ],
+          "returnType": "list[str]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "score_with_proximity",
+          "params": [
+            "question",
+            "options",
+            "evidence_chunks"
+          ],
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "score_with_normalized_overlap",
+          "params": [
+            "question",
+            "options",
+            "evidence_chunks"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "minmax",
+          "params": [
+            "scores"
+          ],
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "sklearn.feature_extraction.text",
+          "specifiers": [
+            "TfidfVectorizer"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [
+        "custom_tokenize",
+        "score_with_proximity",
+        "score_with_normalized_overlap",
+        "minmax"
+      ],
+      "totalLines": 206,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_mismatches.py": {
+      "filePath": "scripts/debug_mismatches.py",
+      "contentHash": "6bee5bcc6541b0666da0f51fd6f6e806aca3ae6ee3b625f27181a757a543f568",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_neg.py": {
+      "filePath": "scripts/debug_neg.py",
+      "contentHash": "1ce9cbfa55bf039ee800320bcfa02ab94d5d060c8bee66d25d5e447661b6eb7a",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 56,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_output.py": {
+      "filePath": "scripts/debug_output.py",
+      "contentHash": "e08812ea6de4b981394908b48eb4e3067647ea1181d504232dea6c850be56abd",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_pipeline_run.py": {
+      "filePath": "scripts/debug_pipeline_run.py",
+      "contentHash": "92090ddcd359eff9a22f6edbd3b13a30794f9b372d9646c86af6254be970fdee",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.pipeline",
+          "specifiers": [
+            "Pipeline"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "InputSample"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_proximity.py": {
+      "filePath": "scripts/debug_proximity.py",
+      "contentHash": "f6359bdff51140f3b7ed067bd267cac301fb854f81424614e3ccfbc0b393f190",
+      "functions": [
+        {
+          "name": "custom_tokenize",
+          "params": [
+            "text"
+          ],
+          "returnType": "list[str]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "score_with_proximity",
+          "params": [
+            "question",
+            "options",
+            "evidence_chunks",
+            "mid"
+          ],
+          "exported": true,
+          "lineCount": 42
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [
+        "custom_tokenize",
+        "score_with_proximity"
+      ],
+      "totalLines": 96,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_regression.py": {
+      "filePath": "scripts/debug_regression.py",
+      "contentHash": "de32eb94f53c7ee20851211b6a4ed58955e3a905235d927ff1d5750746a9f8de",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_scoring.py": {
+      "filePath": "scripts/debug_scoring.py",
+      "contentHash": "2cb5b65be6e6ad96c05912b3a4ccc5fc94c3d9b9572c75ae2c36077a96703d39",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 98,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_tfidf_corpus.py": {
+      "filePath": "scripts/debug_tfidf_corpus.py",
+      "contentHash": "fb195a42f3e53e3a01512b4ae9e6462ae31bea8982eda6d4386efe6acf446990",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "sklearn.feature_extraction.text",
+          "specifiers": [
+            "TfidfVectorizer"
+          ]
+        },
+        {
+          "source": "sklearn.metrics.pairwise",
+          "specifiers": [
+            "sk_cosine"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_weights.py": {
+      "filePath": "scripts/debug_weights.py",
+      "contentHash": "a97f503bc0eb39996a9ced8f004756ddd25d998de6def972aefea8ab3f3106a1",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 69,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/debug_yesno.py": {
+      "filePath": "scripts/debug_yesno.py",
+      "contentHash": "32f3f9c990193125e1596b72608f6d6b49c42a254cb2c65bde9a4a8eaa0a415e",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "src.document.document_solver",
+          "specifiers": [
+            "DocumentSolver"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/evaluate_local.py": {
+      "filePath": "scripts/evaluate_local.py",
+      "contentHash": "9b30b4facd9bdda3dac8d953e4c79fe05ceb5d3ae5ed4bd9d5c8e854199d8cfa",
+      "functions": [
+        {
+          "name": "build_ground_truth",
+          "params": [
+            "rows"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "build_mismatches",
+          "params": [
+            "predictions",
+            "ground_truth",
+            "question_by_id"
+          ],
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 122
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "argparse",
+          "specifiers": [
+            "argparse"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "logging",
+          "specifiers": [
+            "logging"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "EXAMPLE_DATA_FILE",
+            "OUTPUTS_DIR",
+            "ensure_dirs",
+            "print_current_config"
+          ]
+        },
+        {
+          "source": "evaluation.metrics",
+          "specifiers": [
+            "api_body_accuracy",
+            "api_path_accuracy",
+            "average_time",
+            "doc_answer_accuracy",
+            "exact_accuracy",
+            "normalize_answer",
+            "normalize_doc_result",
+            "routing_accuracy",
+            "safe_json_loads"
+          ]
+        },
+        {
+          "source": "src.pipeline",
+          "specifiers": [
+            "Pipeline"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "InputSample"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "read_excel_sheet",
+            "write_json",
+            "write_jsonl"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "build_ground_truth",
+        "build_mismatches",
+        "main"
+      ],
+      "totalLines": 216,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/mineru_batch_extract.py": {
+      "filePath": "scripts/mineru_batch_extract.py",
+      "contentHash": "8fafe48bf274078d41b4103ae0749fab2a658fca48c626b0d0ee7eb60fadd7dc",
+      "functions": [
+        {
+          "name": "check_mineru_cli",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "extract_single_pdf",
+          "params": [
+            "pdf_path",
+            "temp_out_dir"
+          ],
+          "returnType": "Optional[Path]",
+          "exported": true,
+          "lineCount": 93
+        },
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 66
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "shutil",
+          "specifiers": [
+            "shutil"
+          ]
+        },
+        {
+          "source": "subprocess",
+          "specifiers": [
+            "subprocess"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional"
+          ]
+        },
+        {
+          "source": "tqdm",
+          "specifiers": [
+            "tqdm"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "PDF_DIR",
+            "MINERU_MD_DIR",
+            "ensure_dirs"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "check_mineru_cli",
+        "extract_single_pdf",
+        "main"
+      ],
+      "totalLines": 203,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/train_selector.py": {
+      "filePath": "scripts/train_selector.py",
+      "contentHash": "8da4e7f03c7656f24d3326cbdcad05ce28ebeeabb2390381f5f7d623a2317253",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 45
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "EXAMPLE_DATA_FILE",
+            "SELECTOR_MODEL_DIR",
+            "ensure_dirs",
+            "print_current_config"
+          ]
+        },
+        {
+          "source": "src.selector.selector_model",
+          "specifiers": [
+            "SelectorModel"
+          ]
+        },
+        {
+          "source": "src.preprocess.question_normalizer",
+          "specifiers": [
+            "normalize_question"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "read_excel_sheet"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "FUNC_CALL_DOCUMENT",
+            "FUNC_CALL_API"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "cross_val_score"
+          ]
+        }
+      ],
+      "exports": [
+        "main"
+      ],
+      "totalLines": 69,
+      "hasStructuralAnalysis": true
+    },
+    "src/__init__.py": {
+      "filePath": "src/__init__.py",
+      "contentHash": "6d2b9e0c83c90c0362b4c61a3a92cca147f2260e433aab9dd088dbf557a8228b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/__init__.py": {
+      "filePath": "src/api/__init__.py",
+      "contentHash": "4bc669a55e9e131cdf72209f4b2da61ae5f26c99fe4f0d2930abc33ae8b24b5a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/api_catalog_loader.py": {
+      "filePath": "src/api/api_catalog_loader.py",
+      "contentHash": "4038c08ae900c74e0f91581858ec4ad4e6134b0793189b7dc0b44fe6f286b8dc",
+      "functions": [
+        {
+          "name": "load_api_catalog",
+          "params": [
+            "path"
+          ],
+          "returnType": "List[APIEntry]",
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "load_alias_dictionary",
+          "params": [
+            "path"
+          ],
+          "returnType": "Dict[str, Dict[str, str]]",
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "_parse_alias_entry",
+          "params": [
+            "text"
+          ],
+          "returnType": "tuple | None",
+          "exported": true,
+          "lineCount": 65
+        },
+        {
+          "name": "build_api_search_text",
+          "params": [
+            "api"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Dict",
+            "Any"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "APIEntry"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "read_excel_sheet"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "API_CONFIG_FILE"
+          ]
+        }
+      ],
+      "exports": [
+        "load_api_catalog",
+        "load_alias_dictionary",
+        "_parse_alias_entry",
+        "build_api_search_text"
+      ],
+      "totalLines": 162,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/api_reranker.py": {
+      "filePath": "src/api/api_reranker.py",
+      "contentHash": "765e81846d1767bd9028fc7838ccd547570505482e3ef8cc3e6f3079ee61fadd",
+      "functions": [],
+      "classes": [
+        {
+          "name": "APIReranker",
+          "methods": [
+            "__init__",
+            "rerank",
+            "_rerank_with_model",
+            "_rerank_with_heuristic",
+            "_keyword_boost"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 115
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Tuple",
+            "Optional"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "APIEntry"
+          ]
+        },
+        {
+          "source": "src.api.api_catalog_loader",
+          "specifiers": [
+            "build_api_search_text"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "API_RERANK_TOP_K"
+          ]
+        }
+      ],
+      "exports": [
+        "APIReranker"
+      ],
+      "totalLines": 128,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/api_retriever.py": {
+      "filePath": "src/api/api_retriever.py",
+      "contentHash": "eb43dee05f8d061d562aac80ffc1f102860374be08111b19ba07b03e8dec180a",
+      "functions": [],
+      "classes": [
+        {
+          "name": "APIRetriever",
+          "methods": [
+            "__init__",
+            "build_index",
+            "retrieve",
+            "retrieve_all_scored"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 79
+        }
+      ],
+      "imports": [
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Tuple",
+            "Optional"
+          ]
+        },
+        {
+          "source": "rank_bm25",
+          "specifiers": [
+            "BM25Okapi"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "APIEntry"
+          ]
+        },
+        {
+          "source": "src.api.api_catalog_loader",
+          "specifiers": [
+            "build_api_search_text"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "API_RETRIEVAL_TOP_K"
+          ]
+        }
+      ],
+      "exports": [
+        "APIRetriever"
+      ],
+      "totalLines": 94,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/api_solver.py": {
+      "filePath": "src/api/api_solver.py",
+      "contentHash": "3ebbadb801a69ca801f93ab517739f85aba323cf0aeb0eb8a7034273555d13c3",
+      "functions": [],
+      "classes": [
+        {
+          "name": "APISolver",
+          "methods": [
+            "__init__",
+            "solve"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 63
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Dict",
+            "Any",
+            "Optional",
+            "List"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "APIEntry"
+          ]
+        },
+        {
+          "source": "src.api.api_retriever",
+          "specifiers": [
+            "APIRetriever"
+          ]
+        },
+        {
+          "source": "src.api.api_reranker",
+          "specifiers": [
+            "APIReranker"
+          ]
+        },
+        {
+          "source": "src.api.slot_extractor",
+          "specifiers": [
+            "SlotExtractor"
+          ]
+        },
+        {
+          "source": "src.api.slot_normalizer",
+          "specifiers": [
+            "SlotNormalizer"
+          ]
+        },
+        {
+          "source": "src.api.template_filler",
+          "specifiers": [
+            "TemplateFiller"
+          ]
+        },
+        {
+          "source": "src.api.validator",
+          "specifiers": [
+            "APIValidator"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "APISolver"
+      ],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/slot_extractor.py": {
+      "filePath": "src/api/slot_extractor.py",
+      "contentHash": "92a522443a50acde85fd5168ed0c3b32bbe94799d0efbca0aac7fe8dc087ffd5",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SlotExtractor",
+          "methods": [
+            "__init__",
+            "extract",
+            "_extract_organization",
+            "_extract_project_type",
+            "_extract_project_status",
+            "_extract_project_list",
+            "_extract_position",
+            "_extract_level",
+            "_extract_alias_list",
+            "_extract_generic_param",
+            "_extract_common_scalars",
+            "_extract_procurement_short_aliases",
+            "_contains_alias",
+            "_find_alias_position",
+            "_is_company_query",
+            "_extract_fuzzy_org_token",
+            "_ascii_upper",
+            "_default_value"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 264
+        }
+      ],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "unicodedata",
+          "specifiers": [
+            "unicodedata"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Dict",
+            "Any",
+            "List",
+            "Optional"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "APIEntry"
+          ]
+        },
+        {
+          "source": "src.preprocess.time_normalizer",
+          "specifiers": [
+            "extract_date_range"
+          ]
+        },
+        {
+          "source": "rapidfuzz",
+          "specifiers": [
+            "fuzz",
+            "process"
+          ]
+        }
+      ],
+      "exports": [
+        "SlotExtractor"
+      ],
+      "totalLines": 278,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/slot_normalizer.py": {
+      "filePath": "src/api/slot_normalizer.py",
+      "contentHash": "8518cab97e88cb91fbaa3984b8e3d56f93097dfed539f390e5cdec7f7f467537",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SlotNormalizer",
+          "methods": [
+            "__init__",
+            "normalize_slots",
+            "_normalize_single"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 63
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Dict",
+            "List",
+            "Optional"
+          ]
+        },
+        {
+          "source": "src.utils.fuzzy_match",
+          "specifiers": [
+            "exact_match",
+            "accent_insensitive_match",
+            "fuzzy_match_best",
+            "normalize_text"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "SlotNormalizer"
+      ],
+      "totalLines": 83,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/template_filler.py": {
+      "filePath": "src/api/template_filler.py",
+      "contentHash": "c7e98229c2790855442ef745f19f7ac8662bc8da53f4b1ef8bfabd2d3542685c",
+      "functions": [],
+      "classes": [
+        {
+          "name": "TemplateFiller",
+          "methods": [
+            "__init__",
+            "fill",
+            "_body_template",
+            "_load_calibrated_templates",
+            "_parse_answer",
+            "_neutral_default",
+            "_family_template",
+            "_schema_template",
+            "_parse_request_body_params",
+            "_canonical_param_name",
+            "_default_for_param",
+            "_postprocess_body",
+            "_get_example_body",
+            "format_output"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 255
+        }
+      ],
+      "imports": [
+        {
+          "source": "copy",
+          "specifiers": [
+            "copy"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "collections",
+          "specifiers": [
+            "OrderedDict"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Dict",
+            "Any",
+            "List",
+            "Optional"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "EXAMPLE_DATA_FILE"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "APIEntry"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "read_excel_sheet"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "TemplateFiller"
+      ],
+      "totalLines": 271,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/validator.py": {
+      "filePath": "src/api/validator.py",
+      "contentHash": "c42e7d4a3c37cf9a3efee8dad3ea42973b4ac51394c77d438c157c86c9d18286",
+      "functions": [],
+      "classes": [
+        {
+          "name": "APIValidator",
+          "methods": [
+            "__init__",
+            "validate",
+            "repair"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 47
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Dict",
+            "Any",
+            "List",
+            "Optional"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "APIEntry"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "APIValidator"
+      ],
+      "totalLines": 57,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/__init__.py": {
+      "filePath": "src/document/__init__.py",
+      "contentHash": "8ce7d0c0c22ba82380a8dcf8ca5e9e4856b3731fa34d129e8b504804b453ab15",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/chunker.py": {
+      "filePath": "src/document/chunker.py",
+      "contentHash": "3c4f845d6d24aaf365ba8ee4a5e45d6ca512d79bda1a0e5f8cf4f77d670cdfd2",
+      "functions": [
+        {
+          "name": "chunk_pages",
+          "params": [
+            "pages",
+            "doc_id",
+            "chunk_size",
+            "chunk_overlap"
+          ],
+          "returnType": "List[DocumentChunk]",
+          "exported": true,
+          "lineCount": 70
+        },
+        {
+          "name": "split_sentences",
+          "params": [
+            "text"
+          ],
+          "returnType": "List[str]",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "chunk_text_blocks",
+          "params": [
+            "blocks",
+            "doc_id",
+            "chunk_size"
+          ],
+          "returnType": "List[DocumentChunk]",
+          "exported": true,
+          "lineCount": 64
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Dict",
+            "Any"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "DocumentChunk"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "CHUNK_SIZE",
+            "CHUNK_OVERLAP"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "chunk_pages",
+        "split_sentences",
+        "chunk_text_blocks"
+      ],
+      "totalLines": 166,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/document_solver.py": {
+      "filePath": "src/document/document_solver.py",
+      "contentHash": "569dd54a64f10300f5f1edf1ca58f1e6a2a5e33565be735f7a48e5b4fe314b3b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "DocumentSolver",
+          "methods": [
+            "__init__",
+            "solve",
+            "_try_direct_numeric_reasoning",
+            "_numeric_options",
+            "_to_float",
+            "_answer_without_options"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 158
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "DocumentSolver"
+      ],
+      "totalLines": 172,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/mineru_chunker.py": {
+      "filePath": "src/document/mineru_chunker.py",
+      "contentHash": "5d400ac9e62e83b40421df16e3db4d4bf8b01ed01c14489347fd3d4a32fcb596",
+      "functions": [],
+      "classes": [
+        {
+          "name": "MinerUMarkdownChunker",
+          "methods": [
+            "__init__",
+            "chunk_markdown",
+            "_split_into_pages",
+            "_extract_page_num",
+            "_extract_blocks",
+            "_update_headings",
+            "_create_chunk"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 350
+        }
+      ],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Dict",
+            "Any",
+            "Optional"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "DocumentChunk"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "CHUNK_SIZE",
+            "CHUNK_OVERLAP"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "MinerUMarkdownChunker"
+      ],
+      "totalLines": 364,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/mineru_parser.py": {
+      "filePath": "src/document/mineru_parser.py",
+      "contentHash": "020fc1709c15ede3f7cea8eb2005285c2d2c3c36cf3a465626b6f73a79e2d418",
+      "functions": [],
+      "classes": [
+        {
+          "name": "MinerUParser",
+          "methods": [
+            "__init__",
+            "parse_pdf",
+            "_pymupdf_fallback"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 95
+        }
+      ],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "shutil",
+          "specifiers": [
+            "shutil"
+          ]
+        },
+        {
+          "source": "subprocess",
+          "specifiers": [
+            "subprocess"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional"
+          ]
+        },
+        {
+          "source": "fitz",
+          "specifiers": [
+            "fitz"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "MINERU_MD_DIR",
+            "MINERU_OUT_DIR"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "MinerUParser"
+      ],
+      "totalLines": 114,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/option_parser.py": {
+      "filePath": "src/document/option_parser.py",
+      "contentHash": "339f4b6c2772377de6f0b8095d4147b282b1274b589ebe5ec3d02e45cdad096f",
+      "functions": [
+        {
+          "name": "parse_options",
+          "params": [
+            "note"
+          ],
+          "returnType": "Dict[str, str]",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "format_options",
+          "params": [
+            "options"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "extract_answer_from_result",
+          "params": [
+            "result_str"
+          ],
+          "returnType": "Optional[str]",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Dict",
+            "Optional",
+            "List"
+          ]
+        }
+      ],
+      "exports": [
+        "parse_options",
+        "format_options",
+        "extract_answer_from_result"
+      ],
+      "totalLines": 66,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/option_scorer.py": {
+      "filePath": "src/document/option_scorer.py",
+      "contentHash": "567efe16ecd0956b1d81ac020eb0b0e1f79263e95201acfbf57b8946a24dcaa4",
+      "functions": [],
+      "classes": [
+        {
+          "name": "OptionScorer",
+          "methods": [
+            "__init__",
+            "score_options",
+            "_score_with_reranker",
+            "_score_with_overlap",
+            "_score_with_reranker_and_lexical",
+            "_score_with_hybrid_lexical",
+            "_score_with_tfidf_sklearn",
+            "_score_with_normalized_overlap",
+            "_score_with_proximity",
+            "_tokenize",
+            "_extract_doc_hint",
+            "_ranked_score",
+            "_minmax",
+            "is_negation_question",
+            "select_best"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 453
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Dict",
+            "List",
+            "Tuple",
+            "Optional"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "DocumentChunk"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "OptionScorer"
+      ],
+      "totalLines": 495,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/pdf_parser.py": {
+      "filePath": "src/document/pdf_parser.py",
+      "contentHash": "97a8ebbfd6500d28505ac81d6c9ae486a56e5ac77416dca7a1b7c5645ee8aa9d",
+      "functions": [
+        {
+          "name": "extract_text_from_pdf",
+          "params": [
+            "pdf_path"
+          ],
+          "returnType": "List[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 54
+        },
+        {
+          "name": "extract_text_blocks",
+          "params": [
+            "pdf_path"
+          ],
+          "returnType": "List[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 48
+        },
+        {
+          "name": "needs_ocr",
+          "params": [
+            "page_info",
+            "min_coverage"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "fitz",
+          "specifiers": [
+            "fitz"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Dict",
+            "Any"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "extract_text_from_pdf",
+        "extract_text_blocks",
+        "needs_ocr"
+      ],
+      "totalLines": 126,
+      "hasStructuralAnalysis": true
+    },
+    "src/document/retriever.py": {
+      "filePath": "src/document/retriever.py",
+      "contentHash": "908446408033676954e22c3f648a5d74b54abbf82ab983f2a25e5c8ea257ef48",
+      "functions": [],
+      "classes": [
+        {
+          "name": "DocumentRetriever",
+          "methods": [
+            "__init__",
+            "build_index",
+            "_tokenize",
+            "retrieve_bm25",
+            "retrieve_dense",
+            "retrieve_hybrid",
+            "retrieve_with_metadata_filter",
+            "_detect_doc_id",
+            "save_index",
+            "load_index"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 216
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Tuple",
+            "Optional",
+            "Dict",
+            "Any"
+          ]
+        },
+        {
+          "source": "rank_bm25",
+          "specifiers": [
+            "BM25Okapi"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "DocumentChunk"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "DOC_RETRIEVAL_TOP_K"
+          ]
+        }
+      ],
+      "exports": [
+        "DocumentRetriever"
+      ],
+      "totalLines": 232,
+      "hasStructuralAnalysis": true
+    },
+    "src/main.py": {
+      "filePath": "src/main.py",
+      "contentHash": "be7c72a0ccf8b5acc0898e1a9f4750de65e66067efd23477b8b91370d194cd57",
+      "functions": [
+        {
+          "name": "predict_single",
+          "params": [
+            "question",
+            "note"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "InputSample"
+          ]
+        },
+        {
+          "source": "src.pipeline",
+          "specifiers": [
+            "Pipeline"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "predict_single"
+      ],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "src/models/__init__.py": {
+      "filePath": "src/models/__init__.py",
+      "contentHash": "04a4d81d31a36605ca35166db2c0906ec002559fc3c5dfc7b2117d801de1dadb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/models/embedding_model.py": {
+      "filePath": "src/models/embedding_model.py",
+      "contentHash": "d8bf922ebce3a5a217e1e2aa1f15d5a6d7e5394411825df44d27419901ac3b1e",
+      "functions": [],
+      "classes": [
+        {
+          "name": "EmbeddingModel",
+          "methods": [
+            "__init__",
+            "load",
+            "encode",
+            "encode_query"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 42
+        }
+      ],
+      "imports": [
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Optional"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.model_config",
+          "specifiers": [
+            "EMBEDDING_MODEL_NAME",
+            "EMBEDDING_BATCH_SIZE",
+            "EMBEDDING_NORMALIZE",
+            "EMBEDDING_QUERY_INSTRUCTION_DOC"
+          ]
+        }
+      ],
+      "exports": [
+        "EmbeddingModel"
+      ],
+      "totalLines": 56,
+      "hasStructuralAnalysis": true
+    },
+    "src/models/llm_wrapper.py": {
+      "filePath": "src/models/llm_wrapper.py",
+      "contentHash": "2044de9e76b2c3caba6dec2b8bc1d128e4f1d287f149f646240a2942dc1d63b9",
+      "functions": [],
+      "classes": [
+        {
+          "name": "LLMWrapper",
+          "methods": [
+            "__init__",
+            "_ensure_client",
+            "generate"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 36
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional",
+            "Dict",
+            "Any"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.model_config",
+          "specifiers": [
+            "LLM_API_BASE",
+            "LLM_MAX_TOKENS",
+            "LLM_TEMPERATURE"
+          ]
+        }
+      ],
+      "exports": [
+        "LLMWrapper"
+      ],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "src/models/reranker_model.py": {
+      "filePath": "src/models/reranker_model.py",
+      "contentHash": "1c7abbdf722faed9a7f20e71129df149256f51978e6907371375c7a8b13eac3f",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RerankerModel",
+          "methods": [
+            "__init__",
+            "load",
+            "predict"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 23
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Tuple"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.model_config",
+          "specifiers": [
+            "RERANKER_MODEL_NAME",
+            "RERANKER_BATCH_SIZE"
+          ]
+        }
+      ],
+      "exports": [
+        "RerankerModel"
+      ],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "src/output/__init__.py": {
+      "filePath": "src/output/__init__.py",
+      "contentHash": "93cf9070fa8f19127a019636533a0d7b22b9aa15e00880902079c85e409bbecd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/output/formatter.py": {
+      "filePath": "src/output/formatter.py",
+      "contentHash": "f3445ffb567ba2c1b2b39ea62c25fc1d07175f6e678e4cfeb3b925e78654b131",
+      "functions": [
+        {
+          "name": "format_prediction",
+          "params": [
+            "pred"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "format_batch",
+          "params": [
+            "preds"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "PredictionResult"
+          ]
+        }
+      ],
+      "exports": [
+        "format_prediction",
+        "format_batch"
+      ],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "src/output/writer.py": {
+      "filePath": "src/output/writer.py",
+      "contentHash": "25df841c8ae21e5bc18764c81922d8a16e5ad875b077d047983b8250838f177c",
+      "functions": [
+        {
+          "name": "write_predictions",
+          "params": [
+            "preds",
+            "path"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "write_submission",
+          "params": [
+            "preds",
+            "path"
+          ],
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "PredictionResult"
+          ]
+        },
+        {
+          "source": "src.output.formatter",
+          "specifiers": [
+            "format_batch"
+          ]
+        },
+        {
+          "source": "src.utils.io_utils",
+          "specifiers": [
+            "write_jsonl",
+            "write_csv"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "PREDICTIONS_FILE",
+            "SUBMISSION_FILE"
+          ]
+        }
+      ],
+      "exports": [
+        "write_predictions",
+        "write_submission"
+      ],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "src/pipeline.py": {
+      "filePath": "src/pipeline.py",
+      "contentHash": "8c71d9df2533552ca8acc582465f5dafb9510984325819361d5300e15d3304f0",
+      "functions": [],
+      "classes": [
+        {
+          "name": "Pipeline",
+          "methods": [
+            "__init__",
+            "load",
+            "_load_optional_reranker",
+            "predict_one",
+            "_heuristic_select",
+            "predict_batch"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 141
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional",
+            "Dict",
+            "Any"
+          ]
+        },
+        {
+          "source": "src.schemas",
+          "specifiers": [
+            "InputSample",
+            "PredictionResult"
+          ]
+        },
+        {
+          "source": "src.preprocess.question_normalizer",
+          "specifiers": [
+            "normalize_question"
+          ]
+        },
+        {
+          "source": "src.selector.selector_model",
+          "specifiers": [
+            "SelectorModel"
+          ]
+        },
+        {
+          "source": "src.document.document_solver",
+          "specifiers": [
+            "DocumentSolver"
+          ]
+        },
+        {
+          "source": "src.document.retriever",
+          "specifiers": [
+            "DocumentRetriever"
+          ]
+        },
+        {
+          "source": "src.document.option_scorer",
+          "specifiers": [
+            "OptionScorer"
+          ]
+        },
+        {
+          "source": "src.document.option_parser",
+          "specifiers": [
+            "parse_options"
+          ]
+        },
+        {
+          "source": "src.api.api_solver",
+          "specifiers": [
+            "APISolver"
+          ]
+        },
+        {
+          "source": "src.api.api_retriever",
+          "specifiers": [
+            "APIRetriever"
+          ]
+        },
+        {
+          "source": "src.api.api_reranker",
+          "specifiers": [
+            "APIReranker"
+          ]
+        },
+        {
+          "source": "src.api.api_catalog_loader",
+          "specifiers": [
+            "load_api_catalog",
+            "load_alias_dictionary"
+          ]
+        },
+        {
+          "source": "src.models.reranker_model",
+          "specifiers": [
+            "RerankerModel"
+          ]
+        },
+        {
+          "source": "src.utils.timer",
+          "specifiers": [
+            "Timer"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "SELECTOR_MODEL_DIR",
+            "DOCUMENT_CHUNKS_FILE",
+            "API_CONFIG_FILE",
+            "API_REGISTRY_FILE"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "FUNC_CALL_DOCUMENT",
+            "FUNC_CALL_API"
+          ]
+        }
+      ],
+      "exports": [
+        "Pipeline"
+      ],
+      "totalLines": 169,
+      "hasStructuralAnalysis": true
+    },
+    "src/preprocess/__init__.py": {
+      "filePath": "src/preprocess/__init__.py",
+      "contentHash": "fa4276977e5c1b8e34be15907238a5ded36f658c33261506641f7e3f714f1bfb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/preprocess/question_normalizer.py": {
+      "filePath": "src/preprocess/question_normalizer.py",
+      "contentHash": "d394c709c3d7baafff0eecd1321c5a1e7347e1c1bca37ae08aec7b6f90ba0ef6",
+      "functions": [
+        {
+          "name": "normalize_question",
+          "params": [
+            "question"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "unicodedata",
+          "specifiers": [
+            "unicodedata"
+          ]
+        },
+        {
+          "source": "src.preprocess.time_normalizer",
+          "specifiers": [
+            "normalize_time_expressions"
+          ]
+        },
+        {
+          "source": "src.preprocess.text_cleaner",
+          "specifiers": [
+            "clean_text"
+          ]
+        }
+      ],
+      "exports": [
+        "normalize_question"
+      ],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    "src/preprocess/text_cleaner.py": {
+      "filePath": "src/preprocess/text_cleaner.py",
+      "contentHash": "6f37cc90664783677971106c138df6d7632fc9908e96bfe5a020dbf79a47d931",
+      "functions": [
+        {
+          "name": "clean_text",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "normalize_for_matching",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "unicodedata",
+          "specifiers": [
+            "unicodedata"
+          ]
+        }
+      ],
+      "exports": [
+        "clean_text",
+        "normalize_for_matching"
+      ],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "src/preprocess/time_normalizer.py": {
+      "filePath": "src/preprocess/time_normalizer.py",
+      "contentHash": "1e648e95dffb274144fed8a0487b33acb00ed4d577452dbf6797fbde75d830fe",
+      "functions": [
+        {
+          "name": "month_to_date_range",
+          "params": [
+            "month",
+            "year"
+          ],
+          "returnType": "Tuple[str, str]",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "quarter_to_date_range",
+          "params": [
+            "quarter",
+            "year"
+          ],
+          "returnType": "Tuple[str, str]",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "year_to_date_range",
+          "params": [
+            "year"
+          ],
+          "returnType": "Tuple[str, str]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "extract_date_range",
+          "params": [
+            "text"
+          ],
+          "returnType": "Optional[Tuple[str, str]]",
+          "exported": true,
+          "lineCount": 47
+        },
+        {
+          "name": "normalize_time_expressions",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "date"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Tuple",
+            "Optional"
+          ]
+        }
+      ],
+      "exports": [
+        "month_to_date_range",
+        "quarter_to_date_range",
+        "year_to_date_range",
+        "extract_date_range",
+        "normalize_time_expressions"
+      ],
+      "totalLines": 148,
+      "hasStructuralAnalysis": true
+    },
+    "src/schemas.py": {
+      "filePath": "src/schemas.py",
+      "contentHash": "b5736f614be87f14626ba300ac8669528ab4aba635ea94bc246d4ddb3aca3f34",
+      "functions": [],
+      "classes": [
+        {
+          "name": "InputSample",
+          "methods": [
+            "from_dict"
+          ],
+          "properties": [
+            "id",
+            "question",
+            "note"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "PredictionResult",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [
+            "id",
+            "function_code",
+            "function_answer",
+            "time_response"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "APIEntry",
+          "methods": [
+            "from_dict"
+          ],
+          "properties": [
+            "func_code",
+            "name",
+            "description",
+            "example_question",
+            "endpoint_config",
+            "method",
+            "path",
+            "body_params",
+            "query_params"
+          ],
+          "exported": true,
+          "lineCount": 48
+        },
+        {
+          "name": "DocumentChunk",
+          "methods": [
+            "to_dict",
+            "from_dict"
+          ],
+          "properties": [
+            "doc_id",
+            "page",
+            "chunk_id",
+            "text",
+            "heading",
+            "chunk_type",
+            "metadata"
+          ],
+          "exported": true,
+          "lineCount": 32
+        }
+      ],
+      "imports": [
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional",
+            "List",
+            "Dict",
+            "Any"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        }
+      ],
+      "exports": [
+        "InputSample",
+        "PredictionResult",
+        "APIEntry",
+        "DocumentChunk"
+      ],
+      "totalLines": 126,
+      "hasStructuralAnalysis": true
+    },
+    "src/selector/__init__.py": {
+      "filePath": "src/selector/__init__.py",
+      "contentHash": "bbb5caa18d2f985bd003a7069401fcd35274ca84659522d1f548c23232772598",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/selector/feature_builder.py": {
+      "filePath": "src/selector/feature_builder.py",
+      "contentHash": "d99d2ba58d12286b0e459b182249896ff2a51a762a31505e88d8111bf03e0dba",
+      "functions": [],
+      "classes": [
+        {
+          "name": "FeatureBuilder",
+          "methods": [
+            "__init__",
+            "fit",
+            "transform",
+            "fit_transform"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 45
+        }
+      ],
+      "imports": [
+        {
+          "source": "sklearn.feature_extraction.text",
+          "specifiers": [
+            "TfidfVectorizer"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "configs.model_config",
+          "specifiers": [
+            "SELECTOR_NGRAM_RANGE",
+            "SELECTOR_MAX_FEATURES",
+            "SELECTOR_USE_CHAR_NGRAMS"
+          ]
+        }
+      ],
+      "exports": [
+        "FeatureBuilder"
+      ],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "src/selector/predictor.py": {
+      "filePath": "src/selector/predictor.py",
+      "contentHash": "b5546f1dbbdc3c9159698da4adda3b5448d1b764e9bf85718371e3e8b93a3404",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SelectorPredictor",
+          "methods": [
+            "__init__",
+            "load",
+            "predict",
+            "predict_with_confidence",
+            "predict_batch"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 43
+        }
+      ],
+      "imports": [
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Optional"
+          ]
+        },
+        {
+          "source": "src.selector.selector_model",
+          "specifiers": [
+            "SelectorModel"
+          ]
+        },
+        {
+          "source": "src.preprocess.question_normalizer",
+          "specifiers": [
+            "normalize_question"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "SelectorPredictor"
+      ],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
+    "src/selector/selector_model.py": {
+      "filePath": "src/selector/selector_model.py",
+      "contentHash": "cc35165cfd734a564582b33a5975194bd5d756621d4a3299ec1d200c845ea70a",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SelectorModel",
+          "methods": [
+            "__init__",
+            "train",
+            "predict",
+            "predict_proba",
+            "predict_batch",
+            "save",
+            "load"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 75
+        }
+      ],
+      "imports": [
+        {
+          "source": "joblib",
+          "specifiers": [
+            "joblib"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Tuple"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "sklearn.linear_model",
+          "specifiers": [
+            "LogisticRegression"
+          ]
+        },
+        {
+          "source": "sklearn.calibration",
+          "specifiers": [
+            "CalibratedClassifierCV"
+          ]
+        },
+        {
+          "source": "src.selector.feature_builder",
+          "specifiers": [
+            "FeatureBuilder"
+          ]
+        },
+        {
+          "source": "configs.constants",
+          "specifiers": [
+            "FUNC_CALL_DOCUMENT",
+            "FUNC_CALL_API"
+          ]
+        },
+        {
+          "source": "configs.paths",
+          "specifiers": [
+            "SELECTOR_MODEL_DIR"
+          ]
+        },
+        {
+          "source": "src.utils.logging_utils",
+          "specifiers": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        "SelectorModel"
+      ],
+      "totalLines": 93,
+      "hasStructuralAnalysis": true
+    },
+    "src/utils/__init__.py": {
+      "filePath": "src/utils/__init__.py",
+      "contentHash": "b0908698d5958d28852b6d5d0ef4f34053143f241834fddbe3e2e3e360cd03eb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/utils/fuzzy_match.py": {
+      "filePath": "src/utils/fuzzy_match.py",
+      "contentHash": "6ec12bdcd8538f1adb44362c28a758f83589e0f339eaa0438f9797d8e1aa47db",
+      "functions": [
+        {
+          "name": "normalize_text",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "remove_accents",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "exact_match",
+          "params": [
+            "query",
+            "candidates"
+          ],
+          "returnType": "Optional[str]",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "fuzzy_match_best",
+          "params": [
+            "query",
+            "candidates",
+            "threshold"
+          ],
+          "returnType": "Optional[Tuple[str, str, float]]",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "fuzzy_match_top_k",
+          "params": [
+            "query",
+            "candidates",
+            "k",
+            "threshold"
+          ],
+          "returnType": "List[Tuple[str, str, float]]",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "accent_insensitive_match",
+          "params": [
+            "query",
+            "candidates"
+          ],
+          "returnType": "Optional[str]",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "unicodedata",
+          "specifiers": [
+            "unicodedata"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Tuple",
+            "Optional",
+            "Dict"
+          ]
+        },
+        {
+          "source": "rapidfuzz",
+          "specifiers": [
+            "fuzz",
+            "process"
+          ]
+        }
+      ],
+      "exports": [
+        "normalize_text",
+        "remove_accents",
+        "exact_match",
+        "fuzzy_match_best",
+        "fuzzy_match_top_k",
+        "accent_insensitive_match"
+      ],
+      "totalLines": 115,
+      "hasStructuralAnalysis": true
+    },
+    "src/utils/io_utils.py": {
+      "filePath": "src/utils/io_utils.py",
+      "contentHash": "ddc1f4e4ad24b01fba8ef3635bb016c526a108630d67df99a73901b782719c27",
+      "functions": [
+        {
+          "name": "read_jsonl",
+          "params": [
+            "path"
+          ],
+          "returnType": "List[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "write_jsonl",
+          "params": [
+            "items",
+            "path"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "read_json",
+          "params": [
+            "path"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "write_json",
+          "params": [
+            "data",
+            "path",
+            "indent"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "read_excel_sheet",
+          "params": [
+            "path",
+            "sheet_name"
+          ],
+          "returnType": "List[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "write_csv",
+          "params": [
+            "items",
+            "path",
+            "fieldnames"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "csv",
+          "specifiers": [
+            "csv"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "List",
+            "Dict",
+            "Any",
+            "Optional"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "openpyxl"
+          ]
+        }
+      ],
+      "exports": [
+        "read_jsonl",
+        "write_jsonl",
+        "read_json",
+        "write_json",
+        "read_excel_sheet",
+        "write_csv"
+      ],
+      "totalLines": 82,
+      "hasStructuralAnalysis": true
+    },
+    "src/utils/json_utils.py": {
+      "filePath": "src/utils/json_utils.py",
+      "contentHash": "b5b80af577731970729e48c6efb249c487615c8f6da3d552000c7c0282339e3a",
+      "functions": [
+        {
+          "name": "safe_parse_json",
+          "params": [
+            "text"
+          ],
+          "returnType": "Optional[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "format_json",
+          "params": [
+            "data",
+            "indent"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "compact_json",
+          "params": [
+            "data"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Optional",
+            "Dict"
+          ]
+        }
+      ],
+      "exports": [
+        "safe_parse_json",
+        "format_json",
+        "compact_json"
+      ],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "src/utils/logging_utils.py": {
+      "filePath": "src/utils/logging_utils.py",
+      "contentHash": "d5763fe628e6267fd9c4065730736ff36a73450c19314c93061aa61d5793b914",
+      "functions": [
+        {
+          "name": "setup_logger",
+          "params": [
+            "name",
+            "level",
+            "log_file"
+          ],
+          "returnType": "logging.Logger",
+          "exported": true,
+          "lineCount": 33
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "logging",
+          "specifiers": [
+            "logging"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        }
+      ],
+      "exports": [
+        "setup_logger"
+      ],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "src/utils/timer.py": {
+      "filePath": "src/utils/timer.py",
+      "contentHash": "34543588f1521e1de5d82e2ea2c2bbfb40d75b2342bc3ff304034cb6f2de0e02",
+      "functions": [
+        {
+          "name": "timed",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [
+        {
+          "name": "Timer",
+          "methods": [
+            "__init__",
+            "start",
+            "stop",
+            "elapsed"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 22
+        }
+      ],
+      "imports": [
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "contextlib",
+          "specifiers": [
+            "contextmanager"
+          ]
+        }
+      ],
+      "exports": [
+        "Timer",
+        "timed"
+      ],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

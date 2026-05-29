@@ -1,62 +1,64 @@
-# 🤖 Viettel AI Race – Smart Chatbot for RAG & API Integration
+# Viettel AI Race - Smart Chatbot for RAG and API Integration
 
-## Mục lục
+This project implements a two-branch chatbot pipeline for the Viettel AI Race.
+It decides whether a question should be answered from document evidence or
+translated into an API request, then returns the competition-required output
+format.
 
-- [1. Tổng quan](#1-tổng-quan)
-- [2. Yêu cầu hệ thống](#2-yêu-cầu-hệ-thống)
-- [3. Cài đặt](#3-cài-đặt)
-- [4. Cấu trúc dữ liệu](#4-cấu-trúc-dữ-liệu)
-- [5. Hướng dẫn chạy project](#5-hướng-dẫn-chạy-project)
-- [6. Kiến trúc hệ thống](#6-kiến-trúc-hệ-thống)
-- [7. Cấu trúc project](#7-cấu-trúc-project)
-- [8. Chi tiết từng module](#8-chi-tiết-từng-module)
-- [9. Cấu hình](#9-cấu-hình)
-- [10. Kết quả đạt được](#10-kết-quả-đạt-được)
-- [11. Nâng cấp nâng cao](#11-nâng-cấp-nâng-cao)
-- [12. Xử lý lỗi thường gặp](#12-xử-lý-lỗi-thường-gặp)
+## Table of Contents
 
----
+- [Overview](#overview)
+- [System Requirements](#system-requirements)
+- [Installation](#installation)
+- [Data Layout](#data-layout)
+- [Quick Start](#quick-start)
+- [Detailed Workflow](#detailed-workflow)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Module Guide](#module-guide)
+- [Configuration](#configuration)
+- [Problem Solver](#problem-solver)
+- [Results](#results)
+- [Advanced Options](#advanced-options)
+- [Troubleshooting](#troubleshooting)
 
-## 1. Tổng quan
+## Overview
 
-Hệ thống chatbot thông minh **hai nhánh** cho cuộc thi Viettel AI Race:
+The system supports two function codes:
 
-| Nhánh | Chức năng | Input | Output |
-|-------|-----------|-------|--------|
-| `call_document` | Trả lời câu hỏi trắc nghiệm từ tài liệu PDF | `question` + `note` (A/B/C/D) | `{"numbers": 1, "result": "A"}` |
-| `call_api` | Chọn API đúng và điền JSON config | `question` | `{"path": "/api/...", "body": {...}}` |
+| Function code | Purpose | Input | Output |
+| --- | --- | --- | --- |
+| `call_document` | Answer multiple-choice questions from PDF-derived evidence. | `question` + `note` with A/B/C/D options | `{"numbers": 1, "result": "A"}` |
+| `call_api` | Select the correct API and fill its JSON body. | `question` | `{"path": "/api/...", "body": {...}}` |
 
-**Nguyên tắc thiết kế:**
-- Chỉ dùng `question` để phân loại nhánh (không dùng `note`)
-- Không fallback giữa hai nhánh
-- Ưu tiên tốc độ: retrieval + scoring + template filling (hạn chế LLM)
+Core design principles:
 
----
+- Use the question as the main routing signal.
+- Keep the two branches explicit: document questions are solved by evidence
+  retrieval and option scoring; API questions are solved by API retrieval,
+  slot extraction, normalization, template filling, and validation.
+- Prefer fast deterministic logic where possible, with optional Qwen3 reranking
+  for harder cases.
+- Build processed data once, then reuse cached artifacts for fast submission.
 
-## 2. Yêu cầu hệ thống
+## System Requirements
 
-| Thành phần | Yêu cầu tối thiểu |
-|------------|-------------------|
-| **Python** | >= 3.10 |
-| **RAM** | >= 8 GB |
-| **Disk** | >= 2 GB (cho data + models) |
-| **GPU** | Không bắt buộc (chỉ cần cho embedding/reranker nâng cao) |
-| **OS** | Windows / Linux / macOS |
+| Component | Minimum |
+| --- | --- |
+| Python | 3.10+ |
+| RAM | 8 GB+ |
+| Disk | 2 GB+ for data and cached artifacts |
+| GPU | Optional; useful only when enabling the Qwen3 reranker |
+| OS | Windows, Linux, or macOS |
 
----
+## Installation
 
-## 3. Cài đặt
-
-### 3.1. Clone project
+Clone the project and create a virtual environment:
 
 ```bash
 git clone <repo-url>
 cd AI_kickoff
-```
 
-### 3.2. Tạo môi trường ảo (khuyến nghị)
-
-```bash
 python -m venv .venv
 
 # Windows
@@ -66,684 +68,590 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3.3. Cài đặt dependencies
-
-**Cài đặt cơ bản** (đủ để chạy pipeline):
-
-```bash
-pip install openpyxl scikit-learn numpy scipy rapidfuzz rank-bm25 tqdm PyMuPDF joblib
-```
-
-**Cài đặt đầy đủ** (bao gồm embedding + reranker):
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> **Lưu ý:** `sentence-transformers` và `faiss-cpu` là optional. Pipeline mặc định chạy với BM25 (không cần GPU). Chỉ cần cài khi muốn dùng dense embedding hoặc cross-encoder reranker.
-
----
-
-## 4. Cấu trúc dữ liệu
-
-Dữ liệu đã có sẵn trong folder `data/`:
-
-```
-data/
-├── API_config_data/
-│   └── Tài liệu config API.xlsx     # 131 APIs + 23 bảng alias
-├── Document_config_data/
-│   ├── Public_001.pdf                # 398 file PDF tài liệu
-│   ├── Public_002.pdf
-│   └── ...
-├── example_data/
-│   └── example_data.xlsx             # 100 câu hỏi mẫu + đáp án
-└── test_data/
-    └── Test_data.xlsx                # 617 câu hỏi test
-```
-
-**Không cần tải thêm dữ liệu.** Tất cả đã có sẵn.
-
----
-
-## 5. Hướng dẫn chạy project
-
-### ⚡ Chạy nhanh (3 bước)
+For a lightweight CPU-only run, the essential packages are:
 
 ```bash
-# Bước 1: Build dữ liệu offline
+pip install openpyxl pandas scikit-learn numpy scipy rapidfuzz rank-bm25 tqdm PyMuPDF joblib jsonschema
+```
+
+`sentence-transformers` is needed only when you enable the optional Qwen3
+reranker. The default fast path can run with lexical retrieval and heuristic
+scoring.
+
+## Data Layout
+
+The expected data is stored under `data/`:
+
+```text
+data/
+  API_config_data/          API configuration workbook
+  Document_config_data/     Source PDF documents
+  example_data/             Example questions and labels
+  test_data/                Test questions
+  processed/                Generated JSON/JSONL artifacts
+  cache/                    Generated model/index cache
+```
+
+Important generated artifacts:
+
+| File | Built by | Purpose |
+| --- | --- | --- |
+| `data/processed/api_registry.jsonl` | `scripts/build_api_registry.py` | Normalized API catalog for retrieval. |
+| `data/processed/alias_dictionary.json` | `scripts/build_api_registry.py` or `scripts/build_alias_dict.py` | Alias tables for organizations, project types, statuses, and other API slots. |
+| `data/processed/document_chunks.jsonl` | `scripts/build_document_kb.py` | Document chunks used by the document retriever. |
+| `data/cache/selector_model/` | `scripts/train_selector.py` | Trained TF-IDF + Logistic Regression branch selector. |
+| `outputs/predictions*.jsonl` | `run_submission.py` | Full prediction records. |
+| `outputs/submission*.csv` | `run_submission.py` | Competition submission file. |
+
+## Quick Start
+
+Run these commands from the project root:
+
+```bash
 python scripts/build_api_registry.py
 python scripts/build_document_kb.py
-
-# Bước 2: Train selector
 python scripts/train_selector.py
-
-# Bước 3: Chạy submission
 python run_submission.py
 ```
 
-Kết quả sẽ xuất ra tại:
-- `outputs/predictions.jsonl` – Dự đoán dạng JSONL
-- `outputs/submission.csv` – File nộp bài
+The submission outputs are written to `outputs/`.
 
----
+## Detailed Workflow
 
-### 📋 Hướng dẫn chi tiết từng bước
-
-#### Bước 1: Build API Registry & Alias Dictionary
+### 1. Build the API registry
 
 ```bash
 python scripts/build_api_registry.py
 ```
 
-Script này sẽ:
-- Đọc file `Tài liệu config API.xlsx`
-- Trích xuất 131 API definitions → `data/processed/api_registry.jsonl`
-- Trích xuất 23 bảng alias (organization, projectType, ...) → `data/processed/alias_dictionary.json`
+This reads the API workbook, extracts API definitions, and writes:
 
-**Output mong đợi:**
-```
-Loaded 131 APIs
-Wrote API registry to data/processed/api_registry.jsonl
-Wrote alias dictionary with 23 categories
-  organization: 7 entries
-  projectType: 4 entries
-  project_info: 300 entries
-  ...
-```
+- `data/processed/api_registry.jsonl`
+- `data/processed/alias_dictionary.json`
 
-#### Bước 2: Build Document Knowledge Base
+### 2. Build the document knowledge base
 
 ```bash
 python scripts/build_document_kb.py
 ```
 
-Script này sẽ:
-- Parse 398 file PDF bằng PyMuPDF (text-layer extraction)
-- Chia thành chunks ngữ nghĩa (512 tokens, overlap 64)
-- Xuất ra `data/processed/document_chunks.jsonl`
+This parses the PDF or MinerU Markdown sources, chunks the content, and writes:
 
-**Output mong đợi:**
-```
-Found 398 PDF files
-Total chunks: 15539
-Wrote document chunks to data/processed/document_chunks.jsonl
-  Documents: 398
-  Avg chunks/doc: 39.0
-```
+- `data/processed/document_chunks.jsonl`
 
-> ⏱️ Thời gian chạy: ~22 giây
+If MinerU Markdown files are available, the pipeline uses the MinerU-aware
+chunker. Otherwise it falls back to PyMuPDF text extraction.
 
-#### Bước 3: Train Selector Model
+### 3. Train the selector
 
 ```bash
 python scripts/train_selector.py
 ```
 
-Script này sẽ:
-- Đọc 100 câu hỏi mẫu từ `example_data.xlsx`
-- Train TF-IDF + LogisticRegression classifier
-- Cross-validation 5-fold
-- Lưu model → `data/cache/selector_model/`
+The selector learns whether a normalized question should go to:
 
-**Output mong đợi:**
-```
-Training data: 100 samples
-  call_api: 50
-  call_document: 50
-Cross-validation accuracy: 0.9800 (+/- 0.0245)
-Training accuracy: 1.0000
-Selector model saved
-```
+- `call_document`
+- `call_api`
 
-#### Bước 4: Đánh giá local (optional)
+The trained model is saved under `data/cache/selector_model/`.
+
+### 4. Evaluate locally
 
 ```bash
 python scripts/evaluate_local.py
 ```
 
-Chạy pipeline trên 100 câu hỏi mẫu và so sánh với đáp án:
+This runs the pipeline on `example_data.xlsx` and reports routing accuracy,
+API path accuracy, and response time.
 
-**Output mong đợi:**
-```
-Routing accuracy: 100/100 = 1.0000
-API path accuracy: 47/50 = 0.9400
-Average time_response: 0.024s
-```
-
-#### Bước 5: Chạy submission trên test data
+### 5. Run submission
 
 ```bash
 python run_submission.py
 ```
 
-Chạy pipeline trên toàn bộ 617 câu hỏi test:
+This processes the full test workbook and writes versioned prediction and
+submission files under `outputs/`.
 
-**Output mong đợi:**
-```
-=== Submission Summary ===
-Total predictions: 617
-  call_api: 348
-  call_document: 269
-  avg time_response: 0.023s
-```
-
-Kết quả được lưu tại:
-- `outputs/predictions.jsonl`
-- `outputs/submission.csv`
-
-#### Bước 6: Test câu hỏi đơn lẻ (optional)
+### 6. Run a single question
 
 ```bash
-python src/main.py "Trong Quý 3/2025 thì TTPMTCS có bao nhiêu dự án"
+python src/main.py "Trong Quy 3/2025 thi TTPMTCS co bao nhieu du an?"
 ```
 
----
+## Architecture
 
-## 6. Kiến trúc hệ thống
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    INPUT: id, question                       │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                    ┌──────▼──────┐
-                    │  Normalize  │  Unicode, whitespace, time
-                    │  Question   │  expressions
-                    └──────┬──────┘
-                           │
-                    ┌──────▼──────┐
-                    │  Selector   │  TF-IDF + LogisticRegression
-                    │  (98% CV)   │  question → call_api / call_document
-                    └──────┬──────┘
-                           │
-              ┌────────────┴────────────┐
-              │                         │
-       ┌──────▼──────┐          ┌──────▼──────┐
-       │ call_document│          │  call_api   │
-       └──────┬──────┘          └──────┬──────┘
-              │                         │
-    ┌─────────▼─────────┐     ┌────────▼────────┐
-    │ QWEN3 Retrieval   │     │ QWEN3 Retrieval │
-    │ (15,539 chunks)   │     │ (131 APIs)      │
-    └─────────┬─────────┘     └────────┬────────┘
-              │                         │
-    ┌─────────▼─────────┐     ┌────────▼────────┐
-    │ Parse A/B/C/D     │     │ Heuristic       │
-    │ from note         │     │ Reranking       │
-    └─────────┬─────────┘     └────────┬────────┘
-              │                         │
-    ┌─────────▼─────────┐     ┌────────▼────────┐
-    │ Option Scoring    │     │ Slot Extraction │
-    │ (keyword overlap) │     │ (date, org, ...) │
-    └─────────┬─────────┘     └────────┬────────┘
-              │                         │
-              │                ┌────────▼────────┐
-              │                │ Alias Normalize │
-              │                │ (3-layer fuzzy) │
-              │                └────────┬────────┘
-              │                         │
-              │                ┌────────▼────────┐
-              │                │ Template Fill   │
-              │                │ + Validate JSON │
-              │                └────────┬────────┘
-              │                         │
-              └────────────┬────────────┘
-                           │
-                    ┌──────▼──────┐
-                    │   OUTPUT    │
-                    │ id, func,   │
-                    │ answer, time│
-                    └─────────────┘
+```text
+Input sample
+  id, question, note
+        |
+        v
+Question normalization
+  Unicode cleanup, whitespace cleanup, time expression support
+        |
+        v
+Branch selector
+  TF-IDF word/char n-grams + Logistic Regression
+        |
+        +------------------------------+
+        |                              |
+        v                              v
+call_document                     call_api
+  document retrieval                API retrieval
+  option parsing                    heuristic or Qwen3 reranking
+  option scoring                    slot extraction
+  answer selection                  alias normalization
+                                   template filling
+                                   JSON validation
+        |                              |
+        +---------------+--------------+
+                        v
+Competition output
+  id, function_code, function_answer, time_response
 ```
 
-### Luồng xử lý chính
+Main flow:
 
-1. **Question Normalization** – Unicode NFKC, whitespace, time phrase chuẩn hóa
-2. **Function Selection** – TF-IDF (word + char n-grams) + LogisticRegression
-3. **call_document** – BM25 retrieval → parse options A/B/C/D → keyword overlap scoring → chọn đáp án
-4. **call_api** – BM25 retrieval → heuristic rerank → slot extraction (date, org, type) → 3-layer alias normalization (exact → accent-insensitive → fuzzy) → template fill → JSON validation
+1. `src/preprocess/question_normalizer.py` normalizes question text.
+2. `src/selector/selector_model.py` routes the question to one of the two
+   branches.
+3. `src/document/document_solver.py` handles PDF/document multiple-choice
+   questions.
+4. `src/api/api_solver.py` handles API selection and JSON body generation.
+5. `src/output/writer.py` writes JSONL and CSV outputs.
 
----
+## Project Structure
 
-## 7. Cấu trúc project
-
-```
+```text
 AI_kickoff/
-│
-├── README.md                   # ← File này
-├── plan.md                     # Tài liệu thiết kế chi tiết
-├── requirements.txt            # Dependencies
-├── run_submission.py           # Entry point: chạy submission
-│
-├── configs/
-│   ├── constants.py            # Hằng số: function codes, thresholds
-│   ├── paths.py                # Đường dẫn tập trung
-│   └── model_config.py         # Cấu hình model: embedding, reranker, LLM
-│
-├── src/
-│   ├── main.py                 # Test câu hỏi đơn lẻ
-│   ├── pipeline.py             # Pipeline inference chính
-│   ├── schemas.py              # Data classes: InputSample, PredictionResult, APIEntry
-│   │
-│   ├── preprocess/
-│   │   ├── question_normalizer.py  # Chuẩn hóa câu hỏi
-│   │   ├── text_cleaner.py         # Làm sạch text
-│   │   └── time_normalizer.py      # Parse biểu thức thời gian (T1/2025, Quý 3/2025)
-│   │
-│   ├── selector/
-│   │   ├── feature_builder.py      # TF-IDF feature builder
-│   │   ├── selector_model.py       # LogisticRegression classifier
-│   │   └── predictor.py            # High-level selector predictor
-│   │
-│   ├── document/
-│   │   ├── pdf_parser.py           # Parse PDF bằng PyMuPDF
-│   │   ├── chunker.py              # Chia text thành chunks
-│   │   ├── retriever.py            # Hybrid BM25 + dense retrieval
-│   │   ├── option_parser.py        # Parse đáp án A/B/C/D từ note
-│   │   ├── option_scorer.py        # Scoring options vs evidence
-│   │   └── document_solver.py      # End-to-end document solver
-│   │
-│   ├── api/
-│   │   ├── api_catalog_loader.py   # Load API từ Excel
-│   │   ├── api_retriever.py        # BM25 retrieval cho API
-│   │   ├── api_reranker.py         # Rerank API candidates
-│   │   ├── slot_extractor.py       # Trích xuất slot (date, org, type)
-│   │   ├── slot_normalizer.py      # 3-layer alias normalization
-│   │   ├── template_filler.py      # Điền JSON template
-│   │   ├── validator.py            # Validate output JSON
-│   │   └── api_solver.py           # End-to-end API solver
-│   │
-│   ├── models/
-│   │   ├── embedding_model.py      # Wrapper: sentence-transformers
-│   │   ├── reranker_model.py       # Wrapper: cross-encoder
-│   │   └── llm_wrapper.py          # Wrapper: LLM (vLLM/SGLang)
-│   │
-│   ├── output/
-│   │   ├── formatter.py            # Format output theo schema cuộc thi
-│   │   └── writer.py               # Ghi JSONL / CSV
-│   │
-│   └── utils/
-│       ├── io_utils.py             # Đọc/ghi file (JSONL, JSON, Excel, CSV)
-│       ├── json_utils.py           # Parse JSON robust
-│       ├── timer.py                # Đo thời gian inference
-│       ├── logging_utils.py        # Logging
-│       └── fuzzy_match.py          # Fuzzy matching cho alias
-│
-├── scripts/
-│   ├── build_api_registry.py       # Build API registry + alias dict
-│   ├── build_document_kb.py        # Build document knowledge base
-│   ├── build_alias_dict.py         # Build alias dictionary (standalone)
-│   ├── train_selector.py           # Train branch selector
-│   └── evaluate_local.py           # Đánh giá trên example data
-│
-├── evaluation/
-│   ├── metrics.py                  # Metrics: routing, API path, doc answer accuracy
-│   └── __init__.py
-│
-├── data/
-│   ├── API_config_data/            # File Excel cấu hình API
-│   ├── Document_config_data/       # 398 file PDF
-│   ├── example_data/               # Câu hỏi mẫu + đáp án
-│   ├── test_data/                  # Câu hỏi test
-│   ├── processed/                  # [Generated] Dữ liệu đã xử lý
-│   │   ├── api_registry.jsonl
-│   │   ├── alias_dictionary.json
-│   │   └── document_chunks.jsonl
-│   └── cache/                      # [Generated] Model + index cache
-│       └── selector_model/
-│
-└── outputs/                        # [Generated] Kết quả
-    ├── predictions.jsonl
-    └── submission.csv
+  README.md
+  requirements.txt
+  run_submission.py
+
+  configs/
+    constants.py          Function codes, thresholds, chunk sizes.
+    paths.py              Centralized data, cache, and output paths.
+    model_config.py       Qwen3 model names and selector settings.
+
+  src/
+    main.py               Single-question entry point.
+    pipeline.py           End-to-end inference pipeline.
+    schemas.py            Dataclasses for samples, predictions, chunks, APIs.
+
+    preprocess/           Question, text, and time normalization.
+    selector/             TF-IDF feature builder and branch selector.
+    document/             PDF parsing, chunking, retrieval, option scoring.
+    api/                  API catalog, retrieval, slot extraction, filling.
+    models/               Qwen3 embedding, reranker, and LLM wrappers.
+    output/               Competition output formatting and writing.
+    utils/                IO, JSON, logging, timing, and fuzzy matching.
+
+  scripts/
+    build_api_registry.py
+    build_alias_dict.py
+    build_document_kb.py
+    train_selector.py
+    evaluate_local.py
+    mineru_batch_extract.py
+    debug_*.py
+
+  evaluation/
+    metrics.py
+
+  data/
+    API_config_data/
+    Document_config_data/
+    example_data/
+    test_data/
+    processed/
+    cache/
+
+  outputs/
 ```
 
----
+## Module Guide
 
-## 8. Chi tiết từng module
+### Selector
 
-### 8.1. Selector (`src/selector/`)
+Location: `src/selector/`
 
-- **Thuật toán:** TF-IDF (word 1-3 gram + char 2-5 gram) → LogisticRegression
-- **Input:** `question` (đã normalize)
-- **Output:** `call_document` hoặc `call_api`
-- **Hiệu suất:** 98% cross-validation, 100% training accuracy
-- **Thời gian:** < 1ms
+- Uses TF-IDF word n-grams and character n-grams.
+- Uses Logistic Regression for fast and stable routing.
+- Has a heuristic fallback when the trained selector is missing.
+- Is protected by routing safety rules in `src/pipeline.py`, for example:
+  if a row has multiple-choice options in `note`, it is treated as a document
+  question.
 
-### 8.2. Document Pipeline (`src/document/`)
+### Document Branch
 
-| Bước | Module | Mô tả |
-|------|--------|-------|
-| 1 | `pdf_parser.py` | Extract text từ PDF (PyMuPDF text-layer) |
-| 2 | `chunker.py` | Chia thành chunks 512 tokens, overlap 64 |
-| 3 | `retriever.py` | BM25 retrieval, hỗ trợ filter theo doc_id (Public_XXX) |
-| 4 | `option_parser.py` | Parse A/B/C/D từ trường `note` |
-| 5 | `option_scorer.py` | Keyword overlap scoring (fallback) hoặc cross-encoder |
-| 6 | `document_solver.py` | Orchestrator: retrieve → parse → score → chọn đáp án |
+Location: `src/document/`
 
-### 8.3. API Pipeline (`src/api/`)
+| Step | Module | Responsibility |
+| --- | --- | --- |
+| Parse | `pdf_parser.py`, `mineru_parser.py` | Extract text or structured Markdown from source documents. |
+| Chunk | `chunker.py`, `mineru_chunker.py` | Split documents into retrievable chunks. |
+| Retrieve | `retriever.py` | BM25 retrieval with document-id filtering. |
+| Parse options | `option_parser.py` | Extract A/B/C/D answer choices from `note`. |
+| Score | `option_scorer.py` | Score options against retrieved evidence. |
+| Solve | `document_solver.py` | Orchestrate retrieval, scoring, and answer selection. |
 
-| Bước | Module | Mô tả |
-|------|--------|-------|
-| 1 | `api_catalog_loader.py` | Load 131 API + 23 bảng alias từ Excel |
-| 2 | `api_retriever.py` | BM25 retrieval trên API registry |
-| 3 | `api_reranker.py` | Heuristic rerank (description + example overlap) |
-| 4 | `slot_extractor.py` | Extract: fromDate, toDate, organization, projectType, ... |
-| 5 | `slot_normalizer.py` | 3-layer: exact → accent-insensitive → fuzzy (rapidfuzz) |
-| 6 | `template_filler.py` | Điền slot vào JSON template |
-| 7 | `validator.py` | Validate path, body params, enum values |
-| 8 | `api_solver.py` | Orchestrator: retrieve → rerank → extract → normalize → fill |
+### API Branch
 
-### 8.4. Time Normalizer (`src/preprocess/time_normalizer.py`)
+Location: `src/api/`
 
-Hỗ trợ parse các dạng biểu thức thời gian tiếng Việt:
+| Step | Module | Responsibility |
+| --- | --- | --- |
+| Load catalog | `api_catalog_loader.py` | Read API definitions and alias dictionaries. |
+| Retrieve | `api_retriever.py` | Use BM25 to find candidate APIs. |
+| Rerank | `api_reranker.py` | Use heuristic scoring or optional Qwen3 reranker. |
+| Extract slots | `slot_extractor.py` | Extract dates, organizations, statuses, project types, and other parameters. |
+| Normalize slots | `slot_normalizer.py` | Map aliases, abbreviations, and misspellings to backend values. |
+| Fill body | `template_filler.py` | Build the JSON body from calibrated templates or endpoint schema. |
+| Validate | `validator.py` | Validate path, required fields, and output consistency. |
+| Solve | `api_solver.py` | Orchestrate API retrieval, reranking, extraction, normalization, and filling. |
 
-| Pattern | Ví dụ | fromDate | toDate |
-|---------|-------|----------|--------|
-| Tháng | T11/2025, tháng 8/2025 | 2025-11-01 | 2025-11-30 |
-| Quý | Quý 3/2025, Q3/2025 | 2025-07-01 | 2025-09-30 |
-| Năm | năm 2025 | 2025-01-01 | 2025-12-31 |
-| Khoảng | T1/2025 - T12/2025 | 2025-01-01 | 2025-12-31 |
+## Configuration
 
----
+### Model configuration
 
-## 9. Cấu hình
-
-### 9.1. Thay đổi model (`configs/model_config.py`)
+The project is configured for Qwen3 models in `configs/model_config.py`.
 
 ```python
-# Embedding model
-EMBEDDING_MODEL_NAME = "BAAI/bge-m3"          # Mặc định
-# EMBEDDING_MODEL_NAME = "Qwen/Qwen3-Embedding-8B"  # Accuracy-first
+EMBEDDING_MODEL_NAME = "Qwen/Qwen3-Embedding-8B"
+EMBEDDING_DIMENSION = 1024
+EMBEDDING_MAX_SEQ_LENGTH = 8192
+EMBEDDING_BATCH_SIZE = 32
+EMBEDDING_NORMALIZE = True
 
-# Reranker model
-RERANKER_MODEL_NAME = "BAAI/bge-reranker-v2-m3"     # Mặc định
-# RERANKER_MODEL_NAME = "Qwen/Qwen3-Reranker-8B"    # Accuracy-first
+RERANKER_MODEL_NAME = "Qwen/Qwen3-Reranker-8B"
+RERANKER_MAX_SEQ_LENGTH = 1024
+RERANKER_BATCH_SIZE = 16
 
-# LLM (optional fallback)
 LLM_MODEL_NAME = "Qwen/Qwen3-32B"
-LLM_API_BASE = "http://localhost:8000/v1"  # vLLM endpoint
+LLM_API_BASE = "http://localhost:8000/v1"
+LLM_MAX_TOKENS = 256
+LLM_TEMPERATURE = 0.0
 ```
 
-### 9.2. Thay đổi thresholds (`configs/constants.py`)
+The heavy reranker is disabled by default to keep the submission pipeline fast.
+Enable it only when needed:
+
+```bash
+# Windows PowerShell
+$env:VIETTEL_USE_RERANKER="1"
+$env:VIETTEL_RERANKER_MODEL="Qwen/Qwen3-Reranker-8B"
+
+# Linux / macOS
+export VIETTEL_USE_RERANKER=1
+export VIETTEL_RERANKER_MODEL="Qwen/Qwen3-Reranker-8B"
+```
+
+Optional Qwen3 LLM serving:
+
+```bash
+vllm serve Qwen/Qwen3-32B --port 8000
+```
+
+### Retrieval and chunking thresholds
+
+Edit `configs/constants.py`:
 
 ```python
-DOC_RETRIEVAL_TOP_K = 50      # Số chunks retrieve cho document
-API_RETRIEVAL_TOP_K = 30      # Số API candidates
-API_RERANK_TOP_K = 5          # Số API sau rerank
-CHUNK_SIZE = 512              # Kích thước chunk
-CHUNK_OVERLAP = 64            # Overlap giữa chunks
+DOC_RETRIEVAL_TOP_K = 50
+DOC_RERANK_TOP_K = 10
+API_RETRIEVAL_TOP_K = 30
+API_RERANK_TOP_K = 5
+
+CHUNK_SIZE = 512
+CHUNK_OVERLAP = 64
+SELECTOR_THRESHOLD = 0.5
+MAX_TIME_RESPONSE = 15.0
 ```
 
-### 9.3. Thay đổi đường dẫn data (`configs/paths.py`)
+### Paths
 
-Tất cả đường dẫn được quản lý tập trung. Chỉ cần sửa nếu đổi vị trí data.
+All data, cache, processed, and output paths are centralized in
+`configs/paths.py`. Change paths there if the folder layout changes.
 
----
+## Problem Solver
 
-## 10. Kết quả đạt được
+This section summarizes the practical problems found during implementation and
+how the project handles them.
 
-### Evaluation trên example data (100 câu)
+### 1. Abbreviations and internal codes
 
-| Metric | Giá trị |
-|--------|---------|
-| Routing accuracy | **100%** (100/100) |
-| API path accuracy | **94%** (47/50) |
-| Avg response time | **0.024s** |
-| Cross-validation accuracy | **98% ± 2.5%** |
+Problem: Competition questions often use short internal names or procurement
+codes such as organization abbreviations, project types, or terms like `DTRR`,
+`DTHC`, `CHCT`, `MSTT`, `T&M`, `ODC`, and `presales`.
 
-### Submission trên test data (617 câu)
+Solution:
 
-| Metric | Giá trị |
-|--------|---------|
+- `src/api/slot_extractor.py` contains deterministic extraction patterns for
+  common project types, statuses, procurement aliases, and organization tokens.
+- `data/processed/alias_dictionary.json` stores workbook-derived aliases.
+- `src/api/slot_normalizer.py` maps extracted text to backend values before
+  template filling.
+
+### 2. Typos, missing accents, and inconsistent Vietnamese input
+
+Problem: User questions may contain Vietnamese without accents, mistyped
+organization names, inconsistent casing, smart quotes, dash variants, or extra
+spaces.
+
+Solution:
+
+- `src/preprocess/text_cleaner.py` normalizes Unicode, quotes, dashes,
+  whitespace, and punctuation spacing.
+- `src/utils/fuzzy_match.py` supports exact matching, accent-insensitive
+  matching, and fuzzy matching with RapidFuzz.
+- `src/api/slot_normalizer.py` applies matching in layers:
+  exact -> accent-insensitive -> fuzzy.
+
+This lets values such as organization names or project-type aliases survive
+minor spelling differences before being sent to the API body.
+
+### 3. Ambiguous routing between document and API questions
+
+Problem: Some API questions look like document questions because both may ask
+for counts, dates, or project information. Some document questions also look
+API-like because they contain numeric/table references.
+
+Solution:
+
+- The selector uses both word n-grams and character n-grams, which helps with
+  short Vietnamese terms and abbreviations.
+- `src/pipeline.py` adds routing safety rules:
+  - if `note` is empty and the selector chose `call_document`, route to
+    `call_api`;
+  - if `note` contains multiple-choice options and the selector chose
+    `call_api`, route back to `call_document`.
+
+### 4. Time expressions in Vietnamese questions
+
+Problem: API bodies often need `fromDate` and `toDate`, but questions use many
+forms: `T1/2025`, `thang 8/2025`, `Quy 3/2025`, `Q3/2025`, `nam 2025`, or
+ranges such as `T1/2025 - T12/2025`.
+
+Solution:
+
+- `src/preprocess/time_normalizer.py` extracts month, quarter, year, and range
+  expressions.
+- `src/api/slot_extractor.py` reuses `extract_date_range()` to fill API date
+  slots in `YYYY-MM-DD` format.
+
+### 5. Similar API endpoints
+
+Problem: Several APIs have very similar descriptions and body schemas. A pure
+keyword match can select the wrong endpoint.
+
+Solution:
+
+- `src/api/api_retriever.py` retrieves a broad candidate set with BM25.
+- `src/api/api_reranker.py` reranks using retrieval score, description overlap,
+  example-question overlap, path-specific keyword boosts, or optional Qwen3
+  reranking.
+- `src/api/template_filler.py` uses calibrated templates from example answers
+  when available, reducing output drift.
+
+### 6. API body shape and default values
+
+Problem: Even when the correct API path is selected, the JSON body can fail if
+list fields, booleans, integers, or optional fields use the wrong default.
+
+Solution:
+
+- `src/api/template_filler.py` builds neutral defaults by parameter type and
+  endpoint family.
+- It preserves calibrated body key order and expected default types.
+- `src/api/validator.py` checks the generated API output before it is returned.
+
+### 7. Document ID hints and evidence retrieval
+
+Problem: Document questions may mention `Public_123`, `Public 123`, or `TD123`.
+Without document filtering, retrieval can pick evidence from a different PDF.
+
+Solution:
+
+- `src/document/retriever.py` detects document IDs and filters retrieval to the
+  matching document when possible.
+- If document-specific retrieval is too sparse, it falls back to leading chunks
+  from the same document instead of returning no evidence.
+
+### 8. Multiple-choice option scoring and negation
+
+Problem: For document questions, the correct option is not always the option
+with the most obvious keyword overlap. Negative questions such as "which one is
+not correct" also change the interpretation.
+
+Solution:
+
+- `src/document/option_parser.py` extracts stable A/B/C/D choices from `note`.
+- `src/document/option_scorer.py` combines normalized overlap, proximity,
+  BM25 retrieval for question + option, option-only retrieval, TF-IDF cosine
+  similarity, and optional Qwen3 reranking.
+- The scorer includes Vietnamese negation patterns so negative questions can
+  be handled more carefully.
+
+### 9. Speed versus accuracy
+
+Problem: The submission pipeline must process many rows quickly, so using a
+large model for every step would be too slow.
+
+Solution:
+
+- Build scripts precompute reusable artifacts.
+- Runtime defaults use BM25, TF-IDF, deterministic rules, and cached selector
+  models.
+- Qwen3 reranking is optional and controlled by environment variables.
+
+## Results
+
+Local example-data results documented during development:
+
+| Metric | Value |
+| --- | --- |
+| Routing accuracy | 100/100 |
+| API path accuracy | 47/50 |
+| Average response time | around 0.024 seconds |
+| Selector cross-validation | around 98% |
+
+Submission run summary documented during development:
+
+| Metric | Value |
+| --- | --- |
 | Total predictions | 617 |
-| call_api | 348 (56.4%) |
-| call_document | 269 (43.6%) |
-| Avg response time | **0.023s** |
+| `call_api` | 348 |
+| `call_document` | 269 |
+| Average response time | around 0.023 seconds |
 
----
+## Advanced Options
 
-## 11. Nâng cấp nâng cao
+### Optional Qwen3 reranker
 
-### 11.1. Bật Dense Embedding (nâng cao retrieval)
+Install `sentence-transformers`, then enable the reranker with environment
+variables:
 
 ```bash
 pip install sentence-transformers
+
+# Windows PowerShell
+$env:VIETTEL_USE_RERANKER="1"
+$env:VIETTEL_RERANKER_MODEL="Qwen/Qwen3-Reranker-8B"
+
+# Linux / macOS
+export VIETTEL_USE_RERANKER=1
+export VIETTEL_RERANKER_MODEL="Qwen/Qwen3-Reranker-8B"
 ```
 
-Model sẽ tự động sử dụng `BAAI/bge-m3` cho hybrid BM25 + dense retrieval.
-
-### 11.2. Bật Cross-Encoder Reranker (nâng cao scoring)
-
-Cross-encoder đã được tích hợp sẵn trong `sentence-transformers`. Cần khởi tạo `OptionScorer` và `APIReranker` với reranker model.
-
-### 11.3. Bật LLM Fallback (xử lý trường hợp mơ hồ)
+### Optional Qwen3 LLM endpoint
 
 ```bash
-# Cài vLLM
 pip install vllm
-
-# Khởi động server
 vllm serve Qwen/Qwen3-32B --port 8000
-
-# Pipeline sẽ tự dùng LLM cho slot extraction mơ hồ
 ```
 
-### 11.4. OCR cho PDF chất lượng thấp
+The LLM endpoint is configured in `configs/model_config.py`.
+
+### MinerU document extraction
+
+MinerU can be used offline for PDFs with complex layouts, tables, formulas, or
+poor text-layer quality.
+
+Recommended flow:
 
 ```bash
-pip install paddleocr paddlepaddle
-```
-
-Kích hoạt OCR fallback cho các trang PDF có `text_coverage < 0.1`.
-
-### 11.5. Trích xuất tri thức nâng cao với MinerU (Magic-PDF) [Mới]
-
-MinerU (Magic-PDF) là mô hình trích xuất tài liệu học sâu vượt trội, chuyển đổi tài liệu PDF phức tạp chứa bảng biểu, hình ảnh và công thức toán học thành định dạng Markdown (giữ nguyên bố cục) và LaTeX một cách chính xác.
-
-Hệ thống RAG đã được tích hợp bộ phân tách cấu trúc **Markdown Chunker** hỗ trợ MinerU:
-- Nhận diện và giữ nguyên cấu trúc bảng biểu (không làm nứt bảng ở giữa các chunk).
-- Theo dõi phân cấp tiêu đề (`#`, `##`, `###`) và gắn ngữ cảnh tiêu đề vào từng đoạn văn.
-- Phân loại và gắn thẻ công thức toán học LaTeX (`chunk_type="formula"`).
-
-#### Hướng dẫn cài đặt & Chạy MinerU ngoại tuyến (Khuyến nghị)
-
-Do MinerU yêu cầu tải trọng lượng mô hình (weights) lớn khoảng 5-10 GB và cần GPU để đạt tốc độ tốt nhất, bạn nên cài đặt MinerU trong một môi trường Conda độc lập và chạy trích xuất ngoại tuyến:
-
-##### Bước 1: Tạo môi trường ảo độc lập cho MinerU
-
-Bạn có thể lựa chọn 1 trong 3 công cụ sau để khởi tạo môi trường ảo (Khuyên dùng **Python 3.10** hoặc **3.11** để tương thích tốt nhất với các thư viện học sâu trên Windows):
-
-###### Cách A: Sử dụng `uv` (Khuyến nghị - Cực nhanh & nhẹ)
-`uv` là trình quản lý gói Python thế hệ mới bằng Rust, giúp tải và cài đặt các thư viện nặng của MinerU chỉ trong vài giây thay vì vài chục phút:
-```bash
-# 1. Tạo môi trường ảo bằng uv (chỉ định Python 3.10)
-uv venv --python 3.10 .mineru_venv
-
-# 2. Kích hoạt môi trường ảo
-# Trên Windows (PowerShell):
-.mineru_venv\Scripts\activate
-# Trên Windows (CMD):
-.mineru_venv\Scripts\activate.bat
-```
-
-###### Cách B: Sử dụng `python venv` tiêu chuẩn (Không cần cài thêm gì)
-```bash
-# 1. Khởi tạo môi trường ảo venv
+# Use a separate environment if needed.
 python -m venv .mineru_venv
-
-# 2. Kích hoạt môi trường ảo
-# Trên Windows (PowerShell):
 .mineru_venv\Scripts\activate
-# Trên Windows (CMD):
-.mineru_venv\Scripts\activate.bat
-```
 
-###### Cách C: Sử dụng `Conda`
-```bash
-# 1. Tạo môi trường ảo Conda
-conda create -n mineru python=3.10 -y
-
-# 2. Kích hoạt môi trường ảo
-conda activate mineru
-```
-
-##### Bước 2: Cài đặt Magic-PDF (Bản đầy đủ)
-Nếu bạn sử dụng `uv` (Cách A), hãy dùng lệnh sau để cài đặt siêu tốc:
-```bash
-uv pip install -U "magic-pdf[full]" --extra-index-url https://wheels.myhloli.com
-```
-Nếu bạn sử dụng `venv` hoặc `conda` (Cách B hoặc C):
-```bash
 pip install -U "magic-pdf[full]" --extra-index-url https://wheels.myhloli.com
-```
 
-##### Bước 3: Cấu hình trọng lượng mô hình (Model Weights)
-
-Vì trọng lượng mô hình (weights) rất nặng (~10 GB), đường truyền quốc tế trực tiếp tới HuggingFace hoặc máy chủ Trung Quốc của ModelScope có thể bị bóp băng thông tại Việt Nam (dẫn tới tốc độ tải chỉ còn 50-100 KB/s). 
-
-Bạn hãy sử dụng các phương pháp tối ưu hóa băng thông dưới đây để đạt tốc độ tải nhanh nhất:
-
-###### 1. Hướng dẫn tải trọng lượng mô hình
-* **Cách A: Chạy tập lệnh tải tự động qua CDN Mirror siêu tốc (KHUYÊN DÙNG - TỐC ĐỘ MAX)**:
-  Tôi đã viết sẵn cho bạn một tập lệnh cấu hình định tuyến thông minh qua hệ thống máy chủ gương **HF-Mirror** chạy trên hạ tầng mạng CDN Châu Á cực nhanh và không bị bóp băng thông:
-  ```bash
-  # Chạy script tải tự động (sẽ tự tải đầy đủ vào data/PDF-Extract-Kit)
-  python scripts/download_models.py
-  ```
-  *(Tập lệnh có hỗ trợ cơ chế tải đa luồng song song `max_workers=8` và tự động tiếp tục tải từ điểm dừng `resume_download=True` nếu bị rớt mạng).*
-
-* **Cách B: Tải thủ công đa luồng bằng Trình duyệt hoặc IDM (Internet Download Manager)**:
-  Nếu máy bạn có cài đặt IDM hoặc các công cụ tải xuống đa luồng của trình duyệt:
-  1. Truy cập trực tiếp kho file: [opendatalab/PDF-Extract-Kit Files](https://huggingface.co/opendatalab/PDF-Extract-Kit/tree/main)
-  2. Tải thủ công các tệp tin trong thư mục `models/` (đặc biệt là các file trọng lượng mô hình đuôi `.pth`, `.onnx`, `.bin`).
-  3. Sau khi tải xong, hãy đặt toàn bộ các tệp tin đó vào thư mục dự án theo đúng cấu trúc: `data/PDF-Extract-Kit/`
-
-* **Cách C: Tải qua ModelScope gốc (Dự phòng)**:
-  ```bash
-  pip install modelscope
-  python -c "from modelscope import snapshot_download; snapshot_download('OpenDataLab/PDF-Extract-Kit', local_dir='data/PDF-Extract-Kit')"
-  ```
-
-###### 2. Tạo và cấu hình tệp `magic-pdf.json`
-MinerU yêu cầu tệp cấu hình chứa đường dẫn mô hình đặt tại thư mục người dùng của hệ thống:
-1. Tạo một tệp mới có tên là `magic-pdf.json` và lưu tại thư mục cá nhân người dùng của bạn trên Windows:
-   `C:\Users\Admin\magic-pdf.json`
-2. Sao chép và dán toàn bộ nội dung cấu hình chuẩn dưới đây vào tệp đó:
-   ```json
-   {
-     "bucket_info": {
-       "bucket-name-1": ["ak", "sk", "endpoint"]
-     },
-     "models-dir": "E:\\AI_kickoff\\data\\PDF-Extract-Kit\\models",
-     "device-mode": "cpu", 
-     "layout-config": {
-       "model": "layoutlmv3"
-     },
-     "formula-config": {
-       "mfd_model": "yolo_v8_mfd",
-       "mfr_model": "unimernet_small",
-       "enable": true
-     },
-     "table-config": {
-       "model": "rapid_table",
-       "enable": true,
-       "max_time": 400
-     }
-   }
-   ```
-   > 💡 **Mẹo cấu hình**:
-   > - Nhớ sửa đường dẫn trong `"models-dir"` trỏ chính xác đến thư mục `models` bên trong bộweights bạn vừa tải (ví dụ: `E:\\AI_kickoff\\data\\PDF-Extract-Kit\\models`). **Chú ý dùng 2 dấu gạch chéo ngược `\\` trong chuỗi JSON trên Windows**.
-   > - Thay đổi `"device-mode": "cpu"` thành `"device-mode": "cuda"` nếu máy tính của bạn có card đồ họa Nvidia hỗ trợ CUDA để kích hoạt GPU tăng tốc độ xử lý nhanh hơn gấp 10 lần.
-
-##### Bước 4: Chạy trích xuất tự động hàng loạt tài liệu
-Để bạn không cần viết các câu lệnh vòng lặp CMD/PowerShell phức tạp, tôi đã xây dựng sẵn một tập lệnh tự động hóa **một cú click**:
-```bash
-# 1. Đảm bảo môi trường ảo chứa MinerU đã được kích hoạt (venv hoặc conda)
-# 2. Chạy tập lệnh trích xuất tự động
 python scripts/mineru_batch_extract.py
 ```
-**Tập lệnh này sẽ tự động**:
-- Quét toàn bộ 398 tệp PDF trong thư mục tài liệu cuộc thi.
-- Kiểm tra tính hợp lệ của tệp cấu hình và môi trường.
-- Tự động chạy MinerU trích xuất cấu trúc bố cục từng tệp.
-- Tự động di chuyển các tệp Markdown `.md` và hình ảnh thu hoạch được vào thư mục chuẩn `data/processed/mineru_markdown/`.
-- Bỏ qua các file đã được trích xuất trước đó để tiết kiệm thời gian (Resume/Caching).
 
-##### Bước 5: Build Knowledge Base của RAG
-Sau khi quá trình trích xuất ở Bước 4 hoàn tất, bạn chỉ cần quay lại môi trường ảo chính của dự án và chạy:
+After MinerU extraction, return to the main project environment and rebuild the
+document knowledge base:
+
 ```bash
 python scripts/build_document_kb.py
 ```
-Hệ thống RAG sẽ phát hiện các tệp Markdown cấu trúc của MinerU, tự động chia nhỏ (chunking) bảo toàn bảng biểu, công thức toán học và tiêu đề mục lục để đưa vào cơ sở dữ liệu đối sánh.
 
-#### Cách hoạt động của Pipeline
+If MinerU Markdown exists, `build_document_kb.py` uses the MinerU chunker. If
+not, it falls back to PyMuPDF.
 
-Khi bạn chạy build dữ liệu tri thức bằng lệnh:
-```bash
-python scripts/build_document_kb.py
-```
-Hệ thống RAG sẽ tự động phát hiện các tệp `.md` đã được trích xuất sẵn bởi MinerU trong thư mục `mineru_markdown/`:
-- **Nếu tìm thấy tệp `.md`**: Pipeline sẽ bỏ qua việc chạy các mô hình PyMuPDF cũ và tiến hành phân tách ngữ nghĩa bằng bộ tách nâng cao **MinerUMarkdownChunker** (giữ nguyên bảng biểu, tiêu đề phân cấp và LaTeX).
-- **Nếu không tìm thấy**: Hệ thống sẽ tự động hiển thị cảnh báo và sử dụng cơ chế dự phòng **PyMuPDF Fallback** để trích xuất văn bản nhằm đảm bảo pipeline chạy ổn định không bị lỗi crash.
+## Troubleshooting
 
----
+### UnicodeEncodeError when logging Vietnamese text
 
-## 12. Xử lý lỗi thường gặp
-
-### Lỗi UnicodeEncodeError khi log tiếng Việt
-
-```
+```text
 UnicodeEncodeError: 'charmap' codec can't encode character
 ```
 
-**Giải pháp:** Chạy với flag UTF-8:
+Run Python in UTF-8 mode:
+
 ```bash
 python -X utf8 run_submission.py
 ```
 
-Hoặc set biến môi trường:
+Or set the environment variable:
+
 ```bash
-set PYTHONIOENCODING=utf-8    # Windows
-export PYTHONIOENCODING=utf-8  # Linux/macOS
+# Windows
+set PYTHONIOENCODING=utf-8
+
+# Linux / macOS
+export PYTHONIOENCODING=utf-8
 ```
 
-> **Lưu ý:** Lỗi này chỉ ảnh hưởng log hiển thị, **không ảnh hưởng kết quả**. Pipeline vẫn chạy đúng.
+### ModuleNotFoundError
 
-### Lỗi ModuleNotFoundError
+Install the missing package or reinstall all dependencies:
 
 ```bash
-# Cài package bị thiếu
 pip install <package-name>
-
-# Hoặc cài toàn bộ
 pip install -r requirements.txt
 ```
 
-### Lỗi "Selector model not found"
+### Selector model not found
 
-Chạy train selector trước:
+Train the selector:
+
 ```bash
 python scripts/train_selector.py
 ```
 
-### Lỗi "Document index not found"
+### Document index not found
 
-Chạy build document KB trước:
+Build the document knowledge base:
+
 ```bash
 python scripts/build_document_kb.py
 ```
 
-### Pipeline chạy chậm
+### API registry not found
 
-- Đảm bảo dữ liệu processed đã được build (không cần build lại mỗi lần chạy)
-- Giảm `DOC_RETRIEVAL_TOP_K` trong `configs/constants.py` nếu cần nhanh hơn
+Build the API registry:
 
----
+```bash
+python scripts/build_api_registry.py
+```
 
-## Tác giả
+### Pipeline is slow
 
-Đội thi Viettel AI Race
+- Make sure processed data has already been built.
+- Keep `VIETTEL_USE_RERANKER` disabled for fast submissions.
+- Reduce `DOC_RETRIEVAL_TOP_K` or `API_RETRIEVAL_TOP_K` only if speed is more
+  important than accuracy.
+
+## Author
+
+Viettel AI Race team
 
 ## License
 
